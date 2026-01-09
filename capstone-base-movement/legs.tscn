@@ -1,0 +1,181 @@
+[gd_scene load_steps=21 format=3 uid="uid://c1sbcuxwk0424"]
+
+[ext_resource type="Texture2D" uid="uid://cgjhw7yirw8oq" path="res://animation/player leg/wait/0001.png0035.png" id="6_pmn55"]
+[ext_resource type="Texture2D" uid="uid://bbvt67atb2llb" path="res://animation/player leg/walk/0001.png0003.png" id="14_svlfc"]
+[ext_resource type="Texture2D" uid="uid://ddwmbkmin33o2" path="res://animation/player leg/walk/0001.png0005.png" id="16_t8207"]
+[ext_resource type="Texture2D" uid="uid://c8pp6t7x6g3pi" path="res://animation/player leg/walk/0001.png0009.png" id="20_6yb5t"]
+[ext_resource type="Texture2D" uid="uid://by6wrhmaubibh" path="res://animation/player leg/walk/0001.png0011.png" id="22_clr0u"]
+[ext_resource type="Texture2D" uid="uid://bidasrmkckqnw" path="res://animation/player leg/walk/0001.png0013.png" id="24_80r1q"]
+[ext_resource type="Texture2D" uid="uid://dba4gyc0yr44v" path="res://animation/player leg/walk/0001.png0015.png" id="26_f2b0y"]
+[ext_resource type="Texture2D" uid="uid://blmcvu7l5xet5" path="res://animation/player leg/walk/0001.png0019.png" id="30_u8uvj"]
+[ext_resource type="Texture2D" uid="uid://cu3pj2nghd7ru" path="res://animation/player leg/walk/0001.png0020.png" id="31_altso"]
+[ext_resource type="Texture2D" uid="uid://5pitn87gqger" path="res://animation/player leg/back walk/0001.png0041.png" id="41_34opc"]
+[ext_resource type="Texture2D" uid="uid://bqklikp7l2n2q" path="res://animation/player leg/back walk/0001.png0043.png" id="43_afrkw"]
+[ext_resource type="Texture2D" uid="uid://bdlw6x2cd07tv" path="res://animation/player leg/back walk/0001.png0045.png" id="45_2chrb"]
+[ext_resource type="Texture2D" uid="uid://ddwbvxlkc0ma8" path="res://animation/player leg/back walk/0001.png0049.png" id="49_4xqj1"]
+[ext_resource type="Texture2D" uid="uid://dowdwch7d1r3p" path="res://animation/player leg/back walk/0001.png0051.png" id="51_2m377"]
+[ext_resource type="Texture2D" uid="uid://bjb5n24mq8qei" path="res://animation/player leg/back walk/0001.png0053.png" id="53_shgae"]
+[ext_resource type="Texture2D" uid="uid://brgb6gblxqn52" path="res://animation/player leg/back walk/0001.png0055.png" id="55_phmtp"]
+[ext_resource type="Texture2D" uid="uid://04lce0y2w10g" path="res://animation/player leg/back walk/0001.png0057.png" id="57_7l83k"]
+
+[sub_resource type="GDScript" id="GDScript_f50pn"]
+script/source = "
+extends CharacterBody2D
+
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var body: Node2D = $body
+@onready var sprite_2d: Sprite2D = $Sprite2D
+
+var max_speed := 300
+var acceleration := 5
+var input: Vector2
+
+#basic movement input
+func get_input():
+	input.x = Input.get_action_strength(\"move_right\") - Input.get_action_strength(\"move_left\")
+	input.y = Input.get_action_strength(\"move_down\") - Input.get_action_strength(\"move_up\")
+	return input.normalized()
+	
+func _physics_process(_delta: float) -> void:
+	animated_sprite_2d.flip_v = true
+	var player_input = get_input()
+	#smooth accelleration 
+	velocity = lerp(velocity, player_input * max_speed, _delta * acceleration)
+
+	if input.length() > .5 :
+#detects if the sprite is flipped and plays the backwards walking animation. changes walking speed
+		if animated_sprite_2d.flip_h == true :
+			animated_sprite_2d.play(\"walk_back\")
+			max_speed = 300
+			if body.prep == true :
+				max_speed = 200
+		else:
+			
+			animated_sprite_2d.play(\"walk\")
+			max_speed = 500
+			if body.prep == true :
+				max_speed = 300
+#detects if you are standing still
+	else:
+		animated_sprite_2d.play(\"wait\")
+	rotation = velocity.angle()
+	move_and_slide()
+
+	#detects if you are walking backwards based on body look direction and leg angle.
+	if abs(body.global_rotation - global_rotation) > 1.5707963268 :
+		animated_sprite_2d.flip_h = true
+		animated_sprite_2d.flip_v = false
+		if abs(body.global_rotation - global_rotation) > 4.7 :
+			animated_sprite_2d.flip_v = true
+			animated_sprite_2d.flip_h = false
+	else:
+		animated_sprite_2d.flip_v = true
+		animated_sprite_2d.flip_h = false
+#does what it says on the tin
+func fix_camera_jitter():
+	if not $PlayerStateMachine.is_moving():
+		position = position.round()
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q1a02"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_pmn55")
+}],
+"loop": true,
+"name": &"wait",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("31_altso")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_svlfc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_t8207")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_6yb5t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_clr0u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_80r1q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_f2b0y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_u8uvj")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("41_34opc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_afrkw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_2chrb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_4xqj1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_2m377")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_shgae")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_phmtp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_7l83k")
+}],
+"loop": true,
+"name": &"walk_back",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_svlfc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_t8207")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_80r1q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_f2b0y")
+}],
+"loop": true,
+"name": &"walk_ready",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ij6vw"]
+radius = 62.619884
+
+[node name="Legs" type="CharacterBody2D"]
+script = SubResource("GDScript_f50pn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.25845903, 0.25845903)
+sprite_frames = SubResource("SpriteFrames_q1a02")
+animation = &"walk_ready"
+frame_progress = 0.8197977
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+scale = Vector2(0.96979153, 0.92992866)
+shape = SubResource("CircleShape2D_ij6vw")

@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgu87auun5grt"]
+
+[ext_resource type="Texture2D" uid="uid://pqk1bo10406a" path="res://animation/body/0001.png0001.png" id="10_5jfal"]
+[ext_resource type="Texture2D" uid="uid://l868t0qs1pnx" path="res://animation/body/0001.png0003.png" id="12_b7cjc"]
+
+[sub_resource type="GDScript" id="GDScript_tg1dk"]
+script/source = "extends Node2D
+#WAIT, make sure to keep all the code not weapon specific, refer to all the animations by the name of the input.
+var prep = false
+@onready var fists: AnimatedSprite2D = $fists
+@onready var knife: AnimatedSprite2D = $knife
+@onready var axe: AnimatedSprite2D = $axe
+@onready var revolver: AnimatedSprite2D = $revolver
+@onready var repeater: AnimatedSprite2D = $repeater
+@onready var shotgun: AnimatedSprite2D = $shotgun
+#list of sprites, if you add one make sure to add it at the end, the order is important.
+var equiped = [fists,knife,axe,revolver,repeater,shotgun]
+
+@export var body_rotation = 0.0
+# Called when the node enters the scene tree for the first time.
+func _input(event):
+	if event.is_action_pressed(\"ready\"):
+		if prep == true :
+			prep = false
+		elif prep == false:
+			prep = true
+
+func check_anim_state():
+	if prep == true:
+		equiped.play(\"ready\")
+	else:
+		equiped.play(\"not_ready\")
+	print(prep)
+
+func _process(delta):
+	equiped = fists
+	look_at(get_global_mouse_position())
+	body_rotation = rotation
+	check_anim_state()
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tg1dk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_5jfal")
+}],
+"loop": true,
+"name": &"not_ready",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_b7cjc")
+}],
+"loop": true,
+"name": &"ready",
+"speed": 5.0
+}]
+
+[node name="body" type="Node2D"]
+position = Vector2(1.1920929e-07, 2.3841858e-07)
+scale = Vector2(0.18549748, 0.21377671)
+script = SubResource("GDScript_tg1dk")
+
+[node name="fists" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tg1dk")
+animation = &"ready"
+
+[node name="knife" type="AnimatedSprite2D" parent="."]
+
+[node name="axe" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.9999999, 0.9999997)
+
+[node name="revolver" type="AnimatedSprite2D" parent="."]
+
+[node name="repeater" type="AnimatedSprite2D" parent="."]
+
+[node name="shotgun" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.9999999, 0.9999999)

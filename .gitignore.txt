@@ -1,0 +1,46 @@
+# --- Godot 4+ ---
+# This folder contains all a user's local settings, cache, and imported files.
+# It MUST be ignored.
+.godot/
+
+# This folder contains generated binary files from your assets.
+# It's highly recommended to ignore it and let Godot re-import on each machine.
+# This keeps your repository small.
+.import/
+
+# Generated binary translation files
+*.translation
+
+# --- Godot C# (Mono) ---
+# Ignore these if you are using C#
+.mono/
+data_*/
+mono_crash.*.json
+
+# --- macOS ---
+# General system files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+Icon\r
+
+# --- Windows ---
+# General system files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# --- Linux ---
+# Common backup files
+*~
+.nfs*
+
+# --- Common IDEs ---
+# Visual Studio Code
+.vscode/
+# JetBrains Rider / IntelliJ
+.idea/

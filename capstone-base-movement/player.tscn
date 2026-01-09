@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://66hsxoauhh40"]
+
+[ext_resource type="PackedScene" uid="uid://c1sbcuxwk0424" path="res://legs.tscn" id="1_onrkg"]
+[ext_resource type="PackedScene" uid="uid://cgu87auun5grt" path="res://body.tscn" id="2_i3pqv"]
+
+[sub_resource type="GDScript" id="GDScript_onrkg"]
+script/source = "extends Node2D
+
+@onready var legs: CharacterBody2D = $Legs
+@onready var body: Node2D = $Legs/body
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="player" type="Node2D"]
+script = SubResource("GDScript_onrkg")
+
+[node name="Legs" parent="." instance=ExtResource("1_onrkg")]
+
+[node name="Camera2D" type="Camera2D" parent="Legs"]
+scale = Vector2(2.5925555, 1.3005253)
+zoom = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="body" parent="Legs" instance=ExtResource("2_i3pqv")]
+position = Vector2(8.000001, -2.524355e-29)
+scale = Vector2(0.24955116, 0.30023184)
+animation = &"ready"
