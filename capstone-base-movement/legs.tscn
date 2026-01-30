@@ -24,7 +24,7 @@ extends CharacterBody2D
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var body: Node2D = $body
-@onready var sprite_2d: Sprite2D = $Sprite2D
+
 var dodge_speed = 1600
 var walk_speed = 700
 var dodge_acc = 10
