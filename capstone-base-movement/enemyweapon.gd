@@ -4,4 +4,4 @@ func _ready() -> void:
 	connect_signals()
 
 func connect_signals():
-	$Area2D
+	pass

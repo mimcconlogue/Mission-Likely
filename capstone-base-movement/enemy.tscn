@@ -22,6 +22,21 @@ tracks/0/keys = {
 "values": [0.29670596]
 }
 
+[sub_resource type="Animation" id="Animation_epg4t"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemyWeapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.29670596]
+}
+
 [sub_resource type="Animation" id="Animation_qi2p4"]
 resource_name = "swing"
 length = 1.5
@@ -36,21 +51,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.29670596, 2.8448868, 0.29670596]
-}
-
-[sub_resource type="Animation" id="Animation_epg4t"]
-resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemyWeapon:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.29670596]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_epg4t"]
@@ -86,7 +86,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DetectionArea"]
-polygon = PackedVector2Array(0, 0, 0, -128, 512, -512, 896, -512, 1152, -256, 1152, 256, 896, 512, 512, 512, 0, 128)
+polygon = PackedVector2Array(0, 0, 192, -128, 960, -384, 1056, -352, 1120, -256, 1120, 256, 1056, 352, 960, 384, 192, 128)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -94,6 +94,56 @@ libraries = {
 &"": SubResource("AnimationLibrary_epg4t")
 }
 autoplay = "idle"
+
+[node name="Raycasts" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(192, -128)
+
+[node name="RayCast2D2" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(960, -384)
+
+[node name="RayCast2D3" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(1056, -352)
+
+[node name="RayCast2D4" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(1088, -288)
+
+[node name="RayCast2D5" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(1120, -224)
+
+[node name="RayCast2D6" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(1120, -160)
+
+[node name="RayCast2D7" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(1120, -96)
+
+[node name="RayCast2D8" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(1120, -32)
+
+[node name="RayCast2D9" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(1120, 32)
+
+[node name="RayCast2D10" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(1120, 96)
+
+[node name="RayCast2D11" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(1120, 160)
+
+[node name="RayCast2D12" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(1120, 224)
+
+[node name="RayCast2D13" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(1088, 288)
+
+[node name="RayCast2D14" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(1056, 352)
+
+[node name="RayCast2D15" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(960, 384)
+
+[node name="RayCast2D16" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(192, 128)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
