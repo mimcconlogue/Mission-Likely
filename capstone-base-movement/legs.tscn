@@ -27,21 +27,28 @@ extends CharacterBody2D
 
 var dodge_speed = 1600
 var walk_speed = 700
-var dodge_acc = 10
+var dodge_acc = 20
 var walk_acc = 5
 var max_speed = walk_speed
 var acceleration = walk_acc 
 var input: Vector2
 var dodge_ready = true
+var dodges = 3
+
 func _input(_event):
 	if Input.is_action_just_pressed(\"dodge\"):
 		print(dodge_ready)
-		if dodge_ready == true :
+		print(dodges)
+		if dodges >= 1 and dodge_ready == true :
 			acceleration = dodge_acc
 			max_speed = dodge_speed
 			get_node(\"dodge boost\").start()
-		else :
-			walk_acc = 0
+			dodges -= 1
+			dodge_ready = false
+			get_node(\"dodge cooldown\").start() 
+			get_node(\"dodge regen\").start() 
+
+
 #basic movement input
 func get_input():
 	input.x = Input.get_action_strength(\"move_right\") - Input.get_action_strength(\"move_left\")
@@ -49,12 +56,14 @@ func get_input():
 	return input.normalized()
 	
 func _physics_process(_delta: float) -> void:
+	
 	animated_sprite_2d.flip_v = true
 	var player_input = get_input()
 	#smooth accelleration 
 	velocity = lerp(velocity, player_input * max_speed, _delta * acceleration)
 
 	if input.length() > .5 :
+		global_rotation = velocity.angle()
 #detects if the sprite is flipped and plays the backwards walking animation. changes walking speed
 		if animated_sprite_2d.flip_h == true :
 			animated_sprite_2d.play(\"walk_back\")
@@ -74,7 +83,7 @@ func _physics_process(_delta: float) -> void:
 #detects if you are standing still
 	else:
 		animated_sprite_2d.play(\"wait\")
-	rotation = velocity.angle()
+		global_rotation = (velocity.angle() + body.global_rotation) / 1.75
 	move_and_slide()
 
 	#detects if you are walking backwards based on body look direction and leg angle.
@@ -95,12 +104,20 @@ func fix_camera_jitter():
 func _on_dodge_boost_timeout() -> void:
 	acceleration = walk_acc
 	max_speed = walk_speed
-	dodge_ready = false
-	get_node(\"dodge cooldown\").start() 
+	
+	
 
 
 func _on_dodge_cooldown_timeout() -> void:
-	dodge_ready = true 
+	dodge_ready = true
+
+
+func _on_dodge_regen_timeout() -> void:
+	dodges += 1 
+	if dodges < 3 :
+		get_node(\"dodge regen\").start() 
+	else :
+		dodges = 3
 "
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_q1a02"]
@@ -208,10 +225,14 @@ shape = SubResource("CircleShape2D_ij6vw")
 
 [node name="dodge boost" type="Timer" parent="."]
 process_callback = 0
-wait_time = 0.25
+wait_time = 0.1
 
 [node name="dodge cooldown" type="Timer" parent="."]
 process_callback = 0
 
+[node name="dodge regen" type="Timer" parent="."]
+wait_time = 5.0
+
 [connection signal="timeout" from="dodge boost" to="." method="_on_dodge_boost_timeout"]
 [connection signal="timeout" from="dodge cooldown" to="." method="_on_dodge_cooldown_timeout"]
+[connection signal="timeout" from="dodge regen" to="." method="_on_dodge_regen_timeout"]

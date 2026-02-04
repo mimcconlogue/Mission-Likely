@@ -1,5 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgu87auun5grt"]
+[gd_scene load_steps=10 format=3 uid="uid://cgu87auun5grt"]
 
+[ext_resource type="Texture2D" uid="uid://dib3hn2gt6lc5" path="res://animation/body/0001.png0013.png" id="1_0e1sv"]
+[ext_resource type="Texture2D" uid="uid://b2kx8mvjfxf4x" path="res://animation/body/0001.png0005.png" id="2_2knqw"]
+[ext_resource type="Texture2D" uid="uid://cah6tvi1s0fhj" path="res://bald-head-cut-out-12363767-removebg-preview.png" id="3_aukrg"]
 [ext_resource type="Texture2D" uid="uid://pqk1bo10406a" path="res://animation/body/0001.png0001.png" id="10_5jfal"]
 [ext_resource type="Texture2D" uid="uid://l868t0qs1pnx" path="res://animation/body/0001.png0003.png" id="12_b7cjc"]
 
@@ -7,6 +10,9 @@
 script/source = "extends Node2D
 #WAIT, make sure to keep all the code not weapon specific, refer to all the animations by the name of the input.
 var prep = false
+@onready var player: Node2D = $\"../..\"
+@onready var camera_control: Node2D = $\"../../camera control\"
+@onready var legs: CharacterBody2D = $\"..\"
 @onready var fists: AnimatedSprite2D = $fists
 @onready var knife: AnimatedSprite2D = $knife
 @onready var axe: AnimatedSprite2D = $axe
@@ -14,12 +20,13 @@ var prep = false
 @onready var repeater: AnimatedSprite2D = $repeater
 @onready var shotgun: AnimatedSprite2D = $shotgun
 #list of sprites, if you add one make sure to add it at the end, the order is important.
-var items = [fists,knife,axe,revolver,repeater,shotgun]
-var slot1 = repeater
-var slot2 = knife
-var empty = fists
+var items
+var current_item = fists
 @export var body_rotation = 0.0
-# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	items = get_children()
+	current_item = fists
+	isolate_item()
 func _input(event):
 	if event.is_action_pressed(\"ready\"):
 		if prep == true :
@@ -27,26 +34,74 @@ func _input(event):
 		elif prep == false:
 			prep = true
 	if event.is_action_pressed(\"slot1\"):
-		items=slot1
+		current_item = items[0]
+		isolate_item()
+		current_item.show()
 	if event.is_action_pressed(\"slot2\"):
-		items=slot2
+		current_item = items[1]
+		isolate_item()
+		current_item.show()
 	if event.is_action_pressed(\"emptyhands\"):
-		items=empty
+		current_item = items[2]
+		isolate_item()
+		current_item.show()
 
 func check_anim_state():
 	if prep == true:
-		items.play(\"ready\")
+		current_item.play(\"ready\")
 	else:
-		items.play(\"not_ready\")
+		current_item.play(\"not_ready\")
 
 func _process(_delta):
-	slot1 = fists
-	slot2 = fists
-	items = fists
-	look_at(get_global_mouse_position())
+	items = get_children()
+	
+	look_at(camera_control.center)
 	body_rotation = rotation
 	check_anim_state()
+func isolate_item():
+	items[0].hide()
+	items[1].hide()
+	items[2].hide()
+	current_item.show()
 "
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_63ads"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0e1sv")
+}],
+"loop": true,
+"name": &"not_ready",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2knqw")
+}],
+"loop": true,
+"name": &"ready",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y1ill"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_aukrg")
+}],
+"loop": true,
+"name": &"not_ready",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_aukrg")
+}],
+"loop": true,
+"name": &"ready",
+"speed": 5.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tg1dk"]
 animations = [{
@@ -72,18 +127,27 @@ position = Vector2(1.1920929e-07, 2.3841858e-07)
 scale = Vector2(0.18549748, 0.21377671)
 script = SubResource("GDScript_tg1dk")
 
+[node name="revolver" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.9999999, 0.9999999)
+sprite_frames = SubResource("SpriteFrames_63ads")
+animation = &"not_ready"
+
+[node name="knife" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_y1ill")
+animation = &"not_ready"
+
 [node name="fists" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.99999994, 0.99999994)
 sprite_frames = SubResource("SpriteFrames_tg1dk")
 animation = &"ready"
 
-[node name="knife" type="AnimatedSprite2D" parent="."]
-
 [node name="axe" type="AnimatedSprite2D" parent="."]
+visible = false
 scale = Vector2(0.9999999, 0.9999997)
 
-[node name="revolver" type="AnimatedSprite2D" parent="."]
-
 [node name="repeater" type="AnimatedSprite2D" parent="."]
+visible = false
 
 [node name="shotgun" type="AnimatedSprite2D" parent="."]
+visible = false
 scale = Vector2(0.9999999, 0.9999999)
