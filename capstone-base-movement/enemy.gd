@@ -2,13 +2,13 @@ extends CharacterBody2D
 @onready var player = get_node("/root/game/player/Legs")
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var timer = %Timer
-@export var speed = 20000
+@export var speed = 15000
 var tween = null
 var health = 100
 var in_detect_range = false
 var detecting = false
 var detected = false
-var detection_distance = 250.0
+var attack_distance = 200.0
 var recently_attacked = false
 var rotation_speed = PI
 
@@ -58,7 +58,7 @@ func _physics_process(delta: float):
 		var target_angle = direction.angle()
 		rotation = lerp_angle(rotation, target_angle, delta * rotation_speed)
 		#if u close enough attack & stop move...
-		if distance_to_player < detection_distance:
+		if distance_to_player < attack_distance:
 			print("THROWIN HANDS")
 			animation_player.play("swing")
 			recently_attacked = true
