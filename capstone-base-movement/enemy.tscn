@@ -103,7 +103,7 @@ libraries = {
 autoplay = "idle"
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(2000, 0)
+target_position = Vector2(3650, 0)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
