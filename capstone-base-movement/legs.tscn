@@ -34,19 +34,24 @@ var acceleration = walk_acc
 var input: Vector2
 var dodge_ready = true
 var dodges = 3
+var mobile = true
 
-func _input(_event):
+func _ready() -> void:
+	animated_sprite_2d.flip_v = true
+	
+func _input(_event):	
 	if Input.is_action_just_pressed(\"dodge\"):
 		print(dodge_ready)
 		print(dodges)
-		if dodges >= 1 and dodge_ready == true :
-			acceleration = dodge_acc
-			max_speed = dodge_speed
-			get_node(\"dodge boost\").start()
-			dodges -= 1
-			dodge_ready = false
-			get_node(\"dodge cooldown\").start() 
-			get_node(\"dodge regen\").start() 
+		if mobile == true :
+			if dodges >= 1 and dodge_ready == true :
+				acceleration = dodge_acc
+				max_speed = dodge_speed
+				get_node(\"dodge boost\").start()
+				dodges -= 1
+				dodge_ready = false
+				get_node(\"dodge cooldown\").start() 
+				get_node(\"dodge regen\").start() 
 
 
 #basic movement input
@@ -57,7 +62,8 @@ func get_input():
 	
 func _physics_process(_delta: float) -> void:
 	
-	animated_sprite_2d.flip_v = true
+	
+	
 	var player_input = get_input()
 	#smooth accelleration 
 	velocity = lerp(velocity, player_input * max_speed, _delta * acceleration)
@@ -84,7 +90,8 @@ func _physics_process(_delta: float) -> void:
 	else:
 		animated_sprite_2d.play(\"wait\")
 		global_rotation = (velocity.angle() + body.global_rotation) / 1.75
-	move_and_slide()
+	if mobile == true :
+		move_and_slide()
 
 	#detects if you are walking backwards based on body look direction and leg angle.
 	if abs(body.global_rotation - global_rotation) > 1.5707963268 :
@@ -104,9 +111,6 @@ func fix_camera_jitter():
 func _on_dodge_boost_timeout() -> void:
 	acceleration = walk_acc
 	max_speed = walk_speed
-	
-	
-
 
 func _on_dodge_cooldown_timeout() -> void:
 	dodge_ready = true
@@ -206,10 +210,15 @@ animations = [{
 "speed": 3.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ij6vw"]
-radius = 62.619884
+[sub_resource type="CircleShape2D" id="CircleShape2D_lkl6x"]
+radius = 50.873795
 
 [node name="Legs" type="CharacterBody2D"]
+collision_layer = 7
+collision_mask = 7
+motion_mode = 1
+wall_min_slide_angle = 0.35953784
+safe_margin = 21.042
 script = SubResource("GDScript_f50pn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -219,9 +228,9 @@ animation = &"walk_ready"
 frame_progress = 0.8197977
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0)
+position = Vector2(0.5, 0.5)
 scale = Vector2(0.96979153, 0.92992866)
-shape = SubResource("CircleShape2D_ij6vw")
+shape = SubResource("CircleShape2D_lkl6x")
 
 [node name="dodge boost" type="Timer" parent="."]
 process_callback = 0
