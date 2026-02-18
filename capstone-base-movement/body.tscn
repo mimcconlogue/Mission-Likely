@@ -1,10 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://cgu87auun5grt"]
+[gd_scene load_steps=20 format=3 uid="uid://cgu87auun5grt"]
 
 [ext_resource type="Texture2D" uid="uid://dib3hn2gt6lc5" path="res://animation/body/0001.png0013.png" id="1_0e1sv"]
 [ext_resource type="Texture2D" uid="uid://b2kx8mvjfxf4x" path="res://animation/body/0001.png0005.png" id="2_2knqw"]
 [ext_resource type="Texture2D" uid="uid://cah6tvi1s0fhj" path="res://bald-head-cut-out-12363767-removebg-preview.png" id="3_aukrg"]
+[ext_resource type="Texture2D" uid="uid://c18jtvk11f6is" path="res://animation/body/0001.png0007.png" id="4_aukrg"]
+[ext_resource type="Texture2D" uid="uid://bgxde6krcvlq" path="res://animation/body/0001.png0004.png" id="6_63ads"]
+[ext_resource type="Texture2D" uid="uid://vc1i6g51o4dd" path="res://animation/body/0001.png0009.png" id="7_udrba"]
+[ext_resource type="Texture2D" uid="uid://eybdtclrhhnf" path="res://animation/body/0001.png0010.png" id="8_fwoh1"]
+[ext_resource type="Texture2D" uid="uid://b1apkn5n3v847" path="res://animation/body/0001.png0011.png" id="9_yq7ir"]
 [ext_resource type="Texture2D" uid="uid://pqk1bo10406a" path="res://animation/body/0001.png0001.png" id="10_5jfal"]
+[ext_resource type="Texture2D" uid="uid://b2qlatuiyumha" path="res://animation/body/0001.png0002.png" id="11_uqfi8"]
 [ext_resource type="Texture2D" uid="uid://l868t0qs1pnx" path="res://animation/body/0001.png0003.png" id="12_b7cjc"]
+[ext_resource type="Texture2D" uid="uid://beq78x7cquowe" path="res://animation/body/0001.png0012.png" id="12_x0tsp"]
+[ext_resource type="Texture2D" uid="uid://cq3641aj04pfn" path="res://animation/body/0001.png0014.png" id="13_3m80l"]
 
 [sub_resource type="GDScript" id="GDScript_tg1dk"]
 script/source = "extends Node2D
@@ -22,47 +30,69 @@ var prep = false
 #list of sprites, if you add one make sure to add it at the end, the order is important.
 var items
 var current_item = fists
+var current_animation : String
+var animation_playing = false
 @export var body_rotation = 0.0
 func _ready() -> void:
 	items = get_children()
 	current_item = fists
 	isolate_item()
 func _input(event):
-	if event.is_action_pressed(\"ready\"):
+	if event.is_action_pressed(\"move_down\"):
+		if event.is_action_pressed(\"move_up\"):
+			if event.is_action_pressed(\"move_left\"):
+				if event.is_action_pressed(\"move_right\"):
+					pass
+	else:
 		if prep == true :
-			prep = false
-		elif prep == false:
-			prep = true
-	if event.is_action_pressed(\"slot1\"):
-		current_item = items[0]
-		isolate_item()
-		current_item.show()
-	if event.is_action_pressed(\"slot2\"):
-		current_item = items[1]
-		isolate_item()
-		current_item.show()
-	if event.is_action_pressed(\"emptyhands\"):
-		current_item = items[2]
-		isolate_item()
-		current_item.show()
+			current_animation = \"ready\"
+		else:
+			current_animation = \"not_ready\"
+		if event.is_action_pressed(\"ready\"):
+			if prep == true :
+				prep = false
+			elif prep == false:
+				prep = true
+		if event.is_action_pressed(\"slot1\"):
+			current_item = items[0]
+			isolate_item()
+			current_item.show()
+		if event.is_action_pressed(\"slot2\"):
+			current_item = items[1]
+			isolate_item()
+			current_item.show()
+		if event.is_action_pressed(\"emptyhands\"):
+			current_item = items[2]
+			isolate_item()
+			current_item.show()
+		if event.is_action_pressed(\"attack1\"):
+			if prep == true:
+				current_animation = \"attack1\"
+			else:
+				current_animation = \"attack_nr1\"
+		check_anim_state()
+		
+	
+	
 
 func check_anim_state():
-	if prep == true:
-		current_item.play(\"ready\")
-	else:
-		current_item.play(\"not_ready\")
+	animation_playing=true
+	current_item.play(current_animation)
 
 func _process(_delta):
-	items = get_children()
 	
 	look_at(camera_control.center)
 	body_rotation = rotation
-	check_anim_state()
+	
 func isolate_item():
 	items[0].hide()
 	items[1].hide()
 	items[2].hide()
 	current_item.show()
+
+
+func _on_fists_animation_finished() -> void:
+	animation_playing = false
 "
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_63ads"]
@@ -107,9 +137,93 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("4_aukrg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_b7cjc")
+}],
+"loop": false,
+"name": &"attack1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_63ads")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2knqw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_b7cjc")
+}],
+"loop": false,
+"name": &"attack2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_b7cjc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_udrba")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_fwoh1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_yq7ir")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_fwoh1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_5jfal")
+}],
+"loop": false,
+"name": &"attack_nr1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_uqfi8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_fwoh1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_yq7ir")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_x0tsp")
+}],
+"loop": false,
+"name": &"attack_nr2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0e1sv")
+}, {
+"duration": 1.0,
 "texture": ExtResource("10_5jfal")
 }],
 "loop": true,
+"name": &"grab fail",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_3m80l")
+}],
+"loop": true,
+"name": &"grab_success",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_5jfal")
+}],
+"loop": false,
 "name": &"not_ready",
 "speed": 5.0
 }, {
@@ -117,10 +231,18 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("12_b7cjc")
 }],
-"loop": true,
+"loop": false,
 "name": &"ready",
 "speed": 5.0
 }]
+
+[sub_resource type="GDScript" id="GDScript_udrba"]
+script/source = "extends AnimatedSprite2D
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_udrba"]
+radius = 130.53363
+height = 754.72723
 
 [node name="body" type="Node2D"]
 position = Vector2(1.1920929e-07, 2.3841858e-07)
@@ -139,7 +261,8 @@ animation = &"not_ready"
 [node name="fists" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.99999994, 0.99999994)
 sprite_frames = SubResource("SpriteFrames_tg1dk")
-animation = &"ready"
+animation = &"not_ready"
+script = SubResource("GDScript_udrba")
 
 [node name="axe" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -151,3 +274,19 @@ visible = false
 [node name="shotgun" type="AnimatedSprite2D" parent="."]
 visible = false
 scale = Vector2(0.9999999, 0.9999999)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(323.45453, -70.166664)
+rotation = -1.5198761
+shape = SubResource("CapsuleShape2D_udrba")
+
+[node name="Area2D2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(361.1909, 70.16669)
+rotation = -1.7209592
+shape = SubResource("CapsuleShape2D_udrba")
+
+[connection signal="animation_finished" from="fists" to="." method="_on_fists_animation_finished"]

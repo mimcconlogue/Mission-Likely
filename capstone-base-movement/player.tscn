@@ -5,6 +5,55 @@
 
 [sub_resource type="GDScript" id="GDScript_onrkg"]
 script/source = "extends Node2D
+
+@onready var pain_regen: Timer = $\"pain regen\"
+@onready var legs: CharacterBody2D = $Legs
+@onready var spawnpoint: Node2D = $spawnpoint
+@onready var body: Node2D = $Legs/body
+@onready var deathstop: Timer = $deathstop
+
+var blood: int = 100
+var max_blood: int = 100
+var pain: int = 100
+var max_pain: int = 100
+var morale = 5
+func _ready() -> void:
+	get_node('pain regen').start()
+	body.show()
+func _process(_delta: float) -> void:
+	detect_death()
+func detect_death():
+	if blood <= 0:
+		die()
+		
+	if pain <= 0:
+		die()
+		
+func take_damage(blood_damage, pain_damage):
+	blood = blood - blood_damage
+	pain = pain - pain_damage
+	print(pain)
+	print(blood)
+	
+func _on_pain_regen_timeout() -> void:
+	if pain < 100 :
+		pain = pain + morale
+	else :
+		pain = 100
+	print(pain)
+	get_node('pain regen').start()
+func _input(event):
+	if event.is_action_pressed(\"take_damage\"):
+		take_damage(4,6)
+		print(pain)
+		print(blood)
+func die():
+	body.hide()
+	legs.mobile = false
+	print(\"reset\")
+	get_tree().reload_current_scene()
+
+	
 "
 
 [sub_resource type="GDScript" id="GDScript_i3pqv"]
@@ -27,7 +76,6 @@ func apply_camera(delta):
 "
 
 [node name="player" type="Node2D"]
-visible = false
 script = SubResource("GDScript_onrkg")
 
 [node name="camera control" type="Node2D" parent="."]
@@ -38,5 +86,16 @@ script = SubResource("GDScript_i3pqv")
 [node name="Legs" parent="." instance=ExtResource("1_onrkg")]
 
 [node name="body" parent="Legs" instance=ExtResource("2_i3pqv")]
+visible = false
 position = Vector2(8.000001, -2.524355e-29)
 scale = Vector2(0.24955116, 0.30023184)
+
+[node name="pain regen" type="Timer" parent="."]
+
+[node name="spawnpoint" type="Node2D" parent="."]
+position = Vector2(0, 1)
+
+[node name="deathstop" type="Timer" parent="."]
+
+[connection signal="timeout" from="pain regen" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="deathstop" to="." method="_on_deathstop_timeout"]
