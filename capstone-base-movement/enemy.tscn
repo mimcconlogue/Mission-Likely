@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://he5ym66anqvn"]
+[gd_scene load_steps=11 format=3 uid="uid://he5ym66anqvn"]
 
 [ext_resource type="Script" uid="uid://bfumjpbb3nwq0" path="res://enemy.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://c3fy62ymmp7ep" path="res://icon.svg" id="2_qi2p4"]
@@ -50,10 +50,30 @@ tracks/0/path = NodePath("EnemyWeapon:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.5, 1, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(-0.03333333, 0.16666669, 0.36666667, 1.1666667, 1.3666668),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.29670596, 2.8448868, 0.29670596]
+"values": [0.38737267, 0.29670596, 2.8448868, 0.29670596, 0.38737267]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666669, 0.40000004),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"weapon_disable"
+}, {
+"args": [],
+"method": &"weapon_activate"
+}, {
+"args": [],
+"method": &"weapon_disable"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_epg4t"]
@@ -62,6 +82,9 @@ _data = {
 &"idle": SubResource("Animation_epg4t"),
 &"swing": SubResource("Animation_qi2p4")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qi2p4"]
+size = Vector2(120, 120)
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_4gyqm")
@@ -81,7 +104,7 @@ scale = Vector2(0.75, 2.7869024)
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 2.0
+wait_time = 0.46
 one_shot = true
 
 [node name="DetectionArea" type="Area2D" parent="."]
@@ -105,6 +128,15 @@ autoplay = "idle"
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(3650, 0)
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_qi2p4")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

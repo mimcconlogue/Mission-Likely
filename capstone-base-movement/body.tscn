@@ -27,6 +27,8 @@ var prep = false
 @onready var revolver: AnimatedSprite2D = $revolver
 @onready var repeater: AnimatedSprite2D = $repeater
 @onready var shotgun: AnimatedSprite2D = $shotgun
+@onready var fist_timer: Timer = $FistTimer
+@onready var fist_hit_shape: CollisionShape2D = $Area2D/FistHitShape
 #list of sprites, if you add one make sure to add it at the end, the order is important.
 var items
 var current_item = fists
@@ -37,6 +39,7 @@ func _ready() -> void:
 	items = get_children()
 	current_item = fists
 	isolate_item()
+	fist_hit_shape.set_disabled(true)
 func _input(event):
 	if event.is_action_pressed(\"move_down\"):
 		if event.is_action_pressed(\"move_up\"):
@@ -68,6 +71,8 @@ func _input(event):
 		if event.is_action_pressed(\"attack1\"):
 			if prep == true:
 				current_animation = \"attack1\"
+				fist_hit_shape.set_disabled(false)
+				fist_timer.start()
 			else:
 				current_animation = \"attack_nr1\"
 		check_anim_state()
@@ -93,6 +98,10 @@ func isolate_item():
 
 func _on_fists_animation_finished() -> void:
 	animation_playing = false
+
+
+func _on_fist_timer_timeout() -> void:
+	fist_hit_shape.set_disabled(true)
 "
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_63ads"]
@@ -241,8 +250,8 @@ script/source = "extends AnimatedSprite2D
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_udrba"]
-radius = 130.53363
-height = 754.72723
+radius = 71.362
+height = 495.9567
 
 [node name="body" type="Node2D"]
 position = Vector2(1.1920929e-07, 2.3841858e-07)
@@ -261,7 +270,7 @@ animation = &"not_ready"
 [node name="fists" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.99999994, 0.99999994)
 sprite_frames = SubResource("SpriteFrames_tg1dk")
-animation = &"not_ready"
+animation = &"attack_nr1"
 script = SubResource("GDScript_udrba")
 
 [node name="axe" type="AnimatedSprite2D" parent="."]
@@ -276,17 +285,25 @@ visible = false
 scale = Vector2(0.9999999, 0.9999999)
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(323.45453, -70.166664)
-rotation = -1.5198761
+[node name="FistHitShape" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(549.8727, 18.711117)
+rotation = -1.343735
 shape = SubResource("CapsuleShape2D_udrba")
 
 [node name="Area2D2" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2(361.1909, 70.16669)
-rotation = -1.7209592
+position = Vector2(398.92725, 79.522224)
+rotation = -3.1153631
+scale = Vector2(1, 0.6089884)
 shape = SubResource("CapsuleShape2D_udrba")
 
+[node name="FistTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="animation_finished" from="fists" to="." method="_on_fists_animation_finished"]
+[connection signal="timeout" from="FistTimer" to="." method="_on_fist_timer_timeout"]

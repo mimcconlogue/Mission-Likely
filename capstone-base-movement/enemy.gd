@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var timer = %Timer
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
+@onready var weapon_shape = get_node("EnemyWeapon/WeaponHurtbox/CollisionPolygon2D")
 @export var speed = 15000
 var tween = null
 var health = 100
@@ -13,7 +14,24 @@ var attack_distance = 200.0
 var recently_attacked = false
 var rotation_speed = PI
 var player_visible = false
+var blood: int = 100
+var max_blood: int = 100
+var pain: int = 100
+var max_pain: int = 100
+var morale = 5
 
+func _ready() -> void:
+	weapon_activate()
+func take_damage(blood_damage, pain_damage):
+	blood = blood - blood_damage
+	pain = pain - pain_damage
+	detect_death()
+func detect_death():
+	if blood <= 0:
+		die()
+		
+	if pain <= 0:
+		die()
 #start chase if u stay spotted too long lil bro
 func _on_timer_timeout() -> void:
 	if player_visible:
@@ -89,3 +107,13 @@ func _physics_process(delta: float):
 		else: 
 			animation_player.play("idle")
 			move_and_slide()
+func weapon_disable():
+	weapon_shape.set_disabled(true)
+func weapon_activate():
+	weapon_shape.set_disabled(false)
+
+func die():
+	queue_free()
+func _on_area_2d_area_entered(_area: Area2D) -> void:
+	print("Take That!")
+	take_damage(5,15)

@@ -1,21 +1,82 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxkfexdm6v2mo"]
+[gd_scene load_steps=6 format=3 uid="uid://bxkfexdm6v2mo"]
 
 [ext_resource type="PackedScene" uid="uid://66hsxoauhh40" path="res://player.tscn" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://he5ym66anqvn" path="res://enemy.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://4tfmsfv7hp0q" path="res://box.tscn" id="3_feb5d"]
+[ext_resource type="PackedScene" uid="uid://uqbde0qleu2v" path="res://exit.tscn" id="4_fc0e3"]
+
+[sub_resource type="GDScript" id="GDScript_feb5d"]
+script/source = "extends Node2D
+
+@onready var player: Node2D = $player
+@onready var enemy: CharacterBody2D = $Enemy
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [node name="game" type="Node2D"]
+script = SubResource("GDScript_feb5d")
 
 [node name="player" parent="." instance=ExtResource("1_e2o6t")]
+position = Vector2(-429, -5)
 
 [node name="Enemy" parent="." instance=ExtResource("2_e2o6t")]
 position = Vector2(528, 21)
+rotation = 1.5383216
 
 [node name="Box" parent="." instance=ExtResource("3_feb5d")]
 position = Vector2(824, -221)
 
 [node name="Box2" parent="." instance=ExtResource("3_feb5d")]
-position = Vector2(824, -110)
+position = Vector2(124, -121)
+scale = Vector2(1, 2.6384597)
 
 [node name="Box3" parent="." instance=ExtResource("3_feb5d")]
-position = Vector2(818, -346)
+position = Vector2(475.99997, -336)
+scale = Vector2(6.591773, 0.8538193)
+
+[node name="Box4" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(814, 234)
+scale = Vector2(1, 2.630487)
+
+[node name="Box5" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(467, 452)
+scale = Vector2(6.591773, 0.8538193)
+
+[node name="Enemy2" parent="." instance=ExtResource("2_e2o6t")]
+position = Vector2(1273, -183)
+rotation = 1.5383216
+
+[node name="Box6" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(1947, 53)
+scale = Vector2(1.1513343, 7.2891374)
+
+[node name="Box7" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(1596, 438)
+scale = Vector2(6.591773, 0.8538193)
+
+[node name="Box8" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(1445.9999, -340)
+scale = Vector2(9.111775, 0.8538193)
+
+[node name="exit" parent="." instance=ExtResource("4_fc0e3")]
+position = Vector2(1032, 693)
+
+[node name="Box9" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(1370, 648)
+scale = Vector2(1, 2.630487)
+
+[node name="Box10" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(1023.00006, 866)
+scale = Vector2(6.591773, 0.8538193)
+
+[node name="Box11" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(681, 660.99994)
+scale = Vector2(1, 2.630487)

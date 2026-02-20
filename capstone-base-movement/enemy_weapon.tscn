@@ -1,17 +1,44 @@
-[gd_scene load_steps=2 format=3 uid="uid://cx2nm32tgfopw"]
+[gd_scene load_steps=3 format=3 uid="uid://cx2nm32tgfopw"]
 
 [ext_resource type="Texture2D" uid="uid://c3fy62ymmp7ep" path="res://icon.svg" id="1_004dc"]
 
+[sub_resource type="GDScript" id="GDScript_004dc"]
+script/source = "extends Area2D
+
+@onready var damage_tick: Timer = $DamageTick
+var iframe = false
+signal melee_enemy_hit(blood_damage, pain_damage)
+
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	pass
+
+		
+
+func _on_damage_tick_timeout() -> void:
+	iframe = false
+"
+
 [node name="EnemyWeapon" type="Node2D"]
+
+[node name="WeaponHurtbox" type="Area2D" parent="."]
+position = Vector2(0, -44.5)
+scale = Vector2(0.5, 0.5)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_004dc")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WeaponHurtbox"]
+position = Vector2(0, 25)
+polygon = PackedVector2Array(-62, -60, 62, -60, 62, 58, -62, 58)
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -32)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_004dc")
 
-[node name="Area2D" type="Area2D" parent="Sprite"]
-position = Vector2(0, -25)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/Area2D"]
-position = Vector2(0, 25)
-polygon = PackedVector2Array(-62, -60, 62, -60, 62, 58, -62, 58)
+[connection signal="area_entered" from="WeaponHurtbox" to="WeaponHurtbox" method="_on_area_entered"]
