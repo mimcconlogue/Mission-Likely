@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4cfjlev2dys1"]
+
+[ext_resource type="Script" uid="uid://ourgbq6c6ow7" path="res://blood_bar.gd" id="1_fyqef"]
+
+[sub_resource type="GDScript" id="GDScript_xb563"]
+script/source = "extends ProgressBar
+var player 
+func _ready() -> void:
+	player = get_node(\"/root/game/player\")
+	update()
+func update():
+	value = player.pain
+"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PainBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 35.0
+offset_top = 562.0
+offset_right = -851.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_xb563")
+
+[node name="BloodBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 35.0
+offset_top = 514.0
+offset_right = -851.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fyqef")

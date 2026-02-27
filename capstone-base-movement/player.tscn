@@ -11,14 +11,14 @@ script/source = "extends Node2D
 @onready var spawnpoint: Node2D = $spawnpoint
 @onready var body: Node2D = $Legs/body
 @onready var deathstop: Timer = $deathstop
-
-var blood: int = 100
+@export var blood: int = 100
+@export var pain: int = 100
 var max_blood: int = 100
-var pain: int = 100
 var max_pain: int = 100
 var morale = 5
+signal damage_changed 
 func _ready() -> void:
-	get_node('pain regen').start()
+	get_node('PainRegens').start()
 	body.show()
 func _process(_delta: float) -> void:
 	detect_death()
@@ -34,14 +34,16 @@ func take_damage(blood_damage, pain_damage):
 	pain = pain - pain_damage
 	print(pain)
 	print(blood)
+	emit_signal(\"damage_changed\")
 	
 func _on_pain_regen_timeout() -> void:
 	if pain < 100 :
 		pain = pain + morale
+		emit_signal(\"damage_changed\")
 	else :
 		pain = 100
 	print(pain)
-	get_node('pain regen').start()
+	get_node('PainRegen').start()
 func _input(event):
 	if event.is_action_pressed(\"take_damage\"):
 		take_damage(4,6)
@@ -104,7 +106,7 @@ script = SubResource("GDScript_i3pqv")
 [node name="Legs" parent="." instance=ExtResource("1_onrkg")]
 
 [node name="body" parent="Legs" instance=ExtResource("2_i3pqv")]
-position = Vector2(8.000001, -2.524355e-29)
+position = Vector2(-13.999999, 7)
 scale = Vector2(0.24955116, 0.30023184)
 
 [node name="Area2D3" type="Area2D" parent="Legs/body"]
@@ -115,7 +117,8 @@ script = SubResource("GDScript_hqtel")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/body/Area2D3"]
 shape = SubResource("CapsuleShape2D_sweqy")
 
-[node name="pain regen" type="Timer" parent="."]
+[node name="PainRegen" type="Timer" parent="."]
+one_shot = true
 
 [node name="spawnpoint" type="Node2D" parent="."]
 position = Vector2(0, 1)
@@ -123,5 +126,5 @@ position = Vector2(0, 1)
 [node name="deathstop" type="Timer" parent="."]
 
 [connection signal="area_entered" from="Legs/body/Area2D3" to="." method="_on_area_2d_3_area_entered"]
-[connection signal="timeout" from="pain regen" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="PainRegen" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="deathstop" to="." method="_on_deathstop_timeout"]
