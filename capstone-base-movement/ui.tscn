@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://d4cfjlev2dys1"]
+[gd_scene load_steps=4 format=3 uid="uid://d4cfjlev2dys1"]
 
 [ext_resource type="Script" uid="uid://ourgbq6c6ow7" path="res://blood_bar.gd" id="1_fyqef"]
+[ext_resource type="Script" uid="uid://ctfd70i46fdoo" path="res://canvas_layer.gd" id="1_m6e0p"]
 
 [sub_resource type="GDScript" id="GDScript_xb563"]
 script/source = "extends ProgressBar
@@ -19,6 +20,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("1_m6e0p")
 
 [node name="PainBar" type="ProgressBar" parent="CanvasLayer"]
 anchors_preset = 15

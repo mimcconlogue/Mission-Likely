@@ -24,8 +24,7 @@ func _process(delta: float) -> void:
 
 
 func _on_player_damage_changed() -> void:
-	get_node(\"/root/game/Control/CanvasLayer/PainBar\").update()
-	get_node(\"/root/game/Control/CanvasLayer/BloodBar\").update()
+	get_node(\"/root/game/Control/CanvasLayer\").update()
 "
 
 [node name="game" type="Node"]
