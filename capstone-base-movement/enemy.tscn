@@ -104,7 +104,7 @@ scale = Vector2(0.75, 2.7869024)
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 0.46
+wait_time = 2.0
 one_shot = true
 
 [node name="DetectionArea" type="Area2D" parent="."]

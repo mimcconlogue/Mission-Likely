@@ -5,9 +5,11 @@ extends CharacterBody2D
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 @export var speed = 15000
 @onready var gun: Marker2D = $Marker2D
+@onready var idle_timer: Timer = %IdleTimer
 
+const Bullet = preload("res://enemybullet.tscn")
 
-var Bullet = preload("res://enemybullet.tscn")
+var not_shooting = true
 var tween = null
 var health = 100
 var can_shoot = true
@@ -31,7 +33,6 @@ func take_damage(blood_damage, pain_damage):
 func detect_death():
 	if blood <= 0:
 		die()
-		
 	if pain <= 0:
 		die()
 #start chase if u stay spotted too long lil bro
@@ -61,16 +62,16 @@ func _physics_process(delta: float):
 	#if they do then check if enemy has los w player
 	#look at player if in detection radius with a tween
 	if player_visible and detectable:
-			var direction = (player.global_position - global_position).normalized()
-			var target_angle = direction.angle()
-			if timer_not_active:
-				timer.start()
-				timer_not_active = false
-			if tween: 
-				tween.kill()
-			tween = create_tween()
-			tween.set_loops()
-			tween.tween_property(self,"rotation",target_angle, 0.75).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		var direction = (player.global_position - global_position).normalized()
+		var target_angle = direction.angle()
+		if timer_not_active:
+			timer.start()
+			timer_not_active = false
+		if tween: 
+			tween.kill()
+		tween = create_tween()
+		tween.set_loops()
+		tween.tween_property(self,"rotation",target_angle, 0.75).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	#check line o sight
 	var player_local_position = ray_cast_2d.to_local(player.global_position)
 	ray_cast_2d.target_position = player_local_position
@@ -87,21 +88,23 @@ func _physics_process(delta: float):
 	#if u get spotted
 	if detected: 
 		var direction = (player.global_position - global_position).normalized()
-		if not can_shoot:
-			if tween:
-				tween.kill()
-				#move to player and look at them
-			velocity = speed * direction * delta
-		
-		
-		#all of this for rotation
 		var target_angle = direction.angle()
 		rotation = lerp_angle(rotation, target_angle, delta * rotation_speed)
 		#if u close enough attack & stop move...
-		if distance_to_player < attack_distance and player_visible:
-			if can_shoot:
-				print("pew")
-				shoot()
+	if distance_to_player < attack_distance and player_visible:
+		if can_shoot:
+			shoot()
+		not_shooting = false
+	else:
+		var direction = (player.global_position - global_position).normalized()
+		#idk what this killtween is for but i think it crashes if its deleted
+		if tween:
+			tween.kill()
+		#move to player and look at them
+		velocity = speed * direction * delta
+		idle_timer.start()
+		if not_shooting:
+			move_and_slide()
 
 
 func die():
@@ -114,9 +117,13 @@ func shoot():
 	can_shoot = false
 	var bullet = Bullet.instantiate()
 	get_tree().root.add_child(bullet)
+	#ended here \/ connect the bullet hit to the player take dmg func
+	bullet.bullet_hit.connect()
 	bullet.global_position = gun.global_position
 	bullet.global_rotation = gun.global_rotation
 	shoot_timer.start()
+
 func _on_shoot_timer_timeout() -> void:
 	can_shoot = true
-	
+func _on_idle_timer_timeout() -> void:
+	not_shooting = true
