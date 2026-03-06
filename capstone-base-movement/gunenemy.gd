@@ -67,11 +67,7 @@ func _physics_process(delta: float):
 		if timer_not_active:
 			timer.start()
 			timer_not_active = false
-		if tween: 
-			tween.kill()
-		tween = create_tween()
-		tween.set_loops()
-		tween.tween_property(self,"rotation",target_angle, 0.75).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		rotation = lerp_angle(rotation, target_angle, delta * rotation_speed)
 	#check line o sight
 	var player_local_position = ray_cast_2d.to_local(player.global_position)
 	ray_cast_2d.target_position = player_local_position
@@ -90,21 +86,19 @@ func _physics_process(delta: float):
 		var direction = (player.global_position - global_position).normalized()
 		var target_angle = direction.angle()
 		rotation = lerp_angle(rotation, target_angle, delta * rotation_speed)
+		if not_shooting:
+			move_and_slide()
 		#if u close enough attack & stop move...
 	if distance_to_player < attack_distance and player_visible:
 		if can_shoot:
 			shoot()
-		not_shooting = false
 	else:
 		var direction = (player.global_position - global_position).normalized()
-		#idk what this killtween is for but i think it crashes if its deleted
-		if tween:
-			tween.kill()
 		#move to player and look at them
 		velocity = speed * direction * delta
-		idle_timer.start()
-		if not_shooting:
-			move_and_slide()
+		if not not_shooting:
+			idle_timer.start()
+		
 
 
 func die():
@@ -115,10 +109,9 @@ func _on_area_2d_area_entered(_area: Area2D) -> void:
 
 func shoot():
 	can_shoot = false
+	not_shooting = false
 	var bullet = Bullet.instantiate()
 	get_tree().root.add_child(bullet)
-	#ended here \/ connect the bullet hit to the player take dmg func
-	bullet.bullet_hit.connect()
 	bullet.global_position = gun.global_position
 	bullet.global_rotation = gun.global_rotation
 	shoot_timer.start()
