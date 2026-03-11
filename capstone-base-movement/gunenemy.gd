@@ -9,14 +9,14 @@ extends CharacterBody2D
 
 const Bullet = preload("res://enemybullet.tscn")
 
-var not_shooting = true
+var can_walk = true
 var tween = null
 var health = 100
 var can_shoot = true
 var timer_not_active = true
 var detectable = false
 var detected = false
-var attack_distance = 1000.0
+var attack_distance = 1500.0
 var rotation_speed = PI
 var player_visible = false
 var blood: int = 100
@@ -38,6 +38,7 @@ func detect_death():
 #start chase if u stay spotted too long lil bro
 func _on_timer_timeout() -> void:
 	if player_visible:
+		can_walk = true
 		detected = true
 		timer_not_active = false
 		detectable = false
@@ -86,7 +87,7 @@ func _physics_process(delta: float):
 		var direction = (player.global_position - global_position).normalized()
 		var target_angle = direction.angle()
 		rotation = lerp_angle(rotation, target_angle, delta * rotation_speed)
-		if not_shooting:
+		if can_walk:
 			move_and_slide()
 		#if u close enough attack & stop move...
 	if distance_to_player < attack_distance and player_visible:
@@ -96,8 +97,9 @@ func _physics_process(delta: float):
 		var direction = (player.global_position - global_position).normalized()
 		#move to player and look at them
 		velocity = speed * direction * delta
-		if not not_shooting:
-			idle_timer.start()
+		if not can_walk:
+			if idle_timer.is_stopped():
+				idle_timer.start()
 		
 
 
@@ -109,7 +111,7 @@ func _on_area_2d_area_entered(_area: Area2D) -> void:
 
 func shoot():
 	can_shoot = false
-	not_shooting = false
+	can_walk = false
 	var bullet = Bullet.instantiate()
 	get_tree().root.add_child(bullet)
 	bullet.global_position = gun.global_position
@@ -119,4 +121,5 @@ func shoot():
 func _on_shoot_timer_timeout() -> void:
 	can_shoot = true
 func _on_idle_timer_timeout() -> void:
-	not_shooting = true
+	can_walk = true
+	can_shoot = true

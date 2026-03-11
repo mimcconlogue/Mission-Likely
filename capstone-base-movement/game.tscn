@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 script = SubResource("GDScript_feb5d")
 
 [node name="player" parent="." instance=ExtResource("1_e2o6t")]
-position = Vector2(-2760, 8)
+position = Vector2(-2407, 1176)
 
 [node name="Enemy" parent="." instance=ExtResource("2_e2o6t")]
 position = Vector2(528, 21)
@@ -56,8 +56,8 @@ position = Vector2(1273, -183)
 rotation = 1.5383216
 
 [node name="Box6" parent="." instance=ExtResource("3_feb5d")]
-position = Vector2(1947, 53)
-scale = Vector2(1.1513343, 7.2891374)
+position = Vector2(-1980.9999, 1613)
+scale = Vector2(1.1513343, 16.409136)
 
 [node name="Box7" parent="." instance=ExtResource("3_feb5d")]
 position = Vector2(1596, 438)
@@ -83,4 +83,4 @@ position = Vector2(681, 660.99994)
 scale = Vector2(1, 2.630487)
 
 [node name="GunEnemy" parent="." instance=ExtResource("5_7jktm")]
-position = Vector2(-4355, 1844)
+position = Vector2(-6259, 1339)
