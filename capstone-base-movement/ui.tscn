@@ -1,7 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4cfjlev2dys1"]
+[gd_scene load_steps=11 format=3 uid="uid://d4cfjlev2dys1"]
 
 [ext_resource type="Script" uid="uid://ourgbq6c6ow7" path="res://blood_bar.gd" id="1_fyqef"]
 [ext_resource type="Script" uid="uid://ctfd70i46fdoo" path="res://canvas_layer.gd" id="1_m6e0p"]
+[ext_resource type="PackedScene" uid="uid://dmlht2l8joygh" path="res://pausescreen.tscn" id="2_27fn8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6e0p"]
+bg_color = Color(0.54869443, 0.42492333, 0, 1)
+
+[sub_resource type="Theme" id="Theme_27fn8"]
+ProgressBar/colors/font_color = Color(0, 0, 0, 1)
+ProgressBar/styles/background = SubResource("StyleBoxFlat_m6e0p")
 
 [sub_resource type="GDScript" id="GDScript_xb563"]
 script/source = "extends ProgressBar
@@ -13,6 +21,19 @@ func update():
 	value = player.pain
 "
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nltto"]
+bg_color = Color(0.46741349, 0, 0.13386527, 1)
+
+[sub_resource type="Theme" id="Theme_ibotj"]
+ProgressBar/colors/font_color = Color(0.025363777, 0.025363786, 0.025363918, 1)
+ProgressBar/styles/background = SubResource("StyleBoxFlat_nltto")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_27fn8"]
+bg_color = Color(0.15677047, 0.4845255, 0.73988664, 1)
+
+[sub_resource type="Theme" id="Theme_nltto"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_27fn8")
+
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 0
@@ -22,16 +43,19 @@ offset_bottom = 40.0
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("1_m6e0p")
 
+[node name="pausescreen" parent="CanvasLayer" instance=ExtResource("2_27fn8")]
+
 [node name="PainBar" type="ProgressBar" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 35.0
-offset_top = 562.0
+offset_top = 546.0
 offset_right = -851.0
-offset_bottom = -48.0
+offset_bottom = -64.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_27fn8")
 script = SubResource("GDScript_xb563")
 
 [node name="BloodBar" type="ProgressBar" parent="CanvasLayer"]
@@ -39,9 +63,23 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 35.0
-offset_top = 514.0
+offset_top = 498.0
 offset_right = -851.0
-offset_bottom = -96.0
+offset_bottom = -112.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_ibotj")
+script = ExtResource("1_fyqef")
+
+[node name="StaminaBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_top = 598.0
+offset_right = -850.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_nltto")
 script = ExtResource("1_fyqef")

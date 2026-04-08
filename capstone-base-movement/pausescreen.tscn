@@ -1,0 +1,100 @@
+[gd_scene load_steps=8 format=3 uid="uid://dmlht2l8joygh"]
+
+[ext_resource type="FontFile" uid="uid://c4jljn5wepqo2" path="res://Rubik-Bold.ttf" id="1_tawuw"]
+[ext_resource type="Script" uid="uid://3e5xot8t7on7" path="res://pausescreen.gd" id="2_h3jv2"]
+[ext_resource type="Shader" uid="uid://bvql40vohvtxq" path="res://blur.gdshader" id="2_t1lg1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h3jv2"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0.002617787, 0.0026177887, 0.0026177843, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkqva"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.003921569, 0.003921569, 0.003921569, 0.5372549)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="Theme" id="Theme_apxtq"]
+default_font = ExtResource("1_tawuw")
+default_font_size = 48
+Button/styles/normal = SubResource("StyleBoxFlat_h3jv2")
+Label/font_sizes/font_size = 64
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_bkqva")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8c4bg"]
+shader = ExtResource("2_t1lg1")
+shader_parameter/blur_amount = 3.4350001631625
+shader_parameter/tint = Color(0, 0, 0, 1)
+shader_parameter/tint_strength = 0.4910000233225
+shader_parameter/saturation = 1.0
+
+[node name="pausescreen" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_apxtq")
+script = ExtResource("2_h3jv2")
+
+[node name="BlurColorRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_8c4bg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UIPanelContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -261.0
+offset_top = -184.0
+offset_right = 261.0
+offset_bottom = 184.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIPanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UIPanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+text = "PAUSE
+"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="UIPanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIPanelContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="UIPanelContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resume"
+
+[node name="QuitButton" type="Button" parent="UIPanelContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"

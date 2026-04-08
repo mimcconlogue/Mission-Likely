@@ -88,6 +88,5 @@ position = Vector2(681, 660.99994)
 scale = Vector2(1, 2.630487)
 
 [node name="Control" parent="." instance=ExtResource("5_7jktm")]
-metadata/_edit_use_anchors_ = true
 
 [connection signal="damage_changed" from="player" to="." method="_on_player_damage_changed"]

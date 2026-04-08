@@ -18,7 +18,7 @@ var max_pain: int = 100
 var morale = 5
 signal damage_changed 
 func _ready() -> void:
-	get_node('PainRegens').start()
+	get_node('PainRegen').start()
 	body.show()
 func _process(_delta: float) -> void:
 	detect_death()
