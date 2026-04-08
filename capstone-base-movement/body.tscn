@@ -1,309 +1,49 @@
-[gd_scene load_steps=20 format=3 uid="uid://cgu87auun5grt"]
+[gd_scene format=3 uid="uid://cgu87auun5grt"]
 
-[ext_resource type="Texture2D" uid="uid://dib3hn2gt6lc5" path="res://animation/body/0001.png0013.png" id="1_0e1sv"]
-[ext_resource type="Texture2D" uid="uid://b2kx8mvjfxf4x" path="res://animation/body/0001.png0005.png" id="2_2knqw"]
-[ext_resource type="Texture2D" uid="uid://cah6tvi1s0fhj" path="res://bald-head-cut-out-12363767-removebg-preview.png" id="3_aukrg"]
-[ext_resource type="Texture2D" uid="uid://c18jtvk11f6is" path="res://animation/body/0001.png0007.png" id="4_aukrg"]
-[ext_resource type="Texture2D" uid="uid://bgxde6krcvlq" path="res://animation/body/0001.png0004.png" id="6_63ads"]
-[ext_resource type="Texture2D" uid="uid://vc1i6g51o4dd" path="res://animation/body/0001.png0009.png" id="7_udrba"]
-[ext_resource type="Texture2D" uid="uid://eybdtclrhhnf" path="res://animation/body/0001.png0010.png" id="8_fwoh1"]
-[ext_resource type="Texture2D" uid="uid://b1apkn5n3v847" path="res://animation/body/0001.png0011.png" id="9_yq7ir"]
-[ext_resource type="Texture2D" uid="uid://pqk1bo10406a" path="res://animation/body/0001.png0001.png" id="10_5jfal"]
-[ext_resource type="Texture2D" uid="uid://b2qlatuiyumha" path="res://animation/body/0001.png0002.png" id="11_uqfi8"]
-[ext_resource type="Texture2D" uid="uid://l868t0qs1pnx" path="res://animation/body/0001.png0003.png" id="12_b7cjc"]
-[ext_resource type="Texture2D" uid="uid://beq78x7cquowe" path="res://animation/body/0001.png0012.png" id="12_x0tsp"]
-[ext_resource type="Texture2D" uid="uid://cq3641aj04pfn" path="res://animation/body/0001.png0014.png" id="13_3m80l"]
+[ext_resource type="Script" uid="uid://dbcrlfy6ft854" path="res://active_weapon.gd" id="1_in4ii"]
+[ext_resource type="PackedScene" uid="uid://bsn2eunsqwbqh" path="res://weapon.tscn" id="14_fwoh1"]
 
 [sub_resource type="GDScript" id="GDScript_tg1dk"]
 script/source = "extends Node2D
 #WAIT, make sure to keep all the code not weapon specific, refer to all the animations by the name of the input.
-var prep = false
-@onready var player: Node2D = $\"../..\"
 @onready var camera_control: Node2D = $\"../../camera control\"
 @onready var legs: CharacterBody2D = $\"..\"
-@onready var fists: AnimatedSprite2D = $fists
-@onready var knife: AnimatedSprite2D = $knife
-@onready var axe: AnimatedSprite2D = $axe
-@onready var revolver: AnimatedSprite2D = $revolver
-@onready var repeater: AnimatedSprite2D = $repeater
-@onready var shotgun: AnimatedSprite2D = $shotgun
-@onready var fist_timer: Timer = $FistTimer
-@onready var fist_hit_shape: CollisionShape2D = $Area2D/FistHitShape
-#list of sprites, if you add one make sure to add it at the end, the order is important.
-var items
-var current_item = fists
-var current_animation : String
-var animation_playing = false
 @export var body_rotation = 0.0
-func _ready() -> void:
-	items = get_children()
-	current_item = fists
-	isolate_item()
-	fist_hit_shape.set_disabled(true)
-func _input(event):
-	if event.is_action_pressed(\"move_down\"):
-		if event.is_action_pressed(\"move_up\"):
-			if event.is_action_pressed(\"move_left\"):
-				if event.is_action_pressed(\"move_right\"):
-					pass
-	else:
-		if prep == true :
-			current_animation = \"ready\"
-		else:
-			current_animation = \"not_ready\"
-		if event.is_action_pressed(\"ready\"):
-			if prep == true :
-				prep = false
-			elif prep == false:
-				prep = true
-		if event.is_action_pressed(\"slot1\"):
-			current_item = items[0]
-			isolate_item()
-			current_item.show()
-		if event.is_action_pressed(\"slot2\"):
-			current_item = items[1]
-			isolate_item()
-			current_item.show()
-		if event.is_action_pressed(\"emptyhands\"):
-			current_item = items[2]
-			isolate_item()
-			current_item.show()
-		if event.is_action_pressed(\"attack1\"):
-			if prep == true:
-				current_animation = \"attack1\"
-				fist_hit_shape.set_disabled(false)
-				fist_timer.start()
-			else:
-				current_animation = \"attack_nr1\"
-		check_anim_state()
-		
-	
-	
-
-func check_anim_state():
-	animation_playing=true
-	current_item.play(current_animation)
+var prep = false
+@onready var active_weapon: Node2D = $ActiveWeapon
 
 func _process(_delta):
 	
 	look_at(camera_control.center)
 	body_rotation = rotation
-	
-func isolate_item():
-	items[0].hide()
-	items[1].hide()
-	items[2].hide()
-	current_item.show()
-
-
-func _on_fists_animation_finished() -> void:
-	animation_playing = false
-
-
-func _on_fist_timer_timeout() -> void:
-	fist_hit_shape.set_disabled(true)
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed(\"ready\"):
+		if prep == true :
+			prep = false
+			active_weapon.get_child(0).prepared = false
+			active_weapon.get_child(0).check_prepared()
+		elif prep == false :
+			prep = true
+			active_weapon.get_child(0).prepared = true
+			active_weapon.get_child(0).check_prepared()
 "
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_63ads"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_0e1sv")
-}],
-"loop": true,
-"name": &"not_ready",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_2knqw")
-}],
-"loop": true,
-"name": &"ready",
-"speed": 5.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_y1ill"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_aukrg")
-}],
-"loop": true,
-"name": &"not_ready",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_aukrg")
-}],
-"loop": true,
-"name": &"ready",
-"speed": 5.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_tg1dk"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_aukrg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_b7cjc")
-}],
-"loop": false,
-"name": &"attack1",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_63ads")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_2knqw")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_b7cjc")
-}],
-"loop": false,
-"name": &"attack2",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("12_b7cjc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_udrba")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_fwoh1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_yq7ir")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_fwoh1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_5jfal")
-}],
-"loop": false,
-"name": &"attack_nr1",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("11_uqfi8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_fwoh1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_yq7ir")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_x0tsp")
-}],
-"loop": false,
-"name": &"attack_nr2",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_0e1sv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_5jfal")
-}],
-"loop": true,
-"name": &"grab fail",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("13_3m80l")
-}],
-"loop": true,
-"name": &"grab_success",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("10_5jfal")
-}],
-"loop": false,
-"name": &"not_ready",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("12_b7cjc")
-}],
-"loop": false,
-"name": &"ready",
-"speed": 5.0
-}]
-
-[sub_resource type="GDScript" id="GDScript_udrba"]
-script/source = "extends AnimatedSprite2D
-"
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_udrba"]
-radius = 71.362
-height = 495.9567
-
-[node name="body" type="Node2D"]
+[node name="body" type="Node2D" unique_id=1094397119]
 position = Vector2(1.1920929e-07, 2.3841858e-07)
 scale = Vector2(0.18549748, 0.21377671)
 script = SubResource("GDScript_tg1dk")
 
-[node name="revolver" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.9999999, 0.9999999)
-sprite_frames = SubResource("SpriteFrames_63ads")
-animation = &"not_ready"
+[node name="ActiveWeapon" type="Node2D" parent="." unique_id=1544689794]
+script = ExtResource("1_in4ii")
 
-[node name="knife" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_y1ill")
-animation = &"not_ready"
-
-[node name="fists" type="AnimatedSprite2D" parent="."]
+[node name="weapon" parent="ActiveWeapon" unique_id=365548807 instance=ExtResource("14_fwoh1")]
 scale = Vector2(0.99999994, 0.99999994)
-sprite_frames = SubResource("SpriteFrames_tg1dk")
-animation = &"attack_nr1"
-script = SubResource("GDScript_udrba")
 
-[node name="axe" type="AnimatedSprite2D" parent="."]
-visible = false
-scale = Vector2(0.9999999, 0.9999997)
+[node name="WeaponSlot1" type="Node2D" parent="." unique_id=2068396962]
 
-[node name="repeater" type="AnimatedSprite2D" parent="."]
-visible = false
-
-[node name="shotgun" type="AnimatedSprite2D" parent="."]
-visible = false
+[node name="Weaponslot2" type="Node2D" parent="." unique_id=1539956008]
 scale = Vector2(0.9999999, 0.9999999)
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 8
-collision_mask = 8
+[node name="FistSlot" type="Node2D" parent="." unique_id=1691634940]
 
-[node name="FistHitShape" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(549.8727, 18.711117)
-rotation = -1.343735
-shape = SubResource("CapsuleShape2D_udrba")
-
-[node name="Area2D2" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2(398.92725, 79.522224)
-rotation = -3.1153631
-scale = Vector2(1, 0.6089884)
-shape = SubResource("CapsuleShape2D_udrba")
-
-[node name="FistTimer" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true
-
-[connection signal="animation_finished" from="fists" to="." method="_on_fists_animation_finished"]
-[connection signal="timeout" from="FistTimer" to="." method="_on_fist_timer_timeout"]
+[connection signal="animation_over" from="ActiveWeapon/weapon" to="ActiveWeapon" method="_on_weapon_animation_over"]
