@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://66hsxoauhh40"]
+[gd_scene format=3 uid="uid://66hsxoauhh40"]
 
 [ext_resource type="PackedScene" uid="uid://c1sbcuxwk0424" path="res://legs.tscn" id="1_onrkg"]
 [ext_resource type="PackedScene" uid="uid://cgu87auun5grt" path="res://body.tscn" id="2_i3pqv"]
@@ -35,6 +35,10 @@ func take_damage(blood_damage, pain_damage):
 	print(pain)
 	print(blood)
 	emit_signal(\"damage_changed\")
+	if blood > 100:
+		blood = 100
+	if pain > 100:
+		pain = 100
 	
 func _on_pain_regen_timeout() -> void:
 	if pain < 100 :
@@ -55,7 +59,15 @@ func die():
 	get_tree().reload_current_scene()
 
 func _on_area_2d_3_area_entered(area: Area2D) -> void:
-	take_damage(15, 25)
+	if legs.dodging == false :
+		if legs.body.prep == true:
+			take_damage(0, 15)
+		else:
+			take_damage(15, 25)
+
+
+func _on_pain_killer_receptical_area_entered(area: Area2D) -> void:
+	take_damage(0, -25)
 "
 
 [sub_resource type="GDScript" id="GDScript_i3pqv"]
@@ -95,36 +107,50 @@ func _process(delta: float) -> void:
 radius = 104.18706
 height = 492.95236
 
-[node name="player" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
+
+[node name="player" type="Node2D" unique_id=961922666]
 script = SubResource("GDScript_onrkg")
 
-[node name="camera control" type="Node2D" parent="."]
+[node name="camera control" type="Node2D" parent="." unique_id=1828515893]
 script = SubResource("GDScript_i3pqv")
 
-[node name="Camera2D" type="Camera2D" parent="camera control"]
+[node name="Camera2D" type="Camera2D" parent="camera control" unique_id=783908762]
 
-[node name="Legs" parent="." instance=ExtResource("1_onrkg")]
+[node name="Legs" parent="." unique_id=1749304025 instance=ExtResource("1_onrkg")]
 
-[node name="body" parent="Legs" instance=ExtResource("2_i3pqv")]
+[node name="body" parent="Legs" unique_id=270807874 instance=ExtResource("2_i3pqv")]
 position = Vector2(-13.999999, 7)
 scale = Vector2(0.24955116, 0.30023184)
 
-[node name="Area2D3" type="Area2D" parent="Legs/body"]
+[node name="Area2D3" type="Area2D" parent="Legs/body" unique_id=1123629674]
 collision_layer = 4
 collision_mask = 4
 script = SubResource("GDScript_hqtel")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/body/Area2D3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/body/Area2D3" unique_id=835421595]
 shape = SubResource("CapsuleShape2D_sweqy")
 
-[node name="PainRegen" type="Timer" parent="."]
+[node name="Collector" type="Node2D" parent="Legs" unique_id=2090907535]
+
+[node name="PainKillerReceptical" type="Area2D" parent="Legs/Collector" unique_id=636158436]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/Collector/PainKillerReceptical" unique_id=451907238]
+position = Vector2(4, -1)
+scale = Vector2(6.4427037, 8.352031)
+shape = SubResource("CircleShape2D_onrkg")
+
+[node name="PainRegen" type="Timer" parent="." unique_id=1104549143]
 one_shot = true
 
-[node name="spawnpoint" type="Node2D" parent="."]
+[node name="spawnpoint" type="Node2D" parent="." unique_id=411997339]
 position = Vector2(0, 1)
 
-[node name="deathstop" type="Timer" parent="."]
+[node name="deathstop" type="Timer" parent="." unique_id=870603989]
 
 [connection signal="area_entered" from="Legs/body/Area2D3" to="." method="_on_area_2d_3_area_entered"]
+[connection signal="area_entered" from="Legs/Collector/PainKillerReceptical" to="." method="_on_pain_killer_receptical_area_entered"]
 [connection signal="timeout" from="PainRegen" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="deathstop" to="." method="_on_deathstop_timeout"]

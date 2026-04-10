@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c1sbcuxwk0424"]
+[gd_scene format=3 uid="uid://c1sbcuxwk0424"]
 
 [ext_resource type="Texture2D" uid="uid://cgjhw7yirw8oq" path="res://animation/player leg/wait/0001.png0035.png" id="6_pmn55"]
 [ext_resource type="Texture2D" uid="uid://bbvt67atb2llb" path="res://animation/player leg/walk/0001.png0003.png" id="14_svlfc"]
@@ -35,6 +35,7 @@ var input: Vector2
 var dodge_ready = true
 var dodges = 3
 var mobile = true
+var dodging = false
 
 func _ready() -> void:
 	animated_sprite_2d.flip_v = true
@@ -52,6 +53,7 @@ func _input(_event):
 				dodge_ready = false
 				get_node(\"dodge cooldown\").start() 
 				get_node(\"dodge regen\").start() 
+				dodging = true
 
 
 #basic movement input
@@ -111,6 +113,7 @@ func fix_camera_jitter():
 func _on_dodge_boost_timeout() -> void:
 	acceleration = walk_acc
 	max_speed = walk_speed
+	dodging = false
 
 func _on_dodge_cooldown_timeout() -> void:
 	dodge_ready = true
@@ -213,7 +216,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_lkl6x"]
 radius = 50.873795
 
-[node name="Legs" type="CharacterBody2D"]
+[node name="Legs" type="CharacterBody2D" unique_id=446039977]
 collision_layer = 7
 collision_mask = 7
 motion_mode = 1
@@ -221,25 +224,25 @@ wall_min_slide_angle = 0.35953784
 safe_margin = 21.042
 script = SubResource("GDScript_f50pn")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1433193752]
 scale = Vector2(0.25845903, 0.25845903)
 sprite_frames = SubResource("SpriteFrames_q1a02")
 animation = &"walk_ready"
 frame_progress = 0.8197977
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=182297278]
 position = Vector2(0.5, 0.5)
 scale = Vector2(0.96979153, 0.92992866)
 shape = SubResource("CircleShape2D_lkl6x")
 
-[node name="dodge boost" type="Timer" parent="."]
+[node name="dodge boost" type="Timer" parent="." unique_id=722673654]
 process_callback = 0
 wait_time = 0.1
 
-[node name="dodge cooldown" type="Timer" parent="."]
+[node name="dodge cooldown" type="Timer" parent="." unique_id=2116609183]
 process_callback = 0
 
-[node name="dodge regen" type="Timer" parent="."]
+[node name="dodge regen" type="Timer" parent="." unique_id=1939699664]
 wait_time = 5.0
 
 [connection signal="timeout" from="dodge boost" to="." method="_on_dodge_boost_timeout"]

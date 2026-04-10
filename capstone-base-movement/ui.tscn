@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ourgbq6c6ow7" path="res://blood_bar.gd" id="1_fyqef"]
 [ext_resource type="Script" uid="uid://ctfd70i46fdoo" path="res://canvas_layer.gd" id="1_m6e0p"]
 [ext_resource type="PackedScene" uid="uid://dmlht2l8joygh" path="res://pausescreen.tscn" id="2_27fn8"]
+[ext_resource type="Script" uid="uid://bvwfrtg6bbq4r" path="res://stamina_bar.gd" id="4_nltto"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6e0p"]
 bg_color = Color(0.54869443, 0.42492333, 0, 1)
@@ -44,6 +45,7 @@ offset_bottom = 40.0
 script = ExtResource("1_m6e0p")
 
 [node name="pausescreen" parent="CanvasLayer" unique_id=78490779 instance=ExtResource("2_27fn8")]
+visible = false
 
 [node name="PainBar" type="ProgressBar" parent="CanvasLayer" unique_id=1416753327]
 anchors_preset = -1
@@ -88,4 +90,4 @@ offset_bottom = 0.31195068
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_nltto")
-script = ExtResource("1_fyqef")
+script = ExtResource("4_nltto")

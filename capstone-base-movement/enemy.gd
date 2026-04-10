@@ -115,5 +115,18 @@ func weapon_activate():
 func die():
 	queue_free()
 func _on_area_2d_area_entered(_area: Area2D) -> void:
-	print("Take That!")
-	take_damage(5,15)
+	if detected == true:
+		take_damage(10,20)
+	else:
+			take_damage(15,25)
+			var direction = (player.global_position - global_position).normalized()
+			var target_angle = direction.angle()
+			if timer_not_active:
+				timer.start()
+				timer_not_active = false
+			if tween: 
+				tween.kill()
+			tween = create_tween()
+			tween.set_loops()
+			tween.tween_property(self,"rotation",target_angle, 0.75).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		
