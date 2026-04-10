@@ -1,0 +1,137 @@
+[gd_scene load_steps=3 format=3 uid="uid://2vffmqc3566p"]
+
+[ext_resource type="Script" uid="uid://c82ltehu78k03" path="res://control.gd" id="1_0mw5b"]
+
+[sub_resource type="Theme" id="Theme_0mw5b"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 266.0
+offset_bottom = 166.0
+script = ExtResource("1_0mw5b")
+
+[node name="BlurColorRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 268.0
+offset_bottom = 166.0
+color = Color(0.44484326, 0.4448433, 0.4448433, 1)
+
+[node name="UlPanelContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 268.0
+offset_bottom = 168.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UlPanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UlPanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="UlPanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UlPanelContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="UlPanelContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "QUIT"
+
+[node name="Restartbutton" type="Button" parent="UlPanelContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "RESTART"
+
+[node name="SettingsButton" type="Button" parent="UlPanelContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SETTINGS"
+
+[node name="QuitConfirm" type="Panel" parent="UlPanelContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UlPanelContainer/QuitConfirm"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UlPanelContainer/QuitConfirm/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Are you sure you want to quit? 
+Your progress will not save."
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="UlPanelContainer/QuitConfirm/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35.87)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UlPanelContainer/QuitConfirm/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="QuitConfirmButton" type="Button" parent="UlPanelContainer/QuitConfirm/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Confirm"
+
+[node name="HSeparator" type="HSeparator" parent="UlPanelContainer/QuitConfirm/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(42.14, 0)
+layout_mode = 2
+
+[node name="QuitCancel" type="Button" parent="UlPanelContainer/QuitConfirm/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Cancel"
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="PanelContainer"]
+layout_mode = 2
+color = Color(0.1764706, 0.1764706, 0.1764706, 0.3764706)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "SETTINGS"
+
+[node name="ProgressBar" type="ProgressBar" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_0mw5b")
+max_value = 50.0
+value = 50.0
+
+[node name="HSlider" type="HSlider" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+rounded = true

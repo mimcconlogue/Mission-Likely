@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxkfexdm6v2mo"]
+[gd_scene load_steps=7 format=3 uid="uid://bxkfexdm6v2mo"]
 
 [ext_resource type="PackedScene" uid="uid://66hsxoauhh40" path="res://player.tscn" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://he5ym66anqvn" path="res://enemy.tscn" id="2_e2o6t"]
-[ext_resource type="PackedScene" uid="uid://4tfmsfv7hp0q" path="res://box.tscn" id="3_feb5d"]
+[ext_resource type="PackedScene" uid="uid://cn0lc3a8e4m7" path="res://box.tscn" id="3_feb5d"]
 [ext_resource type="PackedScene" uid="uid://uqbde0qleu2v" path="res://exit.tscn" id="4_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://d4cfjlev2dys1" path="res://ui.tscn" id="5_7jktm"]
 
 [sub_resource type="GDScript" id="GDScript_feb5d"]
-script/source = "extends Node2D
+script/source = "extends Node
 
 @onready var player: Node2D = $player
 @onready var enemy: CharacterBody2D = $Enemy
+@onready var control: Control = $Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,9 +21,13 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_player_damage_changed() -> void:
+	get_node(\"/root/game/Control/CanvasLayer\").update()
 "
 
-[node name="game" type="Node2D"]
+[node name="game" type="Node"]
 script = SubResource("GDScript_feb5d")
 
 [node name="player" parent="." instance=ExtResource("1_e2o6t")]
@@ -80,3 +86,7 @@ scale = Vector2(6.591773, 0.8538193)
 [node name="Box11" parent="." instance=ExtResource("3_feb5d")]
 position = Vector2(681, 660.99994)
 scale = Vector2(1, 2.630487)
+
+[node name="Control" parent="." instance=ExtResource("5_7jktm")]
+
+[connection signal="damage_changed" from="player" to="." method="_on_player_damage_changed"]
