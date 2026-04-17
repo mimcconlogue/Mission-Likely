@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bxkfexdm6v2mo"]
+[gd_scene load_steps=7 format=3 uid="uid://bxkfexdm6v2mo"]
 
 [ext_resource type="PackedScene" uid="uid://66hsxoauhh40" path="res://player.tscn" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://he5ym66anqvn" path="res://enemy.tscn" id="2_e2o6t"]
@@ -27,85 +27,85 @@ func _on_player_damage_changed() -> void:
 	get_node(\"/root/game/Control/CanvasLayer\").update()
 "
 
-[node name="game" type="Node" unique_id=1402564545]
+[node name="game" type="Node"]
 script = SubResource("GDScript_feb5d")
 
-[node name="collectables" type="Node2D" parent="." unique_id=1974728436]
+[node name="collectables" type="Node2D" parent="."]
 position = Vector2(-1, 0)
 
-[node name="PainKiller" parent="collectables" unique_id=1257171996 instance=ExtResource("5_ryrav")]
+[node name="PainKiller" parent="collectables" instance=ExtResource("5_ryrav")]
 position = Vector2(385.00003, 94.00001)
 
-[node name="PainKiller2" parent="collectables" unique_id=1329266172 instance=ExtResource("5_ryrav")]
+[node name="PainKiller2" parent="collectables" instance=ExtResource("5_ryrav")]
 position = Vector2(1307.0001, 1847)
 rotation = 0.82951754
 
-[node name="PainKiller3" parent="collectables" unique_id=2019535675 instance=ExtResource("5_ryrav")]
+[node name="PainKiller3" parent="collectables" instance=ExtResource("5_ryrav")]
 position = Vector2(975.99994, 1328)
 rotation = -2.1463807
 
-[node name="player" parent="." unique_id=2101400446 instance=ExtResource("1_e2o6t")]
+[node name="player" parent="." instance=ExtResource("1_e2o6t")]
 position = Vector2(-1498, 38)
 
-[node name="Enemy" parent="." unique_id=1429339687 instance=ExtResource("2_e2o6t")]
+[node name="Enemy" parent="." instance=ExtResource("2_e2o6t")]
 position = Vector2(13.000009, -332)
 rotation = 1.8758285
 
-[node name="Enemy2" parent="." unique_id=515840160 instance=ExtResource("2_e2o6t")]
+[node name="Enemy2" parent="." instance=ExtResource("2_e2o6t")]
 position = Vector2(1273, -183)
 rotation = 1.5383216
 
-[node name="exit" parent="." unique_id=1668329667 instance=ExtResource("4_fc0e3")]
+[node name="exit" parent="." instance=ExtResource("4_fc0e3")]
 position = Vector2(1146, 856)
 
-[node name="Control" parent="." unique_id=1736451730 instance=ExtResource("5_7jktm")]
+[node name="Control" parent="." instance=ExtResource("5_7jktm")]
 
-[node name="Node2D" type="Node2D" parent="." unique_id=1493063592]
+[node name="Node2D" type="Node2D" parent="."]
 
-[node name="RigidBody2D" type="StaticBody2D" parent="Node2D" unique_id=477612802]
+[node name="RigidBody2D" type="StaticBody2D" parent="Node2D"]
 
-[node name="Polygon2D2" type="Polygon2D" parent="Node2D/RigidBody2D" unique_id=885095607]
+[node name="Polygon2D2" type="Polygon2D" parent="Node2D/RigidBody2D"]
 position = Vector2(-1005.8644, -0.19024658)
 scale = Vector2(1.7488444, 1.7488444)
 polygon = PackedVector2Array(-15, 102, -15, 365, 1532, 364, 1439, 705, 1457, 922, 543, 926, 543, 957, 1465, 962, 1503, 961, 1472, 710, 1563, 341, 681.07654, 328.99567, 682, -81, 682, -121, 655, -119, 653, 330, 13, 336, 12, 101, -1.2130127, 101.48938)
 
-[node name="Polygon2D" type="Polygon2D" parent="Node2D/RigidBody2D" unique_id=1376344607]
+[node name="Polygon2D" type="Polygon2D" parent="Node2D/RigidBody2D"]
 position = Vector2(1339, -31.999985)
 rotation = 3.1327314
 scale = Vector2(1.7488443, 1.7488443)
 polygon = PackedVector2Array(-432.6007, -159.8396, -208, -160.00003, -208.2616, 367.16907, 1355.7657, 371.02823, 1354.4242, 71.0045, 1328.0001, 72, 1328.0001, 336.00003, 496, 336.00003, 498.68195, -187.58849, 471.62982, -181.82797, 472, 336.00003, -176, 336.00003, -176, -184.00003, -405.38025, -184.59937, -629.3511, -414.59305, -730.4584, -741.50183, -712, -1128, 1008.00006, -1128, 1008.0001, -376, 1040, -376, 1048, -1160, -752, -1160, -767.3771, -750.82935, -677.34924, -415.01837, -451.41382, -181.00713)
 polygons = [PackedInt32Array(21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 24, 23, 22)]
 
-[node name="Polygon2D3" type="CollisionPolygon2D" parent="Node2D/RigidBody2D" unique_id=177499101]
+[node name="Polygon2D3" type="CollisionPolygon2D" parent="Node2D/RigidBody2D"]
 position = Vector2(-1005.8644, -0.19024658)
 scale = Vector2(1.7488444, 1.7488444)
 polygon = PackedVector2Array(-15, 102, -15, 365, 1532, 364, 1439, 705, 1457, 922, 543, 926, 543, 957, 1465, 962, 1503, 961, 1472, 710, 1563, 341, 681.07654, 328.99567, 682, -81, 682, -121, 655, -119, 653, 330, 13, 336, 12, 101, -1.2130127, 101.48938)
 
-[node name="Polygon2D4" type="CollisionPolygon2D" parent="Node2D/RigidBody2D" unique_id=931671454]
+[node name="Polygon2D4" type="CollisionPolygon2D" parent="Node2D/RigidBody2D"]
 position = Vector2(1339, -31.999985)
 rotation = 3.1327314
 scale = Vector2(1.7488443, 1.7488443)
 polygon = PackedVector2Array(-432.6007, -159.8396, -208, -160.00003, -208.2616, 367.16907, 1355.7657, 371.02823, 1354.4242, 71.0045, 1328.0001, 72, 1328.0001, 336.00003, 496, 336.00003, 498.68195, -187.58849, 471.62982, -181.82797, 472, 336.00003, -176, 336.00003, -176, -184.00003, -405.38025, -184.59937, -629.3511, -414.59305, -730.4584, -741.50183, -712, -1128, 1008.00006, -1128, 1008.0001, -376, 1040, -376, 1048, -1160, -752, -1160, -767.3771, -750.82935, -677.34924, -415.01837, -451.41382, -181.00713)
 
-[node name="Polygon2D5" type="Polygon2D" parent="Node2D/RigidBody2D" unique_id=34667623]
+[node name="Polygon2D5" type="Polygon2D" parent="Node2D/RigidBody2D"]
 position = Vector2(-1004.5176, -79.953)
 scale = Vector2(1.7488444, 1.7488444)
 polygon = PackedVector2Array(1769, 561, 1769, 561, 1767, 908, 1795, 908, 1792, 557)
 
-[node name="Polygon2D6" type="CollisionPolygon2D" parent="Node2D/RigidBody2D" unique_id=176714089]
+[node name="Polygon2D6" type="CollisionPolygon2D" parent="Node2D/RigidBody2D"]
 position = Vector2(-1004.5176, -79.953)
 scale = Vector2(1.7488444, 1.7488444)
 polygon = PackedVector2Array(1769, 561, 1769, 561, 1767, 908, 1795, 908, 1792, 557)
 
-[node name="Enemy3" parent="." unique_id=1822522384 instance=ExtResource("2_e2o6t")]
+[node name="Enemy3" parent="." instance=ExtResource("2_e2o6t")]
 position = Vector2(2085, 1679)
 rotation = 3.5913994
 
-[node name="Enemy4" parent="." unique_id=543578611 instance=ExtResource("2_e2o6t")]
+[node name="Enemy4" parent="." instance=ExtResource("2_e2o6t")]
 position = Vector2(1497.0001, 1081)
 rotation = 3.0766432
 
-[node name="Enemy5" parent="." unique_id=338427906 instance=ExtResource("2_e2o6t")]
+[node name="Enemy5" parent="." instance=ExtResource("2_e2o6t")]
 position = Vector2(-302.99997, 756)
 rotation = 1.1274587
 
