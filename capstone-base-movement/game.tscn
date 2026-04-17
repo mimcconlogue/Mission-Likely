@@ -1,17 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxkfexdm6v2mo"]
+[gd_scene load_steps=6 format=3 uid="uid://bxkfexdm6v2mo"]
 
+[ext_resource type="PackedScene" uid="uid://btj5reeqo2i2u" path="res://node_2d.tscn" id="1_7jktm"]
 [ext_resource type="PackedScene" uid="uid://66hsxoauhh40" path="res://player.tscn" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://he5ym66anqvn" path="res://enemy.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://uqbde0qleu2v" path="res://exit.tscn" id="4_fc0e3"]
-[ext_resource type="PackedScene" uid="uid://d4cfjlev2dys1" path="res://ui.tscn" id="5_7jktm"]
-[ext_resource type="PackedScene" uid="uid://blp5hc7as4ehp" path="res://pain_killer.tscn" id="5_ryrav"]
 
 [sub_resource type="GDScript" id="GDScript_feb5d"]
-script/source = "extends Node
+script/source = "extends Node2D
 
 @onready var player: Node2D = $player
 @onready var enemy: CharacterBody2D = $Enemy
-@onready var control: Control = $Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,92 +19,35 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
-
-func _on_player_damage_changed() -> void:
-	get_node(\"/root/game/Control/CanvasLayer\").update()
 "
 
-[node name="game" type="Node"]
+[node name="game" type="Node2D"]
 script = SubResource("GDScript_feb5d")
+metadata/_edit_vertical_guides_ = [-1338.0]
 
-[node name="collectables" type="Node2D" parent="."]
-position = Vector2(-1, 0)
-
-[node name="PainKiller" parent="collectables" instance=ExtResource("5_ryrav")]
-position = Vector2(385.00003, 94.00001)
-
-[node name="PainKiller2" parent="collectables" instance=ExtResource("5_ryrav")]
-position = Vector2(1307.0001, 1847)
-rotation = 0.82951754
-
-[node name="PainKiller3" parent="collectables" instance=ExtResource("5_ryrav")]
-position = Vector2(975.99994, 1328)
-rotation = -2.1463807
+[node name="map" parent="." instance=ExtResource("1_7jktm")]
+position = Vector2(-209, 108)
+scale = Vector2(4.6697893, 4.6697893)
 
 [node name="player" parent="." instance=ExtResource("1_e2o6t")]
-position = Vector2(-1498, 38)
+position = Vector2(-429, -5)
 
 [node name="Enemy" parent="." instance=ExtResource("2_e2o6t")]
-position = Vector2(13.000009, -332)
-rotation = 1.8758285
-
-[node name="Enemy2" parent="." instance=ExtResource("2_e2o6t")]
-position = Vector2(1273, -183)
+position = Vector2(510, -202)
 rotation = 1.5383216
 
+[node name="Enemy2" parent="." instance=ExtResource("2_e2o6t")]
+position = Vector2(2573, -345)
+rotation = 3.1391053
+
 [node name="exit" parent="." instance=ExtResource("4_fc0e3")]
-position = Vector2(1146, 856)
-
-[node name="Control" parent="." instance=ExtResource("5_7jktm")]
-
-[node name="Node2D" type="Node2D" parent="."]
-
-[node name="RigidBody2D" type="StaticBody2D" parent="Node2D"]
-
-[node name="Polygon2D2" type="Polygon2D" parent="Node2D/RigidBody2D"]
-position = Vector2(-1005.8644, -0.19024658)
-scale = Vector2(1.7488444, 1.7488444)
-polygon = PackedVector2Array(-15, 102, -15, 365, 1532, 364, 1439, 705, 1457, 922, 543, 926, 543, 957, 1465, 962, 1503, 961, 1472, 710, 1563, 341, 681.07654, 328.99567, 682, -81, 682, -121, 655, -119, 653, 330, 13, 336, 12, 101, -1.2130127, 101.48938)
-
-[node name="Polygon2D" type="Polygon2D" parent="Node2D/RigidBody2D"]
-position = Vector2(1339, -31.999985)
-rotation = 3.1327314
-scale = Vector2(1.7488443, 1.7488443)
-polygon = PackedVector2Array(-432.6007, -159.8396, -208, -160.00003, -208.2616, 367.16907, 1355.7657, 371.02823, 1354.4242, 71.0045, 1328.0001, 72, 1328.0001, 336.00003, 496, 336.00003, 498.68195, -187.58849, 471.62982, -181.82797, 472, 336.00003, -176, 336.00003, -176, -184.00003, -405.38025, -184.59937, -629.3511, -414.59305, -730.4584, -741.50183, -712, -1128, 1008.00006, -1128, 1008.0001, -376, 1040, -376, 1048, -1160, -752, -1160, -767.3771, -750.82935, -677.34924, -415.01837, -451.41382, -181.00713)
-polygons = [PackedInt32Array(21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 24, 23, 22)]
-
-[node name="Polygon2D3" type="CollisionPolygon2D" parent="Node2D/RigidBody2D"]
-position = Vector2(-1005.8644, -0.19024658)
-scale = Vector2(1.7488444, 1.7488444)
-polygon = PackedVector2Array(-15, 102, -15, 365, 1532, 364, 1439, 705, 1457, 922, 543, 926, 543, 957, 1465, 962, 1503, 961, 1472, 710, 1563, 341, 681.07654, 328.99567, 682, -81, 682, -121, 655, -119, 653, 330, 13, 336, 12, 101, -1.2130127, 101.48938)
-
-[node name="Polygon2D4" type="CollisionPolygon2D" parent="Node2D/RigidBody2D"]
-position = Vector2(1339, -31.999985)
-rotation = 3.1327314
-scale = Vector2(1.7488443, 1.7488443)
-polygon = PackedVector2Array(-432.6007, -159.8396, -208, -160.00003, -208.2616, 367.16907, 1355.7657, 371.02823, 1354.4242, 71.0045, 1328.0001, 72, 1328.0001, 336.00003, 496, 336.00003, 498.68195, -187.58849, 471.62982, -181.82797, 472, 336.00003, -176, 336.00003, -176, -184.00003, -405.38025, -184.59937, -629.3511, -414.59305, -730.4584, -741.50183, -712, -1128, 1008.00006, -1128, 1008.0001, -376, 1040, -376, 1048, -1160, -752, -1160, -767.3771, -750.82935, -677.34924, -415.01837, -451.41382, -181.00713)
-
-[node name="Polygon2D5" type="Polygon2D" parent="Node2D/RigidBody2D"]
-position = Vector2(-1004.5176, -79.953)
-scale = Vector2(1.7488444, 1.7488444)
-polygon = PackedVector2Array(1769, 561, 1769, 561, 1767, 908, 1795, 908, 1792, 557)
-
-[node name="Polygon2D6" type="CollisionPolygon2D" parent="Node2D/RigidBody2D"]
-position = Vector2(-1004.5176, -79.953)
-scale = Vector2(1.7488444, 1.7488444)
-polygon = PackedVector2Array(1769, 561, 1769, 561, 1767, 908, 1795, 908, 1792, 557)
+position = Vector2(1085, -4325)
 
 [node name="Enemy3" parent="." instance=ExtResource("2_e2o6t")]
-position = Vector2(2085, 1679)
-rotation = 3.5913994
+position = Vector2(3300.9998, -1883)
+rotation = 3.1391053
 
 [node name="Enemy4" parent="." instance=ExtResource("2_e2o6t")]
-position = Vector2(1497.0001, 1081)
-rotation = 3.0766432
-
-[node name="Enemy5" parent="." instance=ExtResource("2_e2o6t")]
-position = Vector2(-302.99997, 756)
-rotation = 1.1274587
-
-[connection signal="damage_changed" from="player" to="." method="_on_player_damage_changed"]
+position = Vector2(-14.000001, -1863.9999)
+rotation = -0.0049746674
+scale = Vector2(0.9999999, 0.9999999)
