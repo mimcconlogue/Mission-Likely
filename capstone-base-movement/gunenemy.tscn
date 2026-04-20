@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://nb776tfn5k73"]
+
+[ext_resource type="Script" uid="uid://cckirrgjpchvr" path="res://gunenemy.gd" id="1_hob4l"]
+[ext_resource type="Texture2D" uid="uid://c3fy62ymmp7ep" path="res://icon.svg" id="2_pdyhk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4gyqm"]
+radius = 61.664413
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qi2p4"]
+radius = 1505.3611
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qi2p4"]
+size = Vector2(120, 120)
+
+[node name="GunEnemy" type="CharacterBody2D"]
+script = ExtResource("1_hob4l")
+speed = 12500
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_pdyhk")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("CircleShape2D_4gyqm")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 2.5
+one_shot = true
+
+[node name="ShootTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="TrianglePart" type="CollisionPolygon2D" parent="DetectionArea"]
+polygon = PackedVector2Array(0, 0, 1024, -1024, 1024, 1024)
+
+[node name="CirclePart" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(2112, 0)
+shape = SubResource("CircleShape2D_qi2p4")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(3650, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_qi2p4")
+
+[node name="Gun" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0.52156866, 0.27058825, 1)
+position = Vector2(96, 0)
+scale = Vector2(0.7669994, 0.26000077)
+texture = ExtResource("2_pdyhk")
+
+[node name="IdleTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(143.72998, 0)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
