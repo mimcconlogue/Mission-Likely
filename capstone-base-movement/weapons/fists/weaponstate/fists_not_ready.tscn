@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b2qlatuiyumha" path="res://animation/body/0001.png0002.png" id="2_dcwf3"]
 [ext_resource type="Texture2D" uid="uid://c18jtvk11f6is" path="res://animation/body/0001.png0007.png" id="2_mo3kt"]
 [ext_resource type="Texture2D" uid="uid://bgxde6krcvlq" path="res://animation/body/0001.png0004.png" id="3_b8r1c"]
+[ext_resource type="AnimationLibrary" uid="uid://15sscaxk0liy" path="res://animation/body/fists/not_ready/animations.res" id="3_rttbj"]
 [ext_resource type="Texture2D" uid="uid://b2kx8mvjfxf4x" path="res://animation/body/0001.png0005.png" id="4_585y4"]
 [ext_resource type="Texture2D" uid="uid://bqswumahy75hn" path="res://animation/body/0001.png0006.png" id="5_dcwf3"]
 [ext_resource type="Texture2D" uid="uid://vc1i6g51o4dd" path="res://animation/body/0001.png0009.png" id="8_d1mem"]
@@ -108,11 +109,12 @@ size = Vector2(30.985428, 28.337582)
 script = ExtResource("1_dcwf3")
 
 [node name="Ready" type="Node2D" parent="." unique_id=289647226]
-rotation = -0.19781053
+rotation = -0.16338086
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Ready" unique_id=10621126]
 root_node = NodePath("../..")
 libraries/ = ExtResource("2_d1mem")
+libraries/animations = ExtResource("3_rttbj")
 
 [node name="Idle" type="Node2D" parent="Ready" unique_id=876714398]
 

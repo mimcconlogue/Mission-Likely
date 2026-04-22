@@ -7,5 +7,5 @@ func update() :
 	blood_bar.update()
 	stamina_bar.update()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	update()
