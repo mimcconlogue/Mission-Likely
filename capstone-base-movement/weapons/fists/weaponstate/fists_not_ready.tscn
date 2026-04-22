@@ -109,7 +109,7 @@ size = Vector2(30.985428, 28.337582)
 script = ExtResource("1_dcwf3")
 
 [node name="Ready" type="Node2D" parent="." unique_id=289647226]
-rotation = -0.16338086
+rotation = -0.19781053
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Ready" unique_id=10621126]
 root_node = NodePath("../..")
