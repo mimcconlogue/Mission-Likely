@@ -4,9 +4,10 @@ extends CharacterBody2D
 @onready var timer = %Timer
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 @onready var weapon_shape = get_node("EnemyWeapon/WeaponHurtbox/CollisionPolygon2D")
-@export var speed = 150
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var enemy: CharacterBody2D = $"."
 
+var move_speed = 400
 var tween = null
 var health = 100
 var timer_not_active = true
@@ -41,6 +42,10 @@ func _on_timer_timeout() -> void:
 		timer_not_active = false
 		detectable = false
 		print("give chase")
+	else:
+		detected = false
+		timer_not_active = true
+		print("out of sight")
 
 func _on_detection_area_body_entered(_body: Node2D) -> void:
 	detectable = true
@@ -52,25 +57,25 @@ func _on_detection_area_body_exited(_body: Node2D) -> void:
 			tween.kill()
 	detected = false
 	detectable = false
-	timer_not_active = true
 	timer.stop()
+	timer_not_active = true
 	print("player got away :(")
 
-func _physics_process(delta: float):
+func _physics_process(_delta: float):
 	#first check if player entered fov
 	#if they do then check if enemy has los w player
 	#look at player if in detection radius with a tween
 	if player_visible and detectable:
-			var direction = (player.global_position - global_position).normalized()
-			var target_angle = direction.angle()
-			if timer_not_active:
-				timer.start()
-				timer_not_active = false
-			if tween: 
-				tween.kill()
-			tween = create_tween()
-			tween.set_loops()
-			tween.tween_property(self,"rotation",target_angle, 0.75).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		var direction = (player.global_position - global_position).normalized()
+		var target_angle = direction.angle()
+		if timer_not_active:
+			timer.start()
+			timer_not_active = false
+		if tween: 
+			tween.kill()
+		tween = create_tween()
+		tween.set_loops()
+		tween.tween_property(self,"rotation",target_angle, 0.75).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	#check line o sight
 	var player_local_position = ray_cast_2d.to_local(player.global_position)
 	ray_cast_2d.target_position = player_local_position
@@ -86,16 +91,19 @@ func _physics_process(delta: float):
 	var distance_to_player: float = global_position.distance_to(player.global_position)
 	#if u get spotted
 	if detected: 
+		#YOU NEED THIS SO IT DOESNT LOCK THE ROTATION
+		#SERIOUSLY
+		if tween: 
+			tween.kill()
 		#move to player and look at them
-		var direction = (player.global_position - global_position).normalized()
 		var current_position: Vector2 = self.global_transform.origin
 		var next_path_position: Vector2 = nav_agent.get_next_path_position()
 		var new_velocity: Vector2 = current_position.direction_to(next_path_position)
 		nav_agent.velocity = new_velocity
 		update_target_position(player.global_transform.origin)
 		#all of this for rotation
-		var target_angle = direction.angle()
-		rotation = lerp_angle(rotation, target_angle, delta * rotation_speed)
+		var direction = global_position.direction_to(player.global_position)
+		enemy.rotation = direction.angle()
 		#if u close enough attack & stop move...
 		if distance_to_player < attack_distance:
 			print("THROWIN HANDS")
@@ -108,10 +116,13 @@ func _physics_process(delta: float):
 			await animation_player.animation_finished
 			animation_player.play("idle")
 			recently_attacked = false
-		else: 
-			animation_player.play("idle")
-			move_and_slide()
 
+func update_target_position(target_pos: Vector2):
+	nav_agent.target_position = target_pos
+
+func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
+	velocity = velocity.move_toward(safe_velocity * move_speed, 12.0)
+	move_and_slide()
 
 func weapon_disable():
 	weapon_shape.set_disabled(true)
@@ -135,10 +146,3 @@ func _on_area_2d_area_entered(_area: Area2D) -> void:
 			tween = create_tween()
 			tween.set_loops()
 			tween.tween_property(self,"rotation",target_angle, 0.75).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-		
-func update_target_position(target_pos: Vector2):
-	nav_agent.target_position = target_pos
-
-func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
-	velocity = velocity.move_toward(safe_velocity * speed, 12.0)
-	

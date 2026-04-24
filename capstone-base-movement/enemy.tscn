@@ -88,10 +88,10 @@ size = Vector2(120, 120)
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_4gyqm")
-speed = 25000
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 target_desired_distance = 20.0
+avoidance_enabled = true
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_qi2p4")
