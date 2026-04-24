@@ -58,7 +58,7 @@ func die():
 	print(\"reset\")
 	get_tree().reload_current_scene()
 
-func _on_area_2d_3_area_entered(area: Area2D) -> void:
+func _on_area_2d_3_area_entered(_area: Area2D) -> void:
 	if legs.dodging == false :
 		if legs.body.prep == true:
 			take_damage(0, 15)
@@ -66,7 +66,7 @@ func _on_area_2d_3_area_entered(area: Area2D) -> void:
 			take_damage(15, 25)
 
 
-func _on_pain_killer_receptical_area_entered(area: Area2D) -> void:
+func _on_pain_killer_receptical_area_entered(_area: Area2D) -> void:
 	take_damage(0, -25)
 "
 
@@ -91,16 +91,6 @@ func apply_camera(delta):
 
 [sub_resource type="GDScript" id="GDScript_hqtel"]
 script/source = "extends Area2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sweqy"]

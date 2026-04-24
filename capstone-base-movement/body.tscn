@@ -16,7 +16,7 @@ func _process(_delta):
 	
 	look_at(camera_control.center)
 	body_rotation = rotation
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed(\"ready\"):
 		if prep == true :
 			prep = false

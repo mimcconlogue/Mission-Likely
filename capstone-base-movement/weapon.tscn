@@ -27,7 +27,7 @@ func check_prepared():
 		fists_ready.set_process(false)
 		fists_not_ready.set_process(true)
 		current_child = fists_not_ready
-	current_child.get_child(0).get_child(0).play(\"idle\")
+	current_child.get_child(0).get_child(0).play(\"animations\" + \"/\" + \"idle\")
 func check_animation():
 	if current_animation_is_idle == true:
 		current_child.get_child(0).get_child(0).play(\"idle\")
