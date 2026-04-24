@@ -16,8 +16,8 @@ size = Vector2(120, 120)
 script = ExtResource("1_hob4l")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-target_desired_distance = 20.0
 avoidance_enabled = true
+debug_enabled = true
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_pdyhk")
@@ -70,6 +70,7 @@ texture = ExtResource("2_pdyhk")
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(143.72998, 0)
 
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
