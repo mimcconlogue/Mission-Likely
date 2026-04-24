@@ -15,6 +15,7 @@ var _is_currently_opening := false
 
 @onready var _resume_button: Button = %ResumeButton
 @onready var _quit_button: Button = %QuitButton
+@onready var _reset_button: Button = %ResetButton
 
 
 func _ready() -> void:
@@ -25,7 +26,6 @@ func _ready() -> void:
 
 	_resume_button.pressed.connect(toggle)
 	_quit_button.pressed.connect(get_tree().quit)
-
 
 ## Called when [member menu_opened_amount] is changed.
 func set_menu_opened_amount(amount: float) -> void:
@@ -72,3 +72,7 @@ func toggle() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		toggle()
+
+
+func _on_reset_button_pressed() -> void:
+	get_tree().reload_current_scene()
