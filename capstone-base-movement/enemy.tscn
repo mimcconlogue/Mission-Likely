@@ -90,6 +90,9 @@ size = Vector2(120, 120)
 script = ExtResource("1_4gyqm")
 speed = 25000
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 20.0
+
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_qi2p4")
 
@@ -136,6 +139,7 @@ collision_mask = 8
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_qi2p4")
 
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
