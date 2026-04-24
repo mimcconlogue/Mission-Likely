@@ -81,12 +81,14 @@ func _physics_process(_delta: float):
 	ray_cast_2d.target_position = player_local_position
 	ray_cast_2d.force_raycast_update()
 	if ray_cast_2d.is_colliding():
-			var collider = ray_cast_2d.get_collider()
-			if collider == player:
-				player_visible = true
-			else:
-				player_visible = false
-				timer.stop()
+		var collider = ray_cast_2d.get_collider()
+		if collider == player:
+			player_visible = true
+			print("visibleee")
+		else:
+			player_visible = false
+			timer_not_active = true
+			timer.stop()
 	#detect distance from player for attack
 	var distance_to_player: float = global_position.distance_to(player.global_position)
 	#if u get spotted

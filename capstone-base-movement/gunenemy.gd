@@ -3,12 +3,13 @@ extends CharacterBody2D
 @onready var timer = %Timer
 @onready var shoot_timer: Timer = %ShootTimer
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
-@export var speed = 15000
 @onready var gun: Marker2D = $Marker2D
 @onready var idle_timer: Timer = %IdleTimer
+@onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var gun_enemy: CharacterBody2D = $"."
 
 const Bullet = preload("res://enemybullet.tscn")
-
+var move_speed = 15000
 var can_walk = true
 var tween = null
 var health = 100
@@ -16,7 +17,7 @@ var can_shoot = true
 var timer_not_active = true
 var detectable = false
 var detected = false
-var attack_distance = 1500.0
+var attack_distance = 1000.0
 var rotation_speed = PI
 var player_visible = false
 var blood: int = 100
@@ -43,6 +44,8 @@ func _on_timer_timeout() -> void:
 		timer_not_active = false
 		detectable = false
 		print("give chase")
+	else:
+		print("I see noone")
 
 func _on_detection_area_body_entered(_body: Node2D) -> void:
 	detectable = true
@@ -84,23 +87,29 @@ func _physics_process(delta: float):
 	var distance_to_player: float = global_position.distance_to(player.global_position)
 	#if u get spotted
 	if detected: 
-		var direction = (player.global_position - global_position).normalized()
-		var target_angle = direction.angle()
-		rotation = lerp_angle(rotation, target_angle, delta * rotation_speed)
-		if can_walk:
-			move_and_slide()
 		#if u close enough attack & stop move...
-	if distance_to_player < attack_distance and player_visible:
-		if can_shoot:
-			shoot()
-	else:
-		var direction = (player.global_position - global_position).normalized()
-		#move to player and look at them
-		velocity = speed * direction * delta
-		if not can_walk:
+		if distance_to_player < attack_distance and player_visible:
+			if can_shoot:
+				shoot()
+		elif not can_walk:
 			if idle_timer.is_stopped():
 				idle_timer.start()
+		else: 
+			var current_position: Vector2 = self.global_transform.origin
+			var next_path_position: Vector2 = nav_agent.get_next_path_position()
+			var new_velocity: Vector2 = current_position.direction_to(next_path_position)
+			nav_agent.velocity = new_velocity
+			update_target_position(player.global_transform.origin)
+			#all of this for rotation
+			var direction = global_position.direction_to(player.global_position)
+			gun_enemy.rotation = direction.angle()
 		
+func update_target_position(target_pos: Vector2):
+	nav_agent.target_position = target_pos
+
+func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
+	velocity = velocity.move_toward(safe_velocity * move_speed, 12.0)
+	move_and_slide()
 
 
 func die():
@@ -123,3 +132,4 @@ func _on_shoot_timer_timeout() -> void:
 func _on_idle_timer_timeout() -> void:
 	can_walk = true
 	can_shoot = true
+	print("idle done")

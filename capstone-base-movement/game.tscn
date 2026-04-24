@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bxkfexdm6v2mo"]
 
-[ext_resource type="PackedScene" uid="uid://btj5reeqo2i2u" path="res://node_2d.tscn" id="1_7jktm"]
+[ext_resource type="PackedScene" uid="uid://btj5reeqo2i2u" path="res://map.tscn" id="1_7jktm"]
 [ext_resource type="PackedScene" uid="uid://66hsxoauhh40" path="res://player.tscn" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://he5ym66anqvn" path="res://enemy.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://uqbde0qleu2v" path="res://exit.tscn" id="4_fc0e3"]
@@ -41,15 +41,16 @@ position = Vector2(4372, -1443)
 [node name="enemies" type="Node2D" parent="."]
 
 [node name="Enemy" parent="enemies" instance=ExtResource("2_e2o6t")]
-position = Vector2(1141, -74)
+position = Vector2(421, -1764)
+rotation = -0.15236115
 
 [node name="GunEnemy2" parent="enemies" instance=ExtResource("6_vef74")]
-position = Vector2(3018.0002, -1445.9995)
-rotation = -1.5590839
+position = Vector2(3018, -3461.0005)
+rotation = -4.700568
 
 [node name="GunEnemy3" parent="enemies" instance=ExtResource("6_vef74")]
-position = Vector2(4881, -866.00006)
-rotation = -4.095723
+position = Vector2(3989.9995, 331.00018)
+rotation = -0.87136775
 
 [node name="items" type="Node2D" parent="."]
 
