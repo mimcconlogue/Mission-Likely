@@ -19,6 +19,13 @@ run/main_scene="uid://bxkfexdm6v2mo"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[global_group]
+
+player=""
+wall=""
+PlayerBullet=""
+enemies=""
+
 [input]
 
 move_left={

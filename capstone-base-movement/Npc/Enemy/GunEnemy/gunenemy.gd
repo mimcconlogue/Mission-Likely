@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var gun: Marker2D = $Marker2D
 @onready var idle_timer: Timer = %IdleTimer
 
-const Bullet = preload("res://enemybullet.tscn")
+const Bullet = preload("res://Npc/Enemy/GunEnemy/enemybullet.tscn")
 
 var can_walk = true
 var tween = null
@@ -105,9 +105,7 @@ func _physics_process(delta: float):
 
 func die():
 	queue_free()
-func _on_area_2d_area_entered(_area: Area2D) -> void:
-	print("Take That!")
-	take_damage(5,15)
+
 
 func shoot():
 	can_shoot = false
@@ -123,3 +121,10 @@ func _on_shoot_timer_timeout() -> void:
 func _on_idle_timer_timeout() -> void:
 	can_walk = true
 	can_shoot = true
+
+
+
+func _on_area_2d_body_entered(body: Area2D) -> void:
+	print("oof ouch owie mommy oow")
+	if body.is_in_group("PlayerBullet"):
+		print("AAAAAAAHHHHH")

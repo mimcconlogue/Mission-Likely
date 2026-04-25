@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bsn2eunsqwbqh"]
 
-[ext_resource type="PackedScene" uid="uid://diarkppgt0mha" path="res://weapons/fists/weaponstate/fists_ready.tscn" id="1_o2wld"]
-[ext_resource type="PackedScene" uid="uid://c7pnrkoc4vh1g" path="res://weapons/fists/weaponstate/fists_not_ready.tscn" id="2_8xwfw"]
+[ext_resource type="PackedScene" uid="uid://diarkppgt0mha" path="res://weapons/fists/weaponstate/fists_ready.tscn" id="1_pnmhn"]
+[ext_resource type="PackedScene" uid="uid://c7pnrkoc4vh1g" path="res://weapons/fists/weaponstate/fists_not_ready.tscn" id="2_jqn2p"]
 
 [sub_resource type="GDScript" id="GDScript_div1a"]
 script/source = "extends Node2D
@@ -44,12 +44,12 @@ func _on_fists_not_ready_animation_over() -> void:
 	animation_over.emit()
 "
 
-[node name="weapon" type="Node2D" unique_id=365548807]
+[node name="fists" type="Node2D" unique_id=365548807]
 script = SubResource("GDScript_div1a")
 
-[node name="FistsReady" parent="." unique_id=746081321 instance=ExtResource("1_o2wld")]
+[node name="FistsReady" parent="." unique_id=746081321 instance=ExtResource("1_pnmhn")]
 
-[node name="FistsNotReady" parent="." unique_id=340988253 instance=ExtResource("2_8xwfw")]
+[node name="FistsNotReady" parent="." unique_id=340988253 instance=ExtResource("2_jqn2p")]
 position = Vector2(1, -1)
 rotation = 0.22601548
 

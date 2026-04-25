@@ -99,46 +99,46 @@ height = 492.95236
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 
-[node name="player" type="Node2D" unique_id=961922666]
+[node name="player" type="Node2D" unique_id=961922666 groups=["player"]]
 script = SubResource("GDScript_onrkg")
 
-[node name="camera control" type="Node2D" parent="." unique_id=1828515893]
+[node name="camera control" type="Node2D" parent="." unique_id=1828515893 groups=["player"]]
 script = SubResource("GDScript_i3pqv")
 
-[node name="Camera2D" type="Camera2D" parent="camera control" unique_id=783908762]
+[node name="Camera2D" type="Camera2D" parent="camera control" unique_id=783908762 groups=["player"]]
 
-[node name="Legs" parent="." unique_id=1749304025 instance=ExtResource("1_onrkg")]
+[node name="Legs" parent="." unique_id=1749304025 groups=["player"] instance=ExtResource("1_onrkg")]
 
-[node name="body" parent="Legs" unique_id=270807874 instance=ExtResource("2_i3pqv")]
+[node name="body" parent="Legs" unique_id=270807874 groups=["player"] instance=ExtResource("2_i3pqv")]
 position = Vector2(-13.999999, 7)
 scale = Vector2(0.24955116, 0.30023184)
 
-[node name="Area2D3" type="Area2D" parent="Legs/body" unique_id=1123629674]
+[node name="Area2D3" type="Area2D" parent="Legs/body" unique_id=1123629674 groups=["player"]]
 collision_layer = 4
 collision_mask = 4
 script = SubResource("GDScript_hqtel")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/body/Area2D3" unique_id=835421595]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/body/Area2D3" unique_id=835421595 groups=["player"]]
 shape = SubResource("CapsuleShape2D_sweqy")
 
-[node name="Collector" type="Node2D" parent="Legs" unique_id=2090907535]
+[node name="Collector" type="Node2D" parent="Legs" unique_id=2090907535 groups=["player"]]
 
-[node name="PainKillerReceptical" type="Area2D" parent="Legs/Collector" unique_id=636158436]
+[node name="PainKillerReceptical" type="Area2D" parent="Legs/Collector" unique_id=636158436 groups=["player"]]
 collision_layer = 16
 collision_mask = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/Collector/PainKillerReceptical" unique_id=451907238]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/Collector/PainKillerReceptical" unique_id=451907238 groups=["player"]]
 position = Vector2(4, -1)
 scale = Vector2(6.4427037, 8.352031)
 shape = SubResource("CircleShape2D_onrkg")
 
-[node name="PainRegen" type="Timer" parent="." unique_id=1104549143]
+[node name="PainRegen" type="Timer" parent="." unique_id=1104549143 groups=["player"]]
 one_shot = true
 
-[node name="spawnpoint" type="Node2D" parent="." unique_id=411997339]
+[node name="spawnpoint" type="Node2D" parent="." unique_id=411997339 groups=["player"]]
 position = Vector2(0, 1)
 
-[node name="deathstop" type="Timer" parent="." unique_id=870603989]
+[node name="deathstop" type="Timer" parent="." unique_id=870603989 groups=["player"]]
 
 [connection signal="area_entered" from="Legs/body/Area2D3" to="." method="_on_area_2d_3_area_entered"]
 [connection signal="area_entered" from="Legs/Collector/PainKillerReceptical" to="." method="_on_pain_killer_receptical_area_entered"]

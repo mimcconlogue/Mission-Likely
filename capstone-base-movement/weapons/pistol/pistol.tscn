@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://cftj2x4f8vw15"]
+
+[ext_resource type="PackedScene" uid="uid://mfg15loaa1bw" path="res://weapons/pistol/weaponstate/pistol_ready.tscn" id="1_8aprq"]
+[ext_resource type="PackedScene" uid="uid://3b00fwhvvt56" path="res://weapons/pistol/weaponstate/pistol_not_ready.tscn" id="2_rd4n2"]
+
+[sub_resource type="GDScript" id="GDScript_div1a"]
+script/source = "extends Node2D
+var prepared = false
+var type = \"fists\"
+@onready var pistol_not_ready: Node2D = $PistolNotReady
+@onready var pistol_ready: Node2D = $PistolReady
+var cocked = true
+var current_animation_is_idle = true
+@onready var current_child = pistol_not_ready
+signal animation_over
+var max_ammo = 6
+@onready var ammo = 6
+var reserve_ammo = 12
+func _ready() -> void: 
+	check_prepared()
+func check_prepared():
+	if prepared == true :
+		pistol_ready.show()
+		pistol_not_ready.hide()
+		pistol_ready.set_process(true)
+		pistol_not_ready.set_process(false)
+		current_child = pistol_ready
+	else:
+		pistol_ready.hide()
+		pistol_not_ready.show()
+		pistol_ready.set_process(false)
+		pistol_not_ready.set_process(true)
+		current_child = pistol_not_ready
+	current_child.get_child(0).get_child(0).play(\"animations\" + \"/\" + \"idle\")
+func check_animation():
+	if current_animation_is_idle == true:
+		current_child.get_child(0).get_child(0).play(\"idle\")
+	else:
+		pass
+func check_idle():
+	if get_child(0).idle == true :
+		current_animation_is_idle = true
+	if get_child(1).idle == true :
+		current_animation_is_idle = true
+func special():
+	if cocked == false:
+		current_child.get_child(0).get_child(0).play(\"animations\" + \"/\" + \"special\")
+	cocked = true
+func attack1():
+	if ammo >= 1:
+		if cocked == true:
+			ammo = ammo - 1
+			current_child.get_child(0).get_child(0).play(\"animations\" + \"/\" + \"attack1\")
+			
+	cocked = false
+func _on_pistol_not_ready_animation_over() -> void:
+	animation_over.emit()
+"
+
+[node name="pistol" type="Node2D" unique_id=365548807]
+script = SubResource("GDScript_div1a")
+
+[node name="PistolNotReady" parent="." unique_id=746081321 instance=ExtResource("2_rd4n2")]
+
+[node name="PistolReady" parent="." unique_id=2138834906 instance=ExtResource("1_8aprq")]
+
+[node name="BulletSpawner" type="Node2D" parent="." unique_id=587480795]
+position = Vector2(554, 32)
+
+[connection signal="animation_over" from="PistolNotReady" to="." method="_on_pistol_not_ready_animation_over"]

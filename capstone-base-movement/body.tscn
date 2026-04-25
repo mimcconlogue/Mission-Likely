@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cgu87auun5grt"]
 
 [ext_resource type="Script" uid="uid://dbcrlfy6ft854" path="res://active_weapon.gd" id="1_in4ii"]
-[ext_resource type="PackedScene" uid="uid://bsn2eunsqwbqh" path="res://weapon.tscn" id="14_fwoh1"]
+[ext_resource type="PackedScene" uid="uid://cftj2x4f8vw15" path="res://weapons/pistol/pistol.tscn" id="2_bfrdl"]
+[ext_resource type="PackedScene" uid="uid://bsn2eunsqwbqh" path="res://weapons/fists/fists.tscn" id="14_fwoh1"]
 
 [sub_resource type="GDScript" id="GDScript_tg1dk"]
 script/source = "extends Node2D
@@ -36,14 +37,19 @@ script = SubResource("GDScript_tg1dk")
 [node name="ActiveWeapon" type="Node2D" parent="." unique_id=1544689794]
 script = ExtResource("1_in4ii")
 
-[node name="weapon" parent="ActiveWeapon" unique_id=365548807 instance=ExtResource("14_fwoh1")]
-scale = Vector2(0.99999994, 0.99999994)
+[node name="pistol" parent="ActiveWeapon" unique_id=365548807 instance=ExtResource("2_bfrdl")]
 
 [node name="WeaponSlot1" type="Node2D" parent="." unique_id=2068396962]
+visible = false
 
 [node name="Weaponslot2" type="Node2D" parent="." unique_id=1539956008]
+visible = false
 scale = Vector2(0.9999999, 0.9999999)
 
 [node name="FistSlot" type="Node2D" parent="." unique_id=1691634940]
+visible = false
 
-[connection signal="animation_over" from="ActiveWeapon/weapon" to="ActiveWeapon" method="_on_weapon_animation_over"]
+[node name="fists" parent="FistSlot" unique_id=1697162341 instance=ExtResource("14_fwoh1")]
+scale = Vector2(0.9999999, 0.9999999)
+
+[connection signal="animation_over" from="FistSlot/fists" to="ActiveWeapon" method="_on_weapon_animation_over"]

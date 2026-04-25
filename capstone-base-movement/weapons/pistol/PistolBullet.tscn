@@ -1,30 +1,32 @@
-[gd_scene format=3 uid="uid://lrttu4pii4s8"]
+[gd_scene format=3 uid="uid://daf550o85710f"]
 
-[ext_resource type="Script" uid="uid://bgnnif8v53ju5" path="res://enemybullet.gd" id="1_cjadv"]
-[ext_resource type="Texture2D" uid="uid://c3fy62ymmp7ep" path="res://icon.svg" id="2_q360c"]
+[ext_resource type="Script" uid="uid://cv00p360xy10k" path="res://weapons/pistol/pistol_bullet.gd" id="1_33nyn"]
+[ext_resource type="Texture2D" uid="uid://c3fy62ymmp7ep" path="res://icon.svg" id="2_oilnf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v7oki"]
-size = Vector2(20.12146, 20)
+size = Vector2(52.543118, 16.29385)
 
-[node name="EnemyBullet" type="Area2D" unique_id=1796063381]
+[node name="PlayerBullet" type="Area2D" unique_id=1796063381 groups=["PlayerBullet"]]
 scale = Vector2(1.0399989, 1)
-collision_layer = 4
-collision_mask = 4
-script = ExtResource("1_cjadv")
-speed = 3500
+collision_layer = 256
+collision_mask = 256
+script = ExtResource("1_33nyn")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1428775598]
 self_modulate = Color(1, 1, 0, 1)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_q360c")
+scale = Vector2(0.2464478, 0.25)
+texture = ExtResource("2_oilnf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=621445921]
-visible = false
-position = Vector2(-0.09230886, 0)
-scale = Vector2(1.5200002, 1.5200002)
+position = Vector2(-100.00009, -5.9604645e-08)
+rotation = -3.1415925
+scale = Vector2(4.4481525, -2.0253038)
 shape = SubResource("RectangleShape2D_v7oki")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=438730790]
+
+[node name="RangeTimer" type="Timer" parent="." unique_id=682435145]
+wait_time = 0.517
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

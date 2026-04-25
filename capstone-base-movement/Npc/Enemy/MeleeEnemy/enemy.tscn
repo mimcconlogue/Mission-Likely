@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://he5ym66anqvn"]
+[gd_scene format=3 uid="uid://he5ym66anqvn"]
 
-[ext_resource type="Script" uid="uid://bfumjpbb3nwq0" path="res://enemy.gd" id="1_4gyqm"]
+[ext_resource type="Script" uid="uid://bfumjpbb3nwq0" path="res://Npc/Enemy/MeleeEnemy/enemy.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://c3fy62ymmp7ep" path="res://icon.svg" id="2_qi2p4"]
-[ext_resource type="PackedScene" uid="uid://cx2nm32tgfopw" path="res://enemy_weapon.tscn" id="3_qi2p4"]
+[ext_resource type="PackedScene" uid="uid://cx2nm32tgfopw" path="res://Npc/Enemy/MeleeEnemy/enemy_weapon.tscn" id="3_qi2p4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4gyqm"]
 radius = 61.664413
@@ -86,53 +86,54 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qi2p4"]
 size = Vector2(120, 120)
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" unique_id=1986796302]
+collision_layer = 257
+collision_mask = 257
 script = ExtResource("1_4gyqm")
 speed = 25000
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=796095854]
 texture = ExtResource("2_qi2p4")
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=748166911]
 position = Vector2(-0.5, -0.5)
 shape = SubResource("CircleShape2D_4gyqm")
 
-[node name="EnemyWeapon" parent="." instance=ExtResource("3_qi2p4")]
+[node name="EnemyWeapon" parent="." unique_id=1378499818 instance=ExtResource("3_qi2p4")]
 position = Vector2(63, 28)
 rotation = 0.29670596
 scale = Vector2(0.75, 2.7869024)
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=671906692]
 unique_name_in_owner = true
 wait_time = 2.0
 one_shot = true
 
-[node name="DetectionArea" type="Area2D" parent="."]
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1155586912]
+visible = false
 collision_layer = 2
 collision_mask = 2
 
-[node name="TrianglePart" type="CollisionPolygon2D" parent="DetectionArea"]
+[node name="TrianglePart" type="CollisionPolygon2D" parent="DetectionArea" unique_id=1224524324]
 polygon = PackedVector2Array(0, 0, 1024, -1024, 1024, 1024)
 
-[node name="CirclePart" type="CollisionShape2D" parent="DetectionArea"]
+[node name="CirclePart" type="CollisionShape2D" parent="DetectionArea" unique_id=2004789119]
 position = Vector2(2112, 0)
 shape = SubResource("CircleShape2D_qi2p4")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=749376566]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_epg4t")
-}
-autoplay = "idle"
+libraries/ = SubResource("AnimationLibrary_epg4t")
+autoplay = &"idle"
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1832833201]
 target_position = Vector2(3650, 0)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=369550818]
 collision_layer = 8
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1627027405]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_qi2p4")
 

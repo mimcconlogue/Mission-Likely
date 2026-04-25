@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://bxkfexdm6v2mo"]
 
-[ext_resource type="PackedScene" uid="uid://btj5reeqo2i2u" path="res://node_2d.tscn" id="1_7jktm"]
+[ext_resource type="PackedScene" uid="uid://btj5reeqo2i2u" path="res://map.tscn" id="1_7jktm"]
 [ext_resource type="PackedScene" uid="uid://66hsxoauhh40" path="res://player.tscn" id="1_e2o6t"]
-[ext_resource type="PackedScene" uid="uid://he5ym66anqvn" path="res://enemy.tscn" id="2_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://he5ym66anqvn" path="res://Npc/Enemy/MeleeEnemy/enemy.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://uqbde0qleu2v" path="res://exit.tscn" id="4_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://blp5hc7as4ehp" path="res://pain_killer.tscn" id="5_7jktm"]
 [ext_resource type="PackedScene" uid="uid://d4cfjlev2dys1" path="res://ui.tscn" id="6_ryrav"]
-[ext_resource type="PackedScene" uid="uid://nb776tfn5k73" path="res://gunenemy.tscn" id="6_vef74"]
+[ext_resource type="PackedScene" uid="uid://nb776tfn5k73" path="res://Npc/Enemy/GunEnemy/gunenemy.tscn" id="6_vef74"]
 
 [sub_resource type="GDScript" id="GDScript_feb5d"]
 script/source = "extends Node2D
@@ -28,7 +28,7 @@ func _process(_delta: float) -> void:
 script = SubResource("GDScript_feb5d")
 metadata/_edit_vertical_guides_ = [-1338.0]
 
-[node name="map" parent="." unique_id=256234953 instance=ExtResource("1_7jktm")]
+[node name="map" parent="." unique_id=256234953 groups=["wall"] instance=ExtResource("1_7jktm")]
 position = Vector2(-209, 108)
 scale = Vector2(3.615673, 3.615673)
 
@@ -41,7 +41,7 @@ position = Vector2(4372, -1443)
 [node name="enemies" type="Node2D" parent="." unique_id=1850525410]
 
 [node name="Enemy" parent="enemies" unique_id=998808000 instance=ExtResource("2_e2o6t")]
-position = Vector2(1205, 841.99994)
+position = Vector2(1170.0001, 769.00006)
 rotation = -0.30439836
 
 [node name="Enemy2" parent="enemies" unique_id=1609625797 instance=ExtResource("2_e2o6t")]
@@ -70,8 +70,8 @@ position = Vector2(2320.0002, -1941)
 rotation = 3.8810225
 
 [node name="GunEnemy" parent="enemies" unique_id=1967205178 instance=ExtResource("6_vef74")]
-position = Vector2(1471.9999, -3521)
-rotation = 1.5096269
+position = Vector2(1499, -3484.9998)
+rotation = 1.5347344
 
 [node name="Enemy8" parent="enemies" unique_id=482876184 instance=ExtResource("2_e2o6t")]
 position = Vector2(4221, -295)

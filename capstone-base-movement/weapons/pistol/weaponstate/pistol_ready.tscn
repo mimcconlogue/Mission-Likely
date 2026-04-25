@@ -1,0 +1,167 @@
+[gd_scene format=3 uid="uid://mfg15loaa1bw"]
+
+[ext_resource type="Script" uid="uid://fevb0fubqm8r" path="res://weapons/pistol/weaponstate/pistol_ready.gd" id="1_be8gn"]
+[ext_resource type="AnimationLibrary" uid="uid://cc5cg2vapwlr8" path="res://animation/body/fists/not_ready/global.res" id="2_vsogi"]
+[ext_resource type="AnimationLibrary" uid="uid://c3q2tfcjht5sb" path="res://animation/body/fists/ready/animations.res" id="3_jrv16"]
+[ext_resource type="Texture2D" uid="uid://l868t0qs1pnx" path="res://animation/body/0001.png0003.png" id="4_ugpij"]
+[ext_resource type="Texture2D" uid="uid://c821jicixv5ur" path="res://animation/body/0001.png0015.png" id="4_vsogi"]
+[ext_resource type="Texture2D" uid="uid://c18jtvk11f6is" path="res://animation/body/0001.png0007.png" id="5_dr3m1"]
+[ext_resource type="Texture2D" uid="uid://bqswumahy75hn" path="res://animation/body/0001.png0006.png" id="8_7sw8b"]
+[ext_resource type="Texture2D" uid="uid://cbla5aol1vccn" path="res://animation/body/0001.png0019.png" id="9_opbud"]
+[ext_resource type="Texture2D" uid="uid://6v6tq3gf2mmf" path="res://animation/body/0001.png0020.png" id="10_wwjom"]
+[ext_resource type="Texture2D" uid="uid://csh6danhkw1rq" path="res://animation/body/0001.png0021.png" id="11_b4hq8"]
+[ext_resource type="Texture2D" uid="uid://cafmun5c4obo7" path="res://animation/body/0001.png0023.png" id="12_iyy5b"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3c326"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_vsogi")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0yukw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ugpij")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dr3m1")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hfg2g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_opbud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vsogi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_7sw8b")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8v0x0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_opbud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_wwjom")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_b4hq8")
+}],
+"loop": true,
+"name": &"special",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2uovb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_iyy5b")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3c326"]
+size = Vector2(30.985428, 28.337582)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0yukw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hfg2g"]
+
+[node name="PistolReady" type="Node2D" unique_id=746081321]
+script = ExtResource("1_be8gn")
+
+[node name="Ready" type="Node2D" parent="." unique_id=289647226]
+position = Vector2(-4.999996, 0)
+rotation = -0.7574729
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ready" unique_id=1159010157]
+root_node = NodePath("../..")
+libraries/ = ExtResource("2_vsogi")
+libraries/animations = ExtResource("3_jrv16")
+
+[node name="Idle" type="Node2D" parent="Ready" unique_id=876714398]
+
+[node name="AnimatedSprite2DIdle" type="AnimatedSprite2D" parent="Ready/Idle" unique_id=1875076073]
+visible = false
+rotation = -0.18888201
+sprite_frames = SubResource("SpriteFrames_3c326")
+animation = &"idle"
+flip_v = true
+
+[node name="Attack1" type="Node2D" parent="Ready" unique_id=382669412]
+
+[node name="AnimatedSprite2DAttack1" type="AnimatedSprite2D" parent="Ready/Attack1" unique_id=2126629967]
+visible = false
+position = Vector2(-2, 1)
+sprite_frames = SubResource("SpriteFrames_0yukw")
+
+[node name="Attack2" type="Node2D" parent="Ready" unique_id=32905135]
+
+[node name="AnimatedSprite2DAttack2" type="AnimatedSprite2D" parent="Ready/Attack2" unique_id=2036646607]
+visible = false
+sprite_frames = SubResource("SpriteFrames_hfg2g")
+animation = &"attack"
+frame = 1
+
+[node name="Special" type="Node2D" parent="Ready" unique_id=254784018]
+
+[node name="AnimatedSprite2DSpecial" type="AnimatedSprite2D" parent="Ready/Special" unique_id=609146797]
+sprite_frames = SubResource("SpriteFrames_8v0x0")
+animation = &"special"
+
+[node name="Hurt" type="Node2D" parent="Ready" unique_id=1160223307]
+
+[node name="AnimatedSprite2DHurt" type="AnimatedSprite2D" parent="Ready/Hurt" unique_id=1258906152]
+visible = false
+sprite_frames = SubResource("SpriteFrames_2uovb")
+animation = &"hurt"
+
+[node name="HitBox" type="Area2D" parent="." unique_id=1261619072]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=59654168]
+position = Vector2(385.00003, 60.999985)
+rotation = -0.11277305
+scale = Vector2(3.9394312, 3.9394312)
+shape = SubResource("RectangleShape2D_3c326")
+disabled = true
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=1243060815]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=2060264344]
+position = Vector2(0.33333284, -0.33333313)
+rotation = -0.046912804
+scale = Vector2(11.073337, 14.144772)
+shape = SubResource("CapsuleShape2D_0yukw")
+
+[node name="HeadHurtBox" type="Area2D" parent="HurtBox/CollisionShape2D" unique_id=1969284847]
+position = Vector2(16.82938, -1.2016867)
+rotation = -0.05158804
+scale = Vector2(0.91194034, 0.69145286)
+skew = -0.03246343
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox/CollisionShape2D/HeadHurtBox" unique_id=62074759]
+shape = SubResource("CircleShape2D_hfg2g")
