@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cx2nm32tgfopw" path="res://enemy_weapon.tscn" id="3_qi2p4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4gyqm"]
-radius = 61.664413
+radius = 64.50194
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qi2p4"]
 radius = 1505.3611
@@ -90,9 +90,11 @@ size = Vector2(120, 120)
 script = ExtResource("1_4gyqm")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 55.0
 target_desired_distance = 20.0
 avoidance_enabled = true
 debug_enabled = true
+debug_path_custom_line_width = 1.0
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_qi2p4")
