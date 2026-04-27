@@ -4,9 +4,10 @@
 
 [sub_resource type="GDScript" id="GDScript_24kvk"]
 script/source = "extends Area2D
+@onready var level_complete_menu: Control = $CanvasLayer/LevelCompleteMenu
 
 func _on_area_entered(_area: Area2D) -> void:
-	get_tree().reload_current_scene()
+	get_tree().root.get_child(0).get_child(5).end_screen()
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mlcv5"]

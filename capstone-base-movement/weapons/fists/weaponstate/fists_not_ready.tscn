@@ -1,9 +1,8 @@
-[gd_scene format=3 uid="uid://c7pnrkoc4vh1g"]
+[gd_scene load_steps=23 format=3 uid="uid://c7pnrkoc4vh1g"]
 
 [ext_resource type="Texture2D" uid="uid://pqk1bo10406a" path="res://animation/body/0001.png0001.png" id="1_585y4"]
 [ext_resource type="Script" uid="uid://dkjvfyuxu8des" path="res://weapons/fists/weaponstate/fists_not_ready.gd" id="1_dcwf3"]
 [ext_resource type="Texture2D" uid="uid://l868t0qs1pnx" path="res://animation/body/0001.png0003.png" id="1_ku0b1"]
-[ext_resource type="AnimationLibrary" uid="uid://cc5cg2vapwlr8" path="res://animation/body/fists/not_ready/global.res" id="2_d1mem"]
 [ext_resource type="Texture2D" uid="uid://b2qlatuiyumha" path="res://animation/body/0001.png0002.png" id="2_dcwf3"]
 [ext_resource type="Texture2D" uid="uid://c18jtvk11f6is" path="res://animation/body/0001.png0007.png" id="2_mo3kt"]
 [ext_resource type="Texture2D" uid="uid://bgxde6krcvlq" path="res://animation/body/0001.png0004.png" id="3_b8r1c"]
@@ -105,83 +104,84 @@ size = Vector2(30.985428, 28.337582)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dcwf3"]
 
-[node name="FistsNotReady" type="Node2D" unique_id=746081321]
+[node name="FistsNotReady" type="Node2D"]
 script = ExtResource("1_dcwf3")
 
-[node name="Ready" type="Node2D" parent="." unique_id=289647226]
-rotation = -0.16338086
+[node name="Ready" type="Node2D" parent="."]
+rotation = -0.19781053
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Ready" unique_id=10621126]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ready"]
 root_node = NodePath("../..")
-libraries/ = ExtResource("2_d1mem")
-libraries/animations = ExtResource("3_rttbj")
+libraries = {
+&"animations": ExtResource("3_rttbj")
+}
 
-[node name="Idle" type="Node2D" parent="Ready" unique_id=876714398]
+[node name="Idle" type="Node2D" parent="Ready"]
 
-[node name="AnimatedSprite2DIdle" type="AnimatedSprite2D" parent="Ready/Idle" unique_id=1875076073]
+[node name="AnimatedSprite2DIdle" type="AnimatedSprite2D" parent="Ready/Idle"]
 rotation = -0.16244547
 sprite_frames = SubResource("SpriteFrames_3c326")
 animation = &"idle"
 
-[node name="Attack1" type="Node2D" parent="Ready" unique_id=382669412]
+[node name="Attack1" type="Node2D" parent="Ready"]
 
-[node name="AnimatedSprite2DAttack1" type="AnimatedSprite2D" parent="Ready/Attack1" unique_id=2126629967]
+[node name="AnimatedSprite2DAttack1" type="AnimatedSprite2D" parent="Ready/Attack1"]
 visible = false
 position = Vector2(-2, 1)
 rotation = -0.022280829
 sprite_frames = SubResource("SpriteFrames_0yukw")
 
-[node name="Attack2" type="Node2D" parent="Ready" unique_id=32905135]
+[node name="Attack2" type="Node2D" parent="Ready"]
 
-[node name="AnimatedSprite2DAttack2" type="AnimatedSprite2D" parent="Ready/Attack2" unique_id=2036646607]
+[node name="AnimatedSprite2DAttack2" type="AnimatedSprite2D" parent="Ready/Attack2"]
 visible = false
 rotation = 0.05183393
 sprite_frames = SubResource("SpriteFrames_hfg2g")
 animation = &"attack"
 frame = 2
 
-[node name="Special" type="Node2D" parent="Ready" unique_id=254784018]
+[node name="Special" type="Node2D" parent="Ready"]
 
-[node name="AnimatedSprite2DSpecial" type="AnimatedSprite2D" parent="Ready/Special" unique_id=609146797]
+[node name="AnimatedSprite2DSpecial" type="AnimatedSprite2D" parent="Ready/Special"]
 visible = false
 rotation = -0.22613356
 sprite_frames = SubResource("SpriteFrames_8v0x0")
 animation = &"special"
 frame = 1
 
-[node name="Hurt" type="Node2D" parent="Ready" unique_id=1160223307]
+[node name="Hurt" type="Node2D" parent="Ready"]
 
-[node name="AnimatedSprite2DHurt" type="AnimatedSprite2D" parent="Ready/Hurt" unique_id=1258906152]
+[node name="AnimatedSprite2DHurt" type="AnimatedSprite2D" parent="Ready/Hurt"]
 visible = false
 rotation = -0.10089505
 sprite_frames = SubResource("SpriteFrames_2uovb")
 animation = &"hurt"
 
-[node name="HitBox" type="Area2D" parent="." unique_id=1060177957]
+[node name="HitBox" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1608103495]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(61.999996, -184.99998)
 rotation = -0.11277305
 scale = Vector2(3.9394312, 3.9394312)
 shape = SubResource("RectangleShape2D_dcwf3")
 disabled = true
 
-[node name="HurtBox" type="Area2D" parent="." unique_id=552801659]
+[node name="HurtBox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=639045696]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 rotation = -0.17362785
 scale = Vector2(11.073337, 14.144772)
 shape = SubResource("CapsuleShape2D_d1mem")
 
-[node name="HeadHurtBox" type="Area2D" parent="HurtBox/CollisionShape2D" unique_id=682410082]
+[node name="HeadHurtBox" type="Area2D" parent="HurtBox/CollisionShape2D"]
 position = Vector2(16.82938, -1.2016867)
 rotation = -0.05158804
 scale = Vector2(0.91194034, 0.69145286)
 skew = -0.03246343
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox/CollisionShape2D/HeadHurtBox" unique_id=1424197706]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox/CollisionShape2D/HeadHurtBox"]
 position = Vector2(-14.522585, -0.7692583)
 shape = SubResource("CircleShape2D_dcwf3")
 

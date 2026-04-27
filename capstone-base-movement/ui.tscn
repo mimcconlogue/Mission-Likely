@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://d4cfjlev2dys1"]
+[gd_scene load_steps=14 format=3 uid="uid://d4cfjlev2dys1"]
 
 [ext_resource type="Script" uid="uid://ourgbq6c6ow7" path="res://blood_bar.gd" id="1_fyqef"]
 [ext_resource type="Script" uid="uid://ctfd70i46fdoo" path="res://canvas_layer.gd" id="1_m6e0p"]
+[ext_resource type="Script" uid="uid://be0y46hr3q2o4" path="res://ui.gd" id="1_n5ude"]
 [ext_resource type="PackedScene" uid="uid://dmlht2l8joygh" path="res://pausescreen.tscn" id="2_27fn8"]
 [ext_resource type="Script" uid="uid://bvwfrtg6bbq4r" path="res://stamina_bar.gd" id="4_nltto"]
+[ext_resource type="PackedScene" uid="uid://donxs24sjoy2t" path="res://Levelcompletemenu.tscn" id="5_ibotj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6e0p"]
 bg_color = Color(0.54869443, 0.42492333, 0, 1)
@@ -40,6 +42,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_n5ude")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("1_m6e0p")
@@ -90,3 +93,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_nltto")
 script = ExtResource("4_nltto")
+
+[node name="LevelCompleteMenu" parent="CanvasLayer" instance=ExtResource("5_ibotj")]
+visible = false

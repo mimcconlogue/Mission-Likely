@@ -1,12 +1,15 @@
-[gd_scene format=3 uid="uid://donxs24sjoy2t"]
+[gd_scene load_steps=2 format=3 uid="uid://donxs24sjoy2t"]
 
-[node name="Control" type="Control"]
+[ext_resource type="Script" uid="uid://mg3v20bcpmjh" path="res://levelcompletemenu.gd" id="1_tvogg"]
+
+[node name="LevelCompleteMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_tvogg")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -41,12 +44,21 @@ theme_override_font_sizes/font_size = 100
 text = "Level Complete"
 horizontal_alignment = 1
 
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "ghfhjhfhejhf"
+
 [node name="NEXT" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 10
 theme_override_font_sizes/font_size = 50
 text = "NEXT"
 
 [node name="RESET" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 8
 theme_override_font_sizes/font_size = 50
 text = "RESET"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/RESET" to="." method="_on_reset_pressed"]
