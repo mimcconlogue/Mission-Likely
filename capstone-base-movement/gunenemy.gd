@@ -9,7 +9,7 @@ extends CharacterBody2D
 @onready var gun_enemy: CharacterBody2D = $"."
 
 const Bullet = preload("res://enemybullet.tscn")
-var move_speed = 15000
+var move_speed = 150
 var can_walk = true
 var tween = null
 var health = 100
@@ -84,7 +84,6 @@ func _physics_process(_delta: float):
 		var collider = ray_cast_2d.get_collider()
 		if collider == player:
 			player_visible = true
-			print("visibleee")
 		else:
 			player_visible = false
 			timer_not_active = true
@@ -100,12 +99,16 @@ func _physics_process(_delta: float):
 		#if u close enough attack & stop move...
 		if distance_to_player < attack_distance and player_visible:
 			if can_shoot:
+				velocity = Vector2.ZERO
+				can_walk = false
 				shoot()
 		elif not can_walk:
+			velocity = Vector2.ZERO
 			if idle_timer.is_stopped():
 				idle_timer.start()
+				print("timerstart")
 		elif can_walk: 
-			print("move that gear up!")
+			#print("move that gear up!")
 			var current_position: Vector2 = self.global_transform.origin
 			var next_path_position: Vector2 = nav_agent.get_next_path_position()
 			var new_velocity: Vector2 = current_position.direction_to(next_path_position)
@@ -129,19 +132,20 @@ func _on_area_2d_area_entered(_area: Area2D) -> void:
 	take_damage(5,15)
 
 func shoot():
+	velocity = Vector2.ZERO
 	can_shoot = false
-	can_walk = false
 	var bullet = Bullet.instantiate()
 	get_tree().root.add_child(bullet)
 	bullet.global_position = gun.global_position
 	bullet.global_rotation = gun.global_rotation
 	shoot_timer.start()
+	idle_timer.stop()
 
 func _on_shoot_timer_timeout() -> void:
 	can_shoot = true
 func _on_idle_timer_timeout() -> void:
-	can_walk = true
 	can_shoot = true
+	can_walk = true
 	print("idle done")
 
 
