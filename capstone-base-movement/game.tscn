@@ -46,6 +46,7 @@ rotation = -0.15236115
 
 [node name="GunEnemy2" parent="enemies" instance=ExtResource("6_vef74")]
 position = Vector2(1143, 780)
+rotation = -0.6614743
 
 [node name="GunEnemy3" parent="enemies" instance=ExtResource("6_vef74")]
 position = Vector2(4066.0005, 233.00006)
