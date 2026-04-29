@@ -42,6 +42,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("1_m6e0p")
 
 [node name="pausescreen" parent="CanvasLayer" instance=ExtResource("2_27fn8")]

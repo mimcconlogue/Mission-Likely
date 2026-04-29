@@ -1,7 +1,9 @@
-[gd_scene format=3 uid="uid://66hsxoauhh40"]
+[gd_scene load_steps=11 format=3 uid="uid://66hsxoauhh40"]
 
 [ext_resource type="PackedScene" uid="uid://c1sbcuxwk0424" path="res://legs.tscn" id="1_onrkg"]
 [ext_resource type="PackedScene" uid="uid://cgu87auun5grt" path="res://body.tscn" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://r5aghql117lw" path="res://2d_lights_and_shadows_neutral_point_light.webp" id="3_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://nf157xn4itxu" path="res://conept2.jpg" id="4_hqtel"]
 
 [sub_resource type="GDScript" id="GDScript_onrkg"]
 script/source = "extends Node2D
@@ -97,48 +99,70 @@ script/source = "extends Area2D
 radius = 104.18706
 height = 492.95236
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hqtel"]
+polygon = PackedVector2Array(-136.24461, -25.315315, -456.8202, -1304.3269, -1739.1224, -1304.3269, -1739.1224, 1466.8649, -456.8202, 1466.8649)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 
-[node name="player" type="Node2D" unique_id=961922666]
+[node name="player" type="Node2D"]
 script = SubResource("GDScript_onrkg")
 
-[node name="camera control" type="Node2D" parent="." unique_id=1828515893]
+[node name="camera control" type="Node2D" parent="."]
 script = SubResource("GDScript_i3pqv")
 
-[node name="Camera2D" type="Camera2D" parent="camera control" unique_id=783908762]
+[node name="Camera2D" type="Camera2D" parent="camera control"]
 
-[node name="Legs" parent="." unique_id=1749304025 instance=ExtResource("1_onrkg")]
+[node name="Legs" parent="." instance=ExtResource("1_onrkg")]
 
-[node name="body" parent="Legs" unique_id=270807874 instance=ExtResource("2_i3pqv")]
+[node name="VisionCone" type="PointLight2D" parent="Legs"]
+position = Vector2(8, 16)
+scale = Vector2(7.2397466, 7.2397466)
+shadow_enabled = true
+texture = ExtResource("3_i3pqv")
+
+[node name="body" parent="Legs" instance=ExtResource("2_i3pqv")]
 position = Vector2(-13.999999, 7)
 scale = Vector2(0.24955116, 0.30023184)
 
-[node name="Area2D3" type="Area2D" parent="Legs/body" unique_id=1123629674]
+[node name="Flashlight" type="PointLight2D" parent="Legs/body"]
+position = Vector2(56.100716, 0)
+rotation = 4.712389
+energy = 0.75
+shadow_enabled = true
+texture = ExtResource("4_hqtel")
+offset = Vector2(0, 4500)
+texture_scale = 15.0
+
+[node name="Area2D3" type="Area2D" parent="Legs/body"]
 collision_layer = 4
 collision_mask = 4
 script = SubResource("GDScript_hqtel")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/body/Area2D3" unique_id=835421595]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/body/Area2D3"]
 shape = SubResource("CapsuleShape2D_sweqy")
 
-[node name="Collector" type="Node2D" parent="Legs" unique_id=2090907535]
+[node name="Anti-EyesOnBack" type="LightOccluder2D" parent="Legs/body"]
+position = Vector2(0, 2)
+occluder = SubResource("OccluderPolygon2D_hqtel")
 
-[node name="PainKillerReceptical" type="Area2D" parent="Legs/Collector" unique_id=636158436]
+[node name="Collector" type="Node2D" parent="Legs"]
+
+[node name="PainKillerReceptical" type="Area2D" parent="Legs/Collector"]
 collision_layer = 16
 collision_mask = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/Collector/PainKillerReceptical" unique_id=451907238]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/Collector/PainKillerReceptical"]
 position = Vector2(4, -1)
 scale = Vector2(6.4427037, 8.352031)
 shape = SubResource("CircleShape2D_onrkg")
 
-[node name="PainRegen" type="Timer" parent="." unique_id=1104549143]
+[node name="PainRegen" type="Timer" parent="."]
 one_shot = true
 
-[node name="spawnpoint" type="Node2D" parent="." unique_id=411997339]
+[node name="spawnpoint" type="Node2D" parent="."]
 position = Vector2(0, 1)
 
-[node name="deathstop" type="Timer" parent="." unique_id=870603989]
+[node name="deathstop" type="Timer" parent="."]
 
 [connection signal="area_entered" from="Legs/body/Area2D3" to="." method="_on_area_2d_3_area_entered"]
 [connection signal="area_entered" from="Legs/Collector/PainKillerReceptical" to="." method="_on_pain_killer_receptical_area_entered"]
