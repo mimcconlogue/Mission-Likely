@@ -116,5 +116,4 @@ offset_right = 474.0
 offset_bottom = -545.0
 
 [node name="DarknessFilter" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0.03839717, 0.03839716, 0.038397186, 1)

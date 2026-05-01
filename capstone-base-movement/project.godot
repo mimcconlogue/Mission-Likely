@@ -17,7 +17,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="Head Hunted"
 run/main_scene="uid://bxkfexdm6v2mo"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="uid://c3fy62ymmp7ep"
+config/icon="uid://bjt0r6i2ug5gh"
 
 [input]
 
