@@ -100,7 +100,7 @@ radius = 104.18706
 height = 492.95236
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hqtel"]
-polygon = PackedVector2Array(-136.24461, -25.315315, -456.8202, -1304.3269, -1739.1224, -1304.3269, -1739.1224, 1466.8649, -456.8202, 1466.8649)
+polygon = PackedVector2Array(56.10072, -345.0682, -456.8202, -1304.3269, -1739.1224, -1304.3269, -1739.1224, 1466.8649, -456.8202, 1466.8649, 56.10072, 321.08365, -96.17267, 239.81468, -200.35973, 81.26898, -200.35973, -131.89961, -104.18706, -265.12997)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 
@@ -142,7 +142,7 @@ script = SubResource("GDScript_hqtel")
 shape = SubResource("CapsuleShape2D_sweqy")
 
 [node name="Anti-EyesOnBack" type="LightOccluder2D" parent="Legs/body"]
-position = Vector2(0, 2)
+position = Vector2(-8.014393, 3.3307586)
 occluder = SubResource("OccluderPolygon2D_hqtel")
 
 [node name="Collector" type="Node2D" parent="Legs"]
