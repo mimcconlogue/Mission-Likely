@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://c1sbcuxwk0424" path="res://legs.tscn" id="1_onrkg"]
 [ext_resource type="PackedScene" uid="uid://cgu87auun5grt" path="res://body.tscn" id="2_i3pqv"]
-[ext_resource type="Texture2D" uid="uid://r5aghql117lw" path="res://2d_lights_and_shadows_neutral_point_light.webp" id="3_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://nf157xn4itxu" path="res://conept2.jpg" id="4_hqtel"]
 
 [sub_resource type="GDScript" id="GDScript_onrkg"]
@@ -91,6 +90,15 @@ func apply_camera(delta):
 	$Camera2D.global_position = lerp($Camera2D.global_position, center, delta * damping)
 "
 
+[sub_resource type="Gradient" id="Gradient_i3pqv"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hqtel"]
+gradient = SubResource("Gradient_i3pqv")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.8)
+
 [sub_resource type="GDScript" id="GDScript_hqtel"]
 script/source = "extends Area2D
 "
@@ -98,9 +106,6 @@ script/source = "extends Area2D
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sweqy"]
 radius = 104.18706
 height = 492.95236
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hqtel"]
-polygon = PackedVector2Array(56.10072, -345.0682, -456.8202, -1304.3269, -1739.1224, -1304.3269, -1739.1224, 1466.8649, -456.8202, 1466.8649, 56.10072, 321.08365, -96.17267, 239.81468, -200.35973, 81.26898, -200.35973, -131.89961, -104.18706, -265.12997)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 
@@ -117,21 +122,15 @@ script = SubResource("GDScript_i3pqv")
 [node name="VisionCone" type="PointLight2D" parent="Legs"]
 position = Vector2(8, 16)
 scale = Vector2(7.2397466, 7.2397466)
+energy = 0.5
 shadow_enabled = true
-texture = ExtResource("3_i3pqv")
+shadow_filter = 2
+texture = SubResource("GradientTexture2D_hqtel")
+texture_scale = 10.0
 
 [node name="body" parent="Legs" instance=ExtResource("2_i3pqv")]
 position = Vector2(-13.999999, 7)
 scale = Vector2(0.24955116, 0.30023184)
-
-[node name="Flashlight" type="PointLight2D" parent="Legs/body"]
-position = Vector2(56.100716, 0)
-rotation = 4.712389
-energy = 0.75
-shadow_enabled = true
-texture = ExtResource("4_hqtel")
-offset = Vector2(0, 4500)
-texture_scale = 15.0
 
 [node name="Area2D3" type="Area2D" parent="Legs/body"]
 collision_layer = 4
@@ -141,9 +140,26 @@ script = SubResource("GDScript_hqtel")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/body/Area2D3"]
 shape = SubResource("CapsuleShape2D_sweqy")
 
-[node name="Anti-EyesOnBack" type="LightOccluder2D" parent="Legs/body"]
-position = Vector2(-8.014393, 3.3307586)
-occluder = SubResource("OccluderPolygon2D_hqtel")
+[node name="Flashlight" type="PointLight2D" parent="Legs/body"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(56.100716, 63.284424)
+rotation = 4.712389
+energy = 0.75
+shadow_enabled = true
+shadow_filter = 1
+texture = ExtResource("4_hqtel")
+offset = Vector2(0, 4500)
+texture_scale = 15.0
+
+[node name="AntiLight" type="PointLight2D" parent="Legs/body"]
+position = Vector2(-220.39568, -119.90733)
+rotation = 1.5707964
+scale = Vector2(1.3010198, 0.40215987)
+blend_mode = 1
+shadow_filter = 2
+texture = ExtResource("4_hqtel")
+offset = Vector2(0, 4500)
+texture_scale = 15.0
 
 [node name="Collector" type="Node2D" parent="Legs"]
 
