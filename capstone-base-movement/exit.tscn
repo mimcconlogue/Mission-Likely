@@ -8,6 +8,7 @@ script/source = "extends Area2D
 
 func _on_area_entered(_area: Area2D) -> void:
 	get_tree().root.get_child(0).get_child(5).end_screen()
+	get_tree().paused = true
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mlcv5"]

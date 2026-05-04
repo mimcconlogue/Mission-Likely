@@ -25,6 +25,7 @@ func _process(_delta: float) -> void:
 "
 
 [node name="game" type="Node2D"]
+position = Vector2(3778, -1335)
 script = SubResource("GDScript_feb5d")
 metadata/_edit_vertical_guides_ = [-1338.0]
 
