@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://blp5hc7as4ehp"]
+[gd_scene load_steps=0 format=3 uid="uid://blp5hc7as4ehp"]
 
 [ext_resource type="Script" uid="uid://eskipkxefumq" path="res://node_2d.gd" id="1_5jb4j"]
 [ext_resource type="Texture2D" uid="uid://kex6anydkc0v" path="res://textures/pill-bottle-spilled-in-surface-isolated-on-white-background-top-view-photo-removebg-preview.png" id="2_w78ui"]

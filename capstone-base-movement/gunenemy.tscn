@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://nb776tfn5k73"]
+[gd_scene load_steps=0 format=3 uid="uid://nb776tfn5k73"]
 
 [ext_resource type="Script" uid="uid://cckirrgjpchvr" path="res://gunenemy.gd" id="1_hob4l"]
 [ext_resource type="Texture2D" uid="uid://c3fy62ymmp7ep" path="res://icon.svg" id="2_pdyhk"]
