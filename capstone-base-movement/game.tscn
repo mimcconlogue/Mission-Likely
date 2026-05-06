@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bxkfexdm6v2mo"]
 
-[ext_resource type="PackedScene" uid="uid://btj5reeqo2i2u" path="res://node_2d.tscn" id="1_7jktm"]
+[ext_resource type="PackedScene" uid="uid://btj5reeqo2i2u" path="res://map.tscn" id="1_7jktm"]
 [ext_resource type="PackedScene" uid="uid://66hsxoauhh40" path="res://player.tscn" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://he5ym66anqvn" path="res://enemy.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://uqbde0qleu2v" path="res://exit.tscn" id="4_fc0e3"]
@@ -25,7 +25,6 @@ func _process(_delta: float) -> void:
 "
 
 [node name="game" type="Node2D"]
-position = Vector2(3778, -1335)
 script = SubResource("GDScript_feb5d")
 metadata/_edit_vertical_guides_ = [-1338.0]
 
@@ -37,72 +36,25 @@ scale = Vector2(3.615673, 3.615673)
 position = Vector2(-429, -5)
 
 [node name="exit" parent="." instance=ExtResource("4_fc0e3")]
-position = Vector2(-27, 101)
+position = Vector2(4372, -1443)
 
 [node name="enemies" type="Node2D" parent="."]
 
 [node name="Enemy" parent="enemies" instance=ExtResource("2_e2o6t")]
-position = Vector2(1205, 841.99994)
-rotation = -0.30439836
-
-[node name="Enemy2" parent="enemies" instance=ExtResource("2_e2o6t")]
-position = Vector2(2133, 1127.0001)
-rotation = 3.1391053
-
-[node name="Enemy3" parent="enemies" instance=ExtResource("2_e2o6t")]
-position = Vector2(2797, -823)
-rotation = 1.7357326
-
-[node name="Enemy4" parent="enemies" instance=ExtResource("2_e2o6t")]
-position = Vector2(407.00006, -1409.9998)
-rotation = -0.004974668
-scale = Vector2(0.9999998, 0.9999998)
-
-[node name="Enemy5" parent="enemies" instance=ExtResource("2_e2o6t")]
-position = Vector2(1793.9999, -2423.9998)
-rotation = 4.623804
-
-[node name="Enemy6" parent="enemies" instance=ExtResource("2_e2o6t")]
-position = Vector2(2866, -289.00012)
-rotation = -0.4692123
-
-[node name="Enemy7" parent="enemies" instance=ExtResource("2_e2o6t")]
-position = Vector2(2320.0002, -1941)
-rotation = 3.8810225
-
-[node name="GunEnemy" parent="enemies" instance=ExtResource("6_vef74")]
-position = Vector2(1471.9999, -3521)
-rotation = 1.5096269
-
-[node name="Enemy8" parent="enemies" instance=ExtResource("2_e2o6t")]
-position = Vector2(4221, -295)
-rotation = 1.7357326
-
-[node name="Enemy9" parent="enemies" instance=ExtResource("2_e2o6t")]
-position = Vector2(4290, 238.99988)
-rotation = -0.4692123
-
-[node name="Enemy10" parent="enemies" instance=ExtResource("2_e2o6t")]
-position = Vector2(4187, -997.99994)
-rotation = 1.2665203
-scale = Vector2(0.99999994, 0.99999994)
-
-[node name="Enemy11" parent="enemies" instance=ExtResource("2_e2o6t")]
-position = Vector2(4490.009, -552.91296)
-rotation = -0.9384246
-scale = Vector2(0.99999994, 0.99999994)
-
-[node name="Enemy12" parent="enemies" instance=ExtResource("2_e2o6t")]
-position = Vector2(3103.0002, -2958.0002)
-rotation = 4.0686884
+position = Vector2(751, -2609)
+rotation = -0.15236115
 
 [node name="GunEnemy2" parent="enemies" instance=ExtResource("6_vef74")]
-position = Vector2(3018.0002, -1445.9995)
-rotation = -1.5590839
+position = Vector2(2063, 80.00006)
+rotation = -0.6614743
 
 [node name="GunEnemy3" parent="enemies" instance=ExtResource("6_vef74")]
-position = Vector2(4881, -866.00006)
-rotation = -4.095723
+position = Vector2(4066.0005, 233.00006)
+rotation = -0.87136775
+
+[node name="Enemy2" parent="enemies" instance=ExtResource("2_e2o6t")]
+position = Vector2(1184, 787)
+rotation = -0.7139829
 
 [node name="items" type="Node2D" parent="."]
 
