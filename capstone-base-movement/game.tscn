@@ -1,12 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxkfexdm6v2mo"]
+[gd_scene load_steps=7 format=3 uid="uid://bxkfexdm6v2mo"]
 
-[ext_resource type="PackedScene" uid="uid://btj5reeqo2i2u" path="res://map.tscn" id="1_7jktm"]
+[ext_resource type="PackedScene" uid="uid://btj5reeqo2i2u" path="res://MAP.tscn" id="1_7jktm"]
 [ext_resource type="PackedScene" uid="uid://66hsxoauhh40" path="res://player.tscn" id="1_e2o6t"]
-[ext_resource type="PackedScene" uid="uid://he5ym66anqvn" path="res://enemy.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://uqbde0qleu2v" path="res://exit.tscn" id="4_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://blp5hc7as4ehp" path="res://pain_killer.tscn" id="5_7jktm"]
 [ext_resource type="PackedScene" uid="uid://d4cfjlev2dys1" path="res://ui.tscn" id="6_ryrav"]
-[ext_resource type="PackedScene" uid="uid://nb776tfn5k73" path="res://gunenemy.tscn" id="6_vef74"]
 
 [sub_resource type="GDScript" id="GDScript_feb5d"]
 script/source = "extends Node2D
@@ -33,28 +31,10 @@ position = Vector2(-209, 108)
 scale = Vector2(3.615673, 3.615673)
 
 [node name="player" parent="." instance=ExtResource("1_e2o6t")]
-position = Vector2(-429, -5)
+position = Vector2(-299, 130)
 
 [node name="exit" parent="." instance=ExtResource("4_fc0e3")]
 position = Vector2(4372, -1443)
-
-[node name="enemies" type="Node2D" parent="."]
-
-[node name="Enemy" parent="enemies" instance=ExtResource("2_e2o6t")]
-position = Vector2(751, -2609)
-rotation = -0.15236115
-
-[node name="GunEnemy2" parent="enemies" instance=ExtResource("6_vef74")]
-position = Vector2(2063, 80.00006)
-rotation = -0.6614743
-
-[node name="GunEnemy3" parent="enemies" instance=ExtResource("6_vef74")]
-position = Vector2(4066.0005, 233.00006)
-rotation = -0.87136775
-
-[node name="Enemy2" parent="enemies" instance=ExtResource("2_e2o6t")]
-position = Vector2(1184, 787)
-rotation = -0.7139829
 
 [node name="items" type="Node2D" parent="."]
 
@@ -75,8 +55,14 @@ position = Vector2(2741, -162.00002)
 [node name="PainKiller5" parent="items/painkillers" instance=ExtResource("5_7jktm")]
 position = Vector2(2037, -1707)
 
-[node name="Control" parent="." instance=ExtResource("6_ryrav")]
-offset_left = 434.0
-offset_top = -585.0
-offset_right = 474.0
-offset_bottom = -545.0
+[node name="UI" parent="." instance=ExtResource("6_ryrav")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DarknessFilter" type="CanvasModulate" parent="."]
+color = Color(0.03839717, 0.03839716, 0.038397186, 1)

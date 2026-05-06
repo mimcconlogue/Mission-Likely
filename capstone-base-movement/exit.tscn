@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://uqbde0qleu2v"]
 
-[ext_resource type="Texture2D" uid="uid://dg6ov2741bkgi" path="res://legs-removebg-preview.png" id="1_6sfst"]
+[ext_resource type="Texture2D" uid="uid://bjt0r6i2ug5gh" path="res://bain damge copy.png" id="1_6sfst"]
 
 [sub_resource type="GDScript" id="GDScript_24kvk"]
 script/source = "extends Area2D
@@ -12,19 +12,19 @@ func _on_area_entered(_area: Area2D) -> void:
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mlcv5"]
-size = Vector2(140, 218)
+size = Vector2(200, 200)
 
 [node name="exit" type="Area2D"]
 collision_layer = 4
 collision_mask = 4
 script = SubResource("GDScript_24kvk")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_6sfst")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 2.5)
 shape = SubResource("RectangleShape2D_mlcv5")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(41.5, 5.5)
-texture = ExtResource("1_6sfst")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
