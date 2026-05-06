@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bxkfexdm6v2mo"]
+[gd_scene load_steps=9 format=3 uid="uid://bxkfexdm6v2mo"]
 
 [ext_resource type="PackedScene" uid="uid://btj5reeqo2i2u" path="res://node_2d.tscn" id="1_7jktm"]
 [ext_resource type="PackedScene" uid="uid://66hsxoauhh40" path="res://player.tscn" id="1_e2o6t"]
@@ -24,105 +24,106 @@ func _process(_delta: float) -> void:
 	pass
 "
 
-[node name="game" type="Node2D" unique_id=1027065287]
+[node name="game" type="Node2D"]
+position = Vector2(3778, -1335)
 script = SubResource("GDScript_feb5d")
 metadata/_edit_vertical_guides_ = [-1338.0]
 
-[node name="map" parent="." unique_id=256234953 instance=ExtResource("1_7jktm")]
+[node name="map" parent="." instance=ExtResource("1_7jktm")]
 position = Vector2(-209, 108)
 scale = Vector2(3.615673, 3.615673)
 
-[node name="player" parent="." unique_id=1150146055 instance=ExtResource("1_e2o6t")]
+[node name="player" parent="." instance=ExtResource("1_e2o6t")]
 position = Vector2(-429, -5)
 
-[node name="exit" parent="." unique_id=161953365 instance=ExtResource("4_fc0e3")]
-position = Vector2(4372, -1443)
+[node name="exit" parent="." instance=ExtResource("4_fc0e3")]
+position = Vector2(-27, 101)
 
-[node name="enemies" type="Node2D" parent="." unique_id=1850525410]
+[node name="enemies" type="Node2D" parent="."]
 
-[node name="Enemy" parent="enemies" unique_id=998808000 instance=ExtResource("2_e2o6t")]
+[node name="Enemy" parent="enemies" instance=ExtResource("2_e2o6t")]
 position = Vector2(1205, 841.99994)
 rotation = -0.30439836
 
-[node name="Enemy2" parent="enemies" unique_id=1609625797 instance=ExtResource("2_e2o6t")]
+[node name="Enemy2" parent="enemies" instance=ExtResource("2_e2o6t")]
 position = Vector2(2133, 1127.0001)
 rotation = 3.1391053
 
-[node name="Enemy3" parent="enemies" unique_id=262772016 instance=ExtResource("2_e2o6t")]
+[node name="Enemy3" parent="enemies" instance=ExtResource("2_e2o6t")]
 position = Vector2(2797, -823)
 rotation = 1.7357326
 
-[node name="Enemy4" parent="enemies" unique_id=119309195 instance=ExtResource("2_e2o6t")]
+[node name="Enemy4" parent="enemies" instance=ExtResource("2_e2o6t")]
 position = Vector2(407.00006, -1409.9998)
 rotation = -0.004974668
 scale = Vector2(0.9999998, 0.9999998)
 
-[node name="Enemy5" parent="enemies" unique_id=1191923473 instance=ExtResource("2_e2o6t")]
+[node name="Enemy5" parent="enemies" instance=ExtResource("2_e2o6t")]
 position = Vector2(1793.9999, -2423.9998)
 rotation = 4.623804
 
-[node name="Enemy6" parent="enemies" unique_id=1355938326 instance=ExtResource("2_e2o6t")]
+[node name="Enemy6" parent="enemies" instance=ExtResource("2_e2o6t")]
 position = Vector2(2866, -289.00012)
 rotation = -0.4692123
 
-[node name="Enemy7" parent="enemies" unique_id=1870117893 instance=ExtResource("2_e2o6t")]
+[node name="Enemy7" parent="enemies" instance=ExtResource("2_e2o6t")]
 position = Vector2(2320.0002, -1941)
 rotation = 3.8810225
 
-[node name="GunEnemy" parent="enemies" unique_id=1967205178 instance=ExtResource("6_vef74")]
+[node name="GunEnemy" parent="enemies" instance=ExtResource("6_vef74")]
 position = Vector2(1471.9999, -3521)
 rotation = 1.5096269
 
-[node name="Enemy8" parent="enemies" unique_id=482876184 instance=ExtResource("2_e2o6t")]
+[node name="Enemy8" parent="enemies" instance=ExtResource("2_e2o6t")]
 position = Vector2(4221, -295)
 rotation = 1.7357326
 
-[node name="Enemy9" parent="enemies" unique_id=1722282099 instance=ExtResource("2_e2o6t")]
+[node name="Enemy9" parent="enemies" instance=ExtResource("2_e2o6t")]
 position = Vector2(4290, 238.99988)
 rotation = -0.4692123
 
-[node name="Enemy10" parent="enemies" unique_id=40035643 instance=ExtResource("2_e2o6t")]
+[node name="Enemy10" parent="enemies" instance=ExtResource("2_e2o6t")]
 position = Vector2(4187, -997.99994)
 rotation = 1.2665203
 scale = Vector2(0.99999994, 0.99999994)
 
-[node name="Enemy11" parent="enemies" unique_id=443462826 instance=ExtResource("2_e2o6t")]
+[node name="Enemy11" parent="enemies" instance=ExtResource("2_e2o6t")]
 position = Vector2(4490.009, -552.91296)
 rotation = -0.9384246
 scale = Vector2(0.99999994, 0.99999994)
 
-[node name="Enemy12" parent="enemies" unique_id=146318666 instance=ExtResource("2_e2o6t")]
+[node name="Enemy12" parent="enemies" instance=ExtResource("2_e2o6t")]
 position = Vector2(3103.0002, -2958.0002)
 rotation = 4.0686884
 
-[node name="GunEnemy2" parent="enemies" unique_id=836569456 instance=ExtResource("6_vef74")]
+[node name="GunEnemy2" parent="enemies" instance=ExtResource("6_vef74")]
 position = Vector2(3018.0002, -1445.9995)
 rotation = -1.5590839
 
-[node name="GunEnemy3" parent="enemies" unique_id=1719861727 instance=ExtResource("6_vef74")]
+[node name="GunEnemy3" parent="enemies" instance=ExtResource("6_vef74")]
 position = Vector2(4881, -866.00006)
 rotation = -4.095723
 
-[node name="items" type="Node2D" parent="." unique_id=1796208982]
+[node name="items" type="Node2D" parent="."]
 
-[node name="painkillers" type="Node2D" parent="items" unique_id=1366593772]
+[node name="painkillers" type="Node2D" parent="items"]
 
-[node name="PainKiller" parent="items/painkillers" unique_id=1257171996 instance=ExtResource("5_7jktm")]
+[node name="PainKiller" parent="items/painkillers" instance=ExtResource("5_7jktm")]
 position = Vector2(1146, 1112)
 
-[node name="PainKiller2" parent="items/painkillers" unique_id=1297740574 instance=ExtResource("5_7jktm")]
+[node name="PainKiller2" parent="items/painkillers" instance=ExtResource("5_7jktm")]
 position = Vector2(488.00012, -953.00024)
 
-[node name="PainKiller3" parent="items/painkillers" unique_id=487387 instance=ExtResource("5_7jktm")]
+[node name="PainKiller3" parent="items/painkillers" instance=ExtResource("5_7jktm")]
 position = Vector2(1274.0001, -3454.0002)
 
-[node name="PainKiller4" parent="items/painkillers" unique_id=1244189411 instance=ExtResource("5_7jktm")]
+[node name="PainKiller4" parent="items/painkillers" instance=ExtResource("5_7jktm")]
 position = Vector2(2741, -162.00002)
 
-[node name="PainKiller5" parent="items/painkillers" unique_id=1676833732 instance=ExtResource("5_7jktm")]
+[node name="PainKiller5" parent="items/painkillers" instance=ExtResource("5_7jktm")]
 position = Vector2(2037, -1707)
 
-[node name="Control" parent="." unique_id=1665059904 instance=ExtResource("6_ryrav")]
+[node name="Control" parent="." instance=ExtResource("6_ryrav")]
 offset_left = 434.0
 offset_top = -585.0
 offset_right = 474.0
