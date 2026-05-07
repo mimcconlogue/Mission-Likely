@@ -135,7 +135,7 @@ func shoot():
 	velocity = Vector2.ZERO
 	can_shoot = false
 	var bullet = Bullet.instantiate()
-	get_tree().root.add_child(bullet)
+	get_tree().root.get_child(0).get_child(0).add_child(bullet)
 	bullet.global_position = gun.global_position
 	bullet.global_rotation = gun.global_rotation
 	shoot_timer.start()

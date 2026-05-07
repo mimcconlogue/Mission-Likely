@@ -28,6 +28,9 @@ shader_parameter/mask_with_alpha = true
 [sub_resource type="ViewportTexture" id="ViewportTexture_eow3j"]
 viewport_path = NodePath("game display")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_mfdv2"]
+viewport_path = NodePath("SubViewport")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lc2xo"]
 shader = ExtResource("10_mfdv2")
 
@@ -234,9 +237,6 @@ fill = 1
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0.972, 0.04)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_mfdv2"]
-viewport_path = NodePath("SubViewport")
-
 [node name="game" type="Node2D" unique_id=761644435]
 script = ExtResource("1_vef74")
 metadata/_edit_vertical_guides_ = [-1338.0]
@@ -355,6 +355,12 @@ color = Color(0.03839717, 0.03839716, 0.038397186, 1)
 material = SubResource("ShaderMaterial_215e1")
 texture = SubResource("ViewportTexture_eow3j")
 
+[node name="VisibilityDebug" type="Sprite2D" parent="." unique_id=286017090]
+visible = false
+position = Vector2(-216, -215.5)
+scale = Vector2(0.15625, 0.15820313)
+texture = SubResource("ViewportTexture_mfdv2")
+
 [node name="UI" parent="." unique_id=1855738003 instance=ExtResource("6_ryrav")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=54177858]
@@ -395,8 +401,3 @@ position = Vector2(-450, 0)
 rotation = 0.7853982
 texture = SubResource("GradientTexture2D_e8heu")
 texture_scale = 2.0
-
-[node name="VisibilityDebug" type="Sprite2D" parent="." unique_id=286017090]
-position = Vector2(-216, -215.5)
-scale = Vector2(0.15625, 0.15820313)
-texture = SubResource("ViewportTexture_mfdv2")

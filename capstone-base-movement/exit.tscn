@@ -4,7 +4,8 @@
 
 [sub_resource type="GDScript" id="GDScript_24kvk"]
 script/source = "extends Area2D
-@onready var level_complete_menu: Control = get_parent().get_parent().get_child(2).get_child(0).get_child(4)
+@onready var ui: Control = $\"../../UI\"
+@onready var level_complete_menu : Control = ui.get_child(0).get_child(4)
 
 
 func _on_area_entered(_area: Area2D) -> void:
