@@ -39,9 +39,11 @@ ProgressBar/styles/background = SubResource("StyleBoxFlat_27fn8")
 
 [node name="Control" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_n5ude")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -95,4 +97,3 @@ theme = SubResource("Theme_nltto")
 script = ExtResource("4_nltto")
 
 [node name="LevelCompleteMenu" parent="CanvasLayer" instance=ExtResource("5_ibotj")]
-visible = false

@@ -1,10 +1,10 @@
 extends Control
-@onready var color_rect: ColorRect = $ColorRect
+@onready var fader: ColorRect = $Fader
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
 	animation_player.play("RESET")
-	color_rect.visible = true
+	fader.visible = true
 	animation_player.play("fade_to_clear")
 func _on_start_button_pressed() -> void:
 	animation_player.play("fade_to_black")

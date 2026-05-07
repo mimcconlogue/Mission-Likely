@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxkfexdm6v2mo"]
+[gd_scene load_steps=9 format=3 uid="uid://bxkfexdm6v2mo"]
 
 [ext_resource type="PackedScene" uid="uid://btj5reeqo2i2u" path="res://map.tscn" id="1_7jktm"]
 [ext_resource type="PackedScene" uid="uid://66hsxoauhh40" path="res://player.tscn" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://uqbde0qleu2v" path="res://exit.tscn" id="4_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://blp5hc7as4ehp" path="res://pain_killer.tscn" id="5_7jktm"]
+[ext_resource type="PackedScene" uid="uid://nb776tfn5k73" path="res://enemywithgun.tscn" id="6_eow3j"]
 [ext_resource type="PackedScene" uid="uid://d4cfjlev2dys1" path="res://ui.tscn" id="6_ryrav"]
+[ext_resource type="PackedScene" uid="uid://he5ym66anqvn" path="res://enemy.tscn" id="7_j5wjh"]
 
 [sub_resource type="GDScript" id="GDScript_feb5d"]
 script/source = "extends Node2D
@@ -36,6 +38,80 @@ position = Vector2(-299, 130)
 [node name="exit" parent="." instance=ExtResource("4_fc0e3")]
 position = Vector2(4372, -1443)
 
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="GunEnemy" parent="Enemies" instance=ExtResource("6_eow3j")]
+position = Vector2(1148, -400)
+rotation = -0.8795021
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("7_j5wjh")]
+position = Vector2(1228, 440)
+rotation = 1.113509
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("7_j5wjh")]
+position = Vector2(587, 191)
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("7_j5wjh")]
+position = Vector2(2094.9998, 419)
+rotation = -1.4417465
+
+[node name="Enemy4" parent="Enemies" instance=ExtResource("7_j5wjh")]
+position = Vector2(2214, -712)
+rotation = 0.8815565
+
+[node name="Enemy5" parent="Enemies" instance=ExtResource("7_j5wjh")]
+position = Vector2(4058, -898)
+rotation = 0.8673078
+
+[node name="Enemy6" parent="Enemies" instance=ExtResource("7_j5wjh")]
+position = Vector2(2886, -294)
+
+[node name="Enemy7" parent="Enemies" instance=ExtResource("7_j5wjh")]
+position = Vector2(4852, -865)
+rotation = 1.6614705
+
+[node name="GunEnemy2" parent="Enemies" instance=ExtResource("6_eow3j")]
+position = Vector2(4094, 212)
+rotation = -0.91661215
+
+[node name="GunEnemy3" parent="Enemies" instance=ExtResource("6_eow3j")]
+position = Vector2(4841, 233)
+rotation = -1.7075931
+
+[node name="Enemy8" parent="Enemies" instance=ExtResource("7_j5wjh")]
+position = Vector2(1807, -434)
+rotation = -2.1770692
+
+[node name="Enemy9" parent="Enemies" instance=ExtResource("7_j5wjh")]
+position = Vector2(787, -955)
+rotation = -1.5987835
+
+[node name="Enemy10" parent="Enemies" instance=ExtResource("7_j5wjh")]
+position = Vector2(2330, -2097)
+rotation = 1.7453643
+
+[node name="Enemy11" parent="Enemies" instance=ExtResource("7_j5wjh")]
+position = Vector2(964, -1949)
+rotation = 1.8721327
+
+[node name="Enemy12" parent="Enemies" instance=ExtResource("7_j5wjh")]
+position = Vector2(1485, -2608)
+
+[node name="Enemy13" parent="Enemies" instance=ExtResource("7_j5wjh")]
+position = Vector2(1503, -3432)
+
+[node name="Enemy14" parent="Enemies" instance=ExtResource("7_j5wjh")]
+position = Vector2(2100, -2984)
+rotation = 3.1300852
+
+[node name="Enemy15" parent="Enemies" instance=ExtResource("7_j5wjh")]
+position = Vector2(3967, -1422)
+rotation = 3.1354659
+
+[node name="GunEnemy4" parent="Enemies" instance=ExtResource("6_eow3j")]
+position = Vector2(3008, -3456)
+rotation = 1.5798223
+
 [node name="items" type="Node2D" parent="."]
 
 [node name="painkillers" type="Node2D" parent="items"]
@@ -56,14 +132,6 @@ position = Vector2(2741, -162.00002)
 position = Vector2(2037, -1707)
 
 [node name="UI" parent="." instance=ExtResource("6_ryrav")]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="DarknessFilter" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0.03839717, 0.03839716, 0.038397186, 1)
