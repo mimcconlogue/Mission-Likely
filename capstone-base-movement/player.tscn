@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://66hsxoauhh40"]
+[gd_scene format=3 uid="uid://66hsxoauhh40"]
 
 [ext_resource type="PackedScene" uid="uid://c1sbcuxwk0424" path="res://legs.tscn" id="1_onrkg"]
 [ext_resource type="PackedScene" uid="uid://cgu87auun5grt" path="res://body.tscn" id="2_i3pqv"]
@@ -71,25 +71,6 @@ func _on_pain_killer_receptical_area_entered(_area: Area2D) -> void:
 	take_damage(0, -25)
 "
 
-[sub_resource type="GDScript" id="GDScript_i3pqv"]
-script/source = "extends Node2D
-
-@onready var legs: CharacterBody2D = $\"../Legs\"
-
-var center = Vector2()
-var damping = 12.0
-
-func _physics_process(delta):
-	apply_camera(delta)
-	global_position = legs.global_position
-
-func apply_camera(delta):
-	var mpos = get_global_mouse_position()
-	var ppos = global_position
-	center = Vector2((ppos.x + mpos.x) / 2, (ppos.y + mpos.y) / 2)
-	$Camera2D.global_position = lerp($Camera2D.global_position, center, delta * damping)
-"
-
 [sub_resource type="Gradient" id="Gradient_i3pqv"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
@@ -109,17 +90,16 @@ height = 492.95236
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 
-[node name="player" type="Node2D"]
+[node name="player" type="Node2D" unique_id=1241815385]
 script = SubResource("GDScript_onrkg")
 
-[node name="camera control" type="Node2D" parent="."]
-script = SubResource("GDScript_i3pqv")
+[node name="camera control" type="Node2D" parent="." unique_id=1256704629]
 
-[node name="Camera2D" type="Camera2D" parent="camera control"]
+[node name="Camera2D" type="Camera2D" parent="camera control" unique_id=837824883]
 
-[node name="Legs" parent="." instance=ExtResource("1_onrkg")]
+[node name="Legs" parent="." unique_id=1065935382 instance=ExtResource("1_onrkg")]
 
-[node name="VisionCone" type="PointLight2D" parent="Legs"]
+[node name="VisionCone" type="PointLight2D" parent="Legs" unique_id=628201551]
 position = Vector2(8, 16)
 scale = Vector2(7.2397466, 7.2397466)
 energy = 0.5
@@ -128,19 +108,19 @@ shadow_filter = 2
 texture = SubResource("GradientTexture2D_hqtel")
 texture_scale = 10.0
 
-[node name="body" parent="Legs" instance=ExtResource("2_i3pqv")]
+[node name="body" parent="Legs" unique_id=1348742345 instance=ExtResource("2_i3pqv")]
 position = Vector2(-13.999999, 7)
 scale = Vector2(0.24955116, 0.30023184)
 
-[node name="Area2D3" type="Area2D" parent="Legs/body"]
+[node name="Area2D3" type="Area2D" parent="Legs/body" unique_id=806834633]
 collision_layer = 4
 collision_mask = 4
 script = SubResource("GDScript_hqtel")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/body/Area2D3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/body/Area2D3" unique_id=1007473845]
 shape = SubResource("CapsuleShape2D_sweqy")
 
-[node name="Flashlight" type="PointLight2D" parent="Legs/body"]
+[node name="Flashlight" type="PointLight2D" parent="Legs/body" unique_id=429757049]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(56.100716, 63.284424)
 rotation = 4.712389
@@ -151,34 +131,24 @@ texture = ExtResource("4_hqtel")
 offset = Vector2(0, 4500)
 texture_scale = 15.0
 
-[node name="AntiLight" type="PointLight2D" parent="Legs/body"]
-position = Vector2(-220.39568, -119.90733)
-rotation = 1.5707964
-scale = Vector2(1.3010198, 0.40215987)
-blend_mode = 1
-shadow_filter = 2
-texture = ExtResource("4_hqtel")
-offset = Vector2(0, 4500)
-texture_scale = 15.0
+[node name="Collector" type="Node2D" parent="Legs" unique_id=435934086]
 
-[node name="Collector" type="Node2D" parent="Legs"]
-
-[node name="PainKillerReceptical" type="Area2D" parent="Legs/Collector"]
+[node name="PainKillerReceptical" type="Area2D" parent="Legs/Collector" unique_id=232673819]
 collision_layer = 16
 collision_mask = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/Collector/PainKillerReceptical"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/Collector/PainKillerReceptical" unique_id=296298729]
 position = Vector2(4, -1)
 scale = Vector2(6.4427037, 8.352031)
 shape = SubResource("CircleShape2D_onrkg")
 
-[node name="PainRegen" type="Timer" parent="."]
+[node name="PainRegen" type="Timer" parent="." unique_id=1329227340]
 one_shot = true
 
-[node name="spawnpoint" type="Node2D" parent="."]
+[node name="spawnpoint" type="Node2D" parent="." unique_id=454671164]
 position = Vector2(0, 1)
 
-[node name="deathstop" type="Timer" parent="."]
+[node name="deathstop" type="Timer" parent="." unique_id=2079450271]
 
 [connection signal="area_entered" from="Legs/body/Area2D3" to="." method="_on_area_2d_3_area_entered"]
 [connection signal="area_entered" from="Legs/Collector/PainKillerReceptical" to="." method="_on_pain_killer_receptical_area_entered"]

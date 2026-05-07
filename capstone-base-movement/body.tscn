@@ -6,7 +6,7 @@
 [sub_resource type="GDScript" id="GDScript_tg1dk"]
 script/source = "extends Node2D
 #WAIT, make sure to keep all the code not weapon specific, refer to all the animations by the name of the input.
-@onready var camera_control: Node2D = $\"../../camera control\"
+@onready var camera_control: Node2D = get_parent().get_parent().get_parent().get_parent().get_node(\"camera control\")
 @onready var legs: CharacterBody2D = $\"..\"
 @export var body_rotation = 0.0
 var prep = false
@@ -14,7 +14,7 @@ var prep = false
 
 func _process(_delta):
 	
-	look_at(camera_control.center)
+	look_at(camera_control.global_position)
 	body_rotation = rotation
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed(\"ready\"):

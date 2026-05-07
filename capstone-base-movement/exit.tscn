@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://uqbde0qleu2v"]
+[gd_scene format=3 uid="uid://uqbde0qleu2v"]
 
 [ext_resource type="Texture2D" uid="uid://bjt0r6i2ug5gh" path="res://bain damge copy.png" id="1_6sfst"]
 
@@ -7,23 +7,23 @@ script/source = "extends Area2D
 @onready var level_complete_menu: Control = $CanvasLayer/LevelCompleteMenu
 
 func _on_area_entered(_area: Area2D) -> void:
-	get_tree().root.get_child(0).get_child(5).end_screen()
+	get_tree().root.get_child(0).get_child(0).end_screen()
 	get_tree().paused = true
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mlcv5"]
 size = Vector2(200, 200)
 
-[node name="exit" type="Area2D"]
+[node name="exit" type="Area2D" unique_id=1421880856]
 collision_layer = 4
 collision_mask = 4
 script = SubResource("GDScript_24kvk")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2127901455]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_6sfst")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=399813250]
 position = Vector2(-0.5, 2.5)
 shape = SubResource("RectangleShape2D_mlcv5")
 

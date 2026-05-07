@@ -1,16 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxkfexdm6v2mo"]
+[gd_scene format=3 uid="uid://bxkfexdm6v2mo"]
 
-[ext_resource type="PackedScene" uid="uid://btj5reeqo2i2u" path="res://MAP.tscn" id="1_7jktm"]
+[ext_resource type="PackedScene" uid="uid://btj5reeqo2i2u" path="res://map.tscn" id="1_7jktm"]
 [ext_resource type="PackedScene" uid="uid://66hsxoauhh40" path="res://player.tscn" id="1_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://dce6fhvv4yim3" path="res://visibilitymap.tscn" id="2_ryrav"]
 [ext_resource type="PackedScene" uid="uid://uqbde0qleu2v" path="res://exit.tscn" id="4_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://blp5hc7as4ehp" path="res://pain_killer.tscn" id="5_7jktm"]
+[ext_resource type="Script" uid="uid://bj2tfyjsrmw6c" path="res://VisibilityLight.gd" id="6_eow3j"]
+[ext_resource type="Script" uid="uid://bu67d2n4w6yqk" path="res://VisibilityCamera.gd" id="6_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://d4cfjlev2dys1" path="res://ui.tscn" id="6_ryrav"]
+[ext_resource type="Script" uid="uid://k1w6o4clpm5y" path="res://resolutionset.gd" id="7_hve3p"]
+[ext_resource type="Script" uid="uid://cm0bqtlf5adv4" path="res://LitCamera.gd" id="9_vef74"]
+[ext_resource type="Script" uid="uid://cxb6oficmjq0t" path="res://front_sight.gd" id="10_lc2xo"]
+[ext_resource type="Shader" uid="uid://cok1v88bjnlox" path="res://masking.gdshader" id="11_mfdv2"]
 
 [sub_resource type="GDScript" id="GDScript_feb5d"]
 script/source = "extends Node2D
 
-@onready var player: Node2D = $player
-@onready var enemy: CharacterBody2D = $Enemy
+@onready var player: Node2D = $LitViewport/player
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,40 +30,89 @@ func _process(_delta: float) -> void:
 	pass
 "
 
-[node name="game" type="Node2D"]
+[sub_resource type="Gradient" id="Gradient_j5wjh"]
+offsets = PackedFloat32Array(0.38730237, 0.7226996, 0.81100917)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.025454188, 0.025454188, 0.025454188, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vef74"]
+gradient = SubResource("Gradient_j5wjh")
+width = 1080
+height = 1080
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_mfdv2"]
+offsets = PackedFloat32Array(0.89507157, 0.93908906, 0.9800729)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iotsf"]
+gradient = SubResource("Gradient_mfdv2")
+width = 720
+height = 720
+fill = 2
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0.921, 0)
+
+[sub_resource type="Gradient" id="Gradient_iotsf"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lc2xo"]
+gradient = SubResource("Gradient_iotsf")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.648, 0)
+
+[sub_resource type="GDScript" id="GDScript_vef74"]
+script/source = "extends Node2D
+
+@onready var player: Node2D = $\"../LitViewport/player\"
+
+
+var center = Vector2()
+var damping = 12.0
+
+func _physics_process(delta):
+	apply_camera(delta)
+
+func apply_camera(delta):
+	var mpos = get_global_mouse_position()
+	var ppos = player.get_node(\"Legs\").global_position
+	center = Vector2((ppos.x + mpos.x) / 2, (ppos.y + mpos.y) / 2)
+	global_position = lerp(global_position, center, delta * damping)
+"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_iotsf"]
+viewport_path = NodePath("VisibilityViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lc2xo"]
+resource_local_to_scene = true
+shader = ExtResource("11_mfdv2")
+shader_parameter/mask_texture = SubResource("ViewportTexture_iotsf")
+shader_parameter/mask_with_alpha = true
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_mfdv2"]
+viewport_path = NodePath("LitViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lc2xo"]
+viewport_path = NodePath("VisibilityViewport")
+
+[sub_resource type="Gradient" id="Gradient_lc2xo"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.07968519, 0.1463688)
+colors = PackedColorArray(0, 0.019607844, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_215e1"]
+gradient = SubResource("Gradient_lc2xo")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="game" type="Node2D" unique_id=325374096]
 script = SubResource("GDScript_feb5d")
 metadata/_edit_vertical_guides_ = [-1338.0]
 
-[node name="map" parent="." instance=ExtResource("1_7jktm")]
-position = Vector2(-209, 108)
-scale = Vector2(3.615673, 3.615673)
-
-[node name="player" parent="." instance=ExtResource("1_e2o6t")]
-position = Vector2(-299, 130)
-
-[node name="exit" parent="." instance=ExtResource("4_fc0e3")]
-position = Vector2(4372, -1443)
-
-[node name="items" type="Node2D" parent="."]
-
-[node name="painkillers" type="Node2D" parent="items"]
-
-[node name="PainKiller" parent="items/painkillers" instance=ExtResource("5_7jktm")]
-position = Vector2(1146, 1112)
-
-[node name="PainKiller2" parent="items/painkillers" instance=ExtResource("5_7jktm")]
-position = Vector2(488.00012, -953.00024)
-
-[node name="PainKiller3" parent="items/painkillers" instance=ExtResource("5_7jktm")]
-position = Vector2(1274.0001, -3454.0002)
-
-[node name="PainKiller4" parent="items/painkillers" instance=ExtResource("5_7jktm")]
-position = Vector2(2741, -162.00002)
-
-[node name="PainKiller5" parent="items/painkillers" instance=ExtResource("5_7jktm")]
-position = Vector2(2037, -1707)
-
-[node name="UI" parent="." instance=ExtResource("6_ryrav")]
+[node name="UI" parent="." unique_id=120338461 instance=ExtResource("6_ryrav")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -64,5 +121,99 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DarknessFilter" type="CanvasModulate" parent="."]
+[node name="VisibilityViewport" type="SubViewport" parent="." unique_id=1169407490]
+transparent_bg = true
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+script = ExtResource("7_hve3p")
+
+[node name="Camera2D" type="Camera2D" parent="VisibilityViewport" unique_id=500306556]
+position = Vector2(-209, 108)
+scale = Vector2(3.616, 3.616)
+script = ExtResource("6_j5wjh")
+
+[node name="PointLight2D" type="PointLight2D" parent="VisibilityViewport" unique_id=521772215]
+position = Vector2(-293, 127)
+scale = Vector2(3.616, 3.616)
+blend_mode = 1
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_vef74")
+texture_scale = 1.9
+script = ExtResource("6_eow3j")
+
+[node name="PointLight2D" type="PointLight2D" parent="VisibilityViewport/PointLight2D" unique_id=295270704]
+position = Vector2(-400, 0)
+rotation = 0.7853982
+energy = 1.03
+texture = SubResource("GradientTexture2D_iotsf")
+
+[node name="PointLight2D2" type="PointLight2D" parent="VisibilityViewport/PointLight2D" unique_id=391873765]
+rotation = 0.7853982
+energy = 1.79
+blend_mode = 1
+texture = SubResource("GradientTexture2D_lc2xo")
+
+[node name="VisibilityMap" parent="VisibilityViewport" unique_id=373989126 instance=ExtResource("2_ryrav")]
+position = Vector2(-209, 108)
+scale = Vector2(3.616, 3.616)
+
+[node name="LitViewport" type="SubViewport" parent="." unique_id=991929634]
+size = Vector2i(1920, 1080)
+script = ExtResource("7_hve3p")
+
+[node name="Camera2D" type="Camera2D" parent="LitViewport" unique_id=2117147143]
+position = Vector2(-209, 108)
+scale = Vector2(3.6160002, 3.6160002)
+script = ExtResource("9_vef74")
+
+[node name="map" parent="LitViewport" unique_id=2055877286 instance=ExtResource("1_7jktm")]
+light_mask = 3
+position = Vector2(-209, 108)
+scale = Vector2(3.615673, 3.615673)
+
+[node name="player" parent="LitViewport" unique_id=827215523 instance=ExtResource("1_e2o6t")]
+position = Vector2(-299, 130)
+
+[node name="DarknessFilter" type="CanvasModulate" parent="LitViewport" unique_id=895828907]
 color = Color(0.03839717, 0.03839716, 0.038397186, 1)
+
+[node name="exit" parent="LitViewport" unique_id=2144120456 instance=ExtResource("4_fc0e3")]
+position = Vector2(4372, -1443)
+
+[node name="items" type="Node2D" parent="LitViewport" unique_id=996663893]
+
+[node name="painkillers" type="Node2D" parent="LitViewport/items" unique_id=542006461]
+
+[node name="PainKiller" parent="LitViewport/items/painkillers" unique_id=1206357031 instance=ExtResource("5_7jktm")]
+position = Vector2(1146, 1112)
+
+[node name="PainKiller2" parent="LitViewport/items/painkillers" unique_id=1998381854 instance=ExtResource("5_7jktm")]
+position = Vector2(488.00012, -953.00024)
+
+[node name="PainKiller3" parent="LitViewport/items/painkillers" unique_id=1748345595 instance=ExtResource("5_7jktm")]
+position = Vector2(1274.0001, -3454.0002)
+
+[node name="PainKiller4" parent="LitViewport/items/painkillers" unique_id=274411131 instance=ExtResource("5_7jktm")]
+position = Vector2(2741, -162.00002)
+
+[node name="PainKiller5" parent="LitViewport/items/painkillers" unique_id=1794451167 instance=ExtResource("5_7jktm")]
+position = Vector2(2037, -1707)
+
+[node name="camera control" type="Node2D" parent="." unique_id=1927842541]
+script = SubResource("GDScript_vef74")
+
+[node name="Camera2D" type="Camera2D" parent="camera control" unique_id=1189298488]
+
+[node name="VisibilityDebug2" type="Sprite2D" parent="camera control/Camera2D" unique_id=188637785]
+material = SubResource("ShaderMaterial_lc2xo")
+texture = SubResource("ViewportTexture_mfdv2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2004394958]
+visible = false
+texture = SubResource("ViewportTexture_lc2xo")
+
+[node name="FrontSight" type="Sprite2D" parent="." unique_id=26238407]
+z_index = 7
+position = Vector2(-299, 130)
+texture = SubResource("GradientTexture2D_215e1")
+script = ExtResource("10_lc2xo")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://diarkppgt0mha"]
+[gd_scene format=3 uid="uid://diarkppgt0mha"]
 
 [ext_resource type="Script" uid="uid://c2cp2cp4caoeb" path="res://weapons/fists/weaponstate/fists_ready.gd" id="1_3c326"]
 [ext_resource type="Texture2D" uid="uid://l868t0qs1pnx" path="res://animation/body/0001.png0003.png" id="1_e1wec"]
@@ -89,79 +89,77 @@ size = Vector2(30.985428, 28.337582)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hfg2g"]
 
-[node name="FistsReady" type="Node2D"]
+[node name="FistsReady" type="Node2D" unique_id=1415763504]
 script = ExtResource("1_3c326")
 
-[node name="Ready" type="Node2D" parent="."]
+[node name="Ready" type="Node2D" parent="." unique_id=338986635]
 rotation = -0.19781053
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Ready"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ready" unique_id=92573066]
 root_node = NodePath("../..")
-libraries = {
-&"animations": ExtResource("2_0yukw")
-}
+libraries/animations = ExtResource("2_0yukw")
 
-[node name="Idle" type="Node2D" parent="Ready"]
+[node name="Idle" type="Node2D" parent="Ready" unique_id=129914781]
 
-[node name="AnimatedSprite2DIdle" type="AnimatedSprite2D" parent="Ready/Idle"]
+[node name="AnimatedSprite2DIdle" type="AnimatedSprite2D" parent="Ready/Idle" unique_id=1906944848]
 visible = false
 rotation = -0.18888201
 sprite_frames = SubResource("SpriteFrames_3c326")
 animation = &"idle"
 
-[node name="Attack1" type="Node2D" parent="Ready"]
+[node name="Attack1" type="Node2D" parent="Ready" unique_id=716438631]
 
-[node name="AnimatedSprite2DAttack1" type="AnimatedSprite2D" parent="Ready/Attack1"]
+[node name="AnimatedSprite2DAttack1" type="AnimatedSprite2D" parent="Ready/Attack1" unique_id=1089195791]
 position = Vector2(-2, 1)
 sprite_frames = SubResource("SpriteFrames_0yukw")
 
-[node name="Attack2" type="Node2D" parent="Ready"]
+[node name="Attack2" type="Node2D" parent="Ready" unique_id=1772999099]
 
-[node name="AnimatedSprite2DAttack2" type="AnimatedSprite2D" parent="Ready/Attack2"]
+[node name="AnimatedSprite2DAttack2" type="AnimatedSprite2D" parent="Ready/Attack2" unique_id=454652184]
 visible = false
 sprite_frames = SubResource("SpriteFrames_hfg2g")
 animation = &"attack"
 frame = 2
 
-[node name="Special" type="Node2D" parent="Ready"]
+[node name="Special" type="Node2D" parent="Ready" unique_id=13910970]
 
-[node name="AnimatedSprite2DSpecial" type="AnimatedSprite2D" parent="Ready/Special"]
+[node name="AnimatedSprite2DSpecial" type="AnimatedSprite2D" parent="Ready/Special" unique_id=143010946]
 visible = false
 sprite_frames = SubResource("SpriteFrames_8v0x0")
 animation = &"special"
 frame = 1
 
-[node name="Hurt" type="Node2D" parent="Ready"]
+[node name="Hurt" type="Node2D" parent="Ready" unique_id=60859626]
 
-[node name="AnimatedSprite2DHurt" type="AnimatedSprite2D" parent="Ready/Hurt"]
+[node name="AnimatedSprite2DHurt" type="AnimatedSprite2D" parent="Ready/Hurt" unique_id=821192549]
 visible = false
 sprite_frames = SubResource("SpriteFrames_2uovb")
 animation = &"hurt"
 
-[node name="HitBox" type="Area2D" parent="."]
+[node name="HitBox" type="Area2D" parent="." unique_id=1963294626]
 collision_layer = 8
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=511072771]
 position = Vector2(740.99994, 45.999985)
 rotation = -0.11277305
 scale = Vector2(3.9394312, 3.9394312)
 shape = SubResource("RectangleShape2D_3c326")
 disabled = true
 
-[node name="HurtBox" type="Area2D" parent="."]
+[node name="HurtBox" type="Area2D" parent="." unique_id=355074123]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1095722112]
 position = Vector2(0.33333284, -0.33333313)
 rotation = -0.046912804
 scale = Vector2(11.073337, 14.144772)
 shape = SubResource("CapsuleShape2D_0yukw")
 
-[node name="HeadHurtBox" type="Area2D" parent="HurtBox/CollisionShape2D"]
+[node name="HeadHurtBox" type="Area2D" parent="HurtBox/CollisionShape2D" unique_id=1841520249]
 position = Vector2(16.82938, -1.2016867)
 rotation = -0.05158804
 scale = Vector2(0.91194034, 0.69145286)
 skew = -0.03246343
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox/CollisionShape2D/HeadHurtBox"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox/CollisionShape2D/HeadHurtBox" unique_id=1775266372]
 shape = SubResource("CircleShape2D_hfg2g")
