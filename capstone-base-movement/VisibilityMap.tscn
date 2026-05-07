@@ -1,35 +1,6 @@
-[gd_scene format=4 uid="uid://bxkfexdm6v2mo"]
+[gd_scene format=4 uid="uid://dce6fhvv4yim3"]
 
-[ext_resource type="PackedScene" uid="uid://btj5reeqo2i2u" path="res://map.tscn" id="1_7jktm"]
-[ext_resource type="PackedScene" uid="uid://66hsxoauhh40" path="res://player.tscn" id="1_e2o6t"]
-[ext_resource type="Script" uid="uid://wcdwxxpqqiyn" path="res://game_display.gd" id="1_j5wjh"]
-[ext_resource type="Script" uid="uid://c1clsv4pms1ee" path="res://gameorigin.gd" id="1_vef74"]
-[ext_resource type="PackedScene" uid="uid://uqbde0qleu2v" path="res://exit.tscn" id="4_fc0e3"]
-[ext_resource type="PackedScene" uid="uid://blp5hc7as4ehp" path="res://pain_killer.tscn" id="5_7jktm"]
-[ext_resource type="PackedScene" uid="uid://nb776tfn5k73" path="res://enemywithgun.tscn" id="6_eow3j"]
-[ext_resource type="PackedScene" uid="uid://d4cfjlev2dys1" path="res://ui.tscn" id="6_ryrav"]
-[ext_resource type="PackedScene" uid="uid://he5ym66anqvn" path="res://enemy.tscn" id="7_j5wjh"]
-[ext_resource type="Shader" uid="uid://bvjdeguvsjm3u" path="res://shaders/masked_texture.gdshader" id="10_iotsf"]
-[ext_resource type="Shader" uid="uid://l6ymhfe0dr7p" path="res://game.gdshader" id="10_mfdv2"]
-[ext_resource type="Texture2D" uid="uid://cnl61bidau6rw" path="res://textures/TILEMAP (2).png" id="11_iotsf"]
-[ext_resource type="Script" uid="uid://duwuqn846ateq" path="res://VisibilityMap.gd" id="13_7sc4i"]
-[ext_resource type="Script" uid="uid://doe7jr3f68kgb" path="res://point_light_2d.gd" id="13_215e1"]
-[ext_resource type="Script" uid="uid://bdticr0gdc3m3" path="res://visibility_camera_2d.gd" id="13_lc2xo"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_iotsf"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_215e1"]
-resource_local_to_scene = true
-shader = ExtResource("10_iotsf")
-shader_parameter/mask_texture = SubResource("ViewportTexture_iotsf")
-shader_parameter/mask_with_alpha = true
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_eow3j"]
-viewport_path = NodePath("game display")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lc2xo"]
-shader = ExtResource("10_mfdv2")
+[ext_resource type="Texture2D" uid="uid://cnl61bidau6rw" path="res://textures/TILEMAP (2).png" id="1_k0iwg"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_c7s6e"]
 polygon = PackedVector2Array(-23.5, -23.5, 23.5, -23.5, 23.5, -19.836256, -20.073792, -20.014286, -19.984688, 23.5, -23.5, 23.5)
@@ -103,8 +74,8 @@ polygon = PackedVector2Array(19.989815, -23.5, 23.5, -23.5, 23.5, 23.5, 20.00516
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3mr0t"]
 polygon = PackedVector2Array(-23.5, 19.731647, 20.240303, 19.865051, 20.021484, -23.5, 23.5, -23.5, 23.5, 23.5, -23.5, 23.5)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_215e1"]
-texture = ExtResource("11_iotsf")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k0iwg"]
+texture = ExtResource("1_k0iwg")
 texture_region_size = Vector2i(48, 48)
 0:0/0 = 0
 0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_c7s6e")
@@ -196,207 +167,15 @@ texture_region_size = Vector2i(48, 48)
 9:3/0 = 0
 6:4/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_7sc4i"]
+[sub_resource type="TileSet" id="TileSet_0e48y"]
 tile_size = Vector2i(47, 47)
 occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
-sources/1 = SubResource("TileSetAtlasSource_215e1")
+sources/1 = SubResource("TileSetAtlasSource_k0iwg")
 
-[sub_resource type="Gradient" id="Gradient_7sc4i"]
-offsets = PackedFloat32Array(0.08339786, 1)
-colors = PackedColorArray(0.97904724, 0.97904724, 0.97904724, 1, 0, 0, 0, 1)
+[node name="Map" type="Node2D" unique_id=1888005942]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_7sc4i"]
-gradient = SubResource("Gradient_7sc4i")
-width = 32
-height = 32
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.533, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_80cx4"]
-gradient = SubResource("Gradient_7sc4i")
-width = 1080
-height = 1080
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.533, 0)
-
-[sub_resource type="Gradient" id="Gradient_80cx4"]
-offsets = PackedFloat32Array(0.6394751, 0.6772519)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_e8heu"]
-gradient = SubResource("Gradient_80cx4")
-width = 1080
-height = 1080
-fill = 1
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0.972, 0.04)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_mfdv2"]
-viewport_path = NodePath("SubViewport")
-
-[node name="game" type="Node2D" unique_id=761644435]
-script = ExtResource("1_vef74")
-metadata/_edit_vertical_guides_ = [-1338.0]
-
-[node name="game display" type="SubViewport" parent="." unique_id=125305767]
-physics_object_picking = true
-script = ExtResource("1_j5wjh")
-
-[node name="map" parent="game display" unique_id=1096823309 instance=ExtResource("1_7jktm")]
-position = Vector2(-209, 108)
-scale = Vector2(3.615673, 3.615673)
-
-[node name="player" parent="game display" unique_id=1171167217 instance=ExtResource("1_e2o6t")]
-position = Vector2(-299, 130)
-
-[node name="exit" parent="game display" unique_id=2145464730 instance=ExtResource("4_fc0e3")]
-position = Vector2(4372, -1443)
-
-[node name="Enemies" type="Node2D" parent="game display" unique_id=204839176]
-
-[node name="GunEnemy" parent="game display/Enemies" unique_id=1212810556 instance=ExtResource("6_eow3j")]
-position = Vector2(1148, -400)
-rotation = -0.8795021
-
-[node name="Enemy" parent="game display/Enemies" unique_id=545997954 instance=ExtResource("7_j5wjh")]
-position = Vector2(1228, 440)
-rotation = 1.113509
-
-[node name="Enemy2" parent="game display/Enemies" unique_id=62290540 instance=ExtResource("7_j5wjh")]
-position = Vector2(587, 191)
-
-[node name="Enemy3" parent="game display/Enemies" unique_id=1085856384 instance=ExtResource("7_j5wjh")]
-position = Vector2(2094.9998, 419)
-rotation = -1.4417465
-
-[node name="Enemy4" parent="game display/Enemies" unique_id=1490844661 instance=ExtResource("7_j5wjh")]
-position = Vector2(2214, -712)
-rotation = 0.8815565
-
-[node name="Enemy5" parent="game display/Enemies" unique_id=2082180709 instance=ExtResource("7_j5wjh")]
-position = Vector2(4058, -898)
-rotation = 0.8673078
-
-[node name="Enemy6" parent="game display/Enemies" unique_id=1343517622 instance=ExtResource("7_j5wjh")]
-position = Vector2(2886, -294)
-
-[node name="Enemy7" parent="game display/Enemies" unique_id=1049893266 instance=ExtResource("7_j5wjh")]
-position = Vector2(4852, -865)
-rotation = 1.6614705
-
-[node name="GunEnemy2" parent="game display/Enemies" unique_id=519043226 instance=ExtResource("6_eow3j")]
-position = Vector2(4094, 212)
-rotation = -0.91661215
-
-[node name="GunEnemy3" parent="game display/Enemies" unique_id=508124984 instance=ExtResource("6_eow3j")]
-position = Vector2(4841, 233)
-rotation = -1.7075931
-
-[node name="Enemy8" parent="game display/Enemies" unique_id=16019010 instance=ExtResource("7_j5wjh")]
-position = Vector2(1807, -434)
-rotation = -2.1770692
-
-[node name="Enemy9" parent="game display/Enemies" unique_id=1330116103 instance=ExtResource("7_j5wjh")]
-position = Vector2(787, -955)
-rotation = -1.5987835
-
-[node name="Enemy10" parent="game display/Enemies" unique_id=2051043727 instance=ExtResource("7_j5wjh")]
-position = Vector2(2330, -2097)
-rotation = 1.7453643
-
-[node name="Enemy11" parent="game display/Enemies" unique_id=796371673 instance=ExtResource("7_j5wjh")]
-position = Vector2(964, -1949)
-rotation = 1.8721327
-
-[node name="Enemy12" parent="game display/Enemies" unique_id=1657058135 instance=ExtResource("7_j5wjh")]
-position = Vector2(1485, -2608)
-
-[node name="Enemy13" parent="game display/Enemies" unique_id=615302463 instance=ExtResource("7_j5wjh")]
-position = Vector2(1503, -3432)
-
-[node name="Enemy14" parent="game display/Enemies" unique_id=1357551510 instance=ExtResource("7_j5wjh")]
-position = Vector2(2100, -2984)
-rotation = 3.1300852
-
-[node name="Enemy15" parent="game display/Enemies" unique_id=1281508286 instance=ExtResource("7_j5wjh")]
-position = Vector2(3967, -1422)
-rotation = 3.1354659
-
-[node name="GunEnemy4" parent="game display/Enemies" unique_id=535420460 instance=ExtResource("6_eow3j")]
-position = Vector2(3008, -3456)
-rotation = 1.5798223
-
-[node name="items" type="Node2D" parent="game display" unique_id=278862421]
-
-[node name="painkillers" type="Node2D" parent="game display/items" unique_id=200277464]
-
-[node name="PainKiller" parent="game display/items/painkillers" unique_id=955791415 instance=ExtResource("5_7jktm")]
-position = Vector2(1146, 1112)
-
-[node name="PainKiller2" parent="game display/items/painkillers" unique_id=684410214 instance=ExtResource("5_7jktm")]
-position = Vector2(488.00012, -953.00024)
-
-[node name="PainKiller3" parent="game display/items/painkillers" unique_id=807339434 instance=ExtResource("5_7jktm")]
-position = Vector2(1274.0001, -3454.0002)
-
-[node name="PainKiller4" parent="game display/items/painkillers" unique_id=1479797814 instance=ExtResource("5_7jktm")]
-position = Vector2(2741, -162.00002)
-
-[node name="PainKiller5" parent="game display/items/painkillers" unique_id=166723001 instance=ExtResource("5_7jktm")]
-position = Vector2(2037, -1707)
-
-[node name="DarknessFilter" type="CanvasModulate" parent="game display" unique_id=619836106]
-color = Color(0.03839717, 0.03839716, 0.038397186, 1)
-
-[node name="GameDisplay" type="Sprite2D" parent="." unique_id=374404467]
-material = SubResource("ShaderMaterial_215e1")
-texture = SubResource("ViewportTexture_eow3j")
-
-[node name="UI" parent="." unique_id=1855738003 instance=ExtResource("6_ryrav")]
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=54177858]
-
-[node name="SubViewport" type="SubViewport" parent="." unique_id=564664839]
-handle_input_locally = false
-script = ExtResource("1_j5wjh")
-
-[node name="TileMapLayer" type="TileMapLayer" parent="SubViewport" unique_id=1415173710]
-unique_name_in_owner = true
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=855291222]
 light_mask = 3
-material = SubResource("ShaderMaterial_lc2xo")
-position = Vector2(-209, 108)
-scale = Vector2(3.616, 3.616)
 tile_map_data = PackedByteArray("AAD+//7/AQADAAAAAAD///7/AQAEAAAAAAD+/wEAAQADAAIAAAD//wIAAQADAAIAAAD//wEAAQAEAAEAAAD//wAAAQAEAAEAAAD/////AQAEAAEAAAD+/wAAAQADAAEAAAD+////AQADAAEAAAAAAAIAAQAEAAIAAAAAAP7/AQAEAAAAAAABAP7/AQAEAAAAAAACAP7/AQAFAAAAAAACAAIAAQAFAAIAAAABAAIAAQAEAAIAAAAAAAEAAQAEAAEAAAAAAAAAAQAEAAEAAAAAAP//AQAEAAEAAAABAP//AQAEAAEAAAABAAAAAQAEAAEAAAABAAEAAQAEAAEAAAACAAEAAQAEAAEAAAACAAAAAQAEAAEAAAACAP//AQAEAAEAAAADAAEAAQAEAAIAAAAEAAEAAQAEAAIAAAAFAAEAAQAEAAIAAAAGAAEAAQAEAAIAAAADAP//AQAEAAAAAAAEAP//AQAEAAAAAAAFAP//AQAEAAAAAAAGAP//AQAEAAAAAAADAAAAAQAEAAEAAAAEAAAAAQAEAAEAAAAFAAAAAQAEAAEAAAAGAAAAAQAEAAEAAAAHAAUAAQADAAAAAAAHAAYAAQADAAIAAAAHAAQAAQADAAIAAAAHAAMAAQADAAEAAAAHAAIAAQADAAEAAAAHAP7/AQADAAAAAAAIAP7/AQAEAAAAAAAJAP7/AQAEAAAAAAAKAP7/AQAEAAEAAAALAP7/AQAEAAEAAAAMAP7/AQAEAAAAAAAKAAIAAQAEAAAAAAALAAIAAQAEAAAAAAAJAAEAAQAFAAEAAAAKAAAAAQAEAAIAAAALAAAAAQAEAAIAAAAMAAEAAQADAAEAAAAHAAAAAQAEAAEAAAAHAAEAAQAEAAEAAAAIAAEAAQAEAAEAAAAIAAAAAQAEAAEAAAAIAP//AQAEAAEAAAAHAP//AQAEAAEAAAAJAP//AQAEAAEAAAAJAAAAAQAEAAEAAAAKAP//AQAEAAEAAAALAP//AQAEAAEAAAAMAP//AQAEAAEAAAAMAAAAAQAEAAEAAAAIAAIAAQAEAAEAAAAJAAIAAQAEAAEAAAAJAAMAAQAEAAEAAAAIAAMAAQAEAAEAAAAIAAQAAQAEAAIAAAAIAAUAAQAEAAAAAAAJAAUAAQAEAAEAAAAKAAUAAQAEAAEAAAALAAUAAQAEAAEAAAALAAQAAQAEAAEAAAALAAMAAQAEAAEAAAAKAAMAAQAEAAEAAAAKAAQAAQAEAAEAAAAJAAQAAQAEAAEAAAAOAAEAAQAFAAEAAAAOAAIAAQAFAAEAAAAOAAMAAQAFAAEAAAAOAAQAAQAFAAIAAAAOAAUAAQAFAAAAAAAMAAUAAQAEAAEAAAANAAUAAQAEAAAAAAANAAQAAQAEAAIAAAANAAMAAQAEAAEAAAAMAAQAAQAEAAEAAAAMAAMAAQAEAAEAAAAMAAIAAQAEAAEAAAANAAIAAQAEAAEAAAANAAEAAQAEAAEAAAANAAAAAQAEAAEAAAAOAAAAAQAEAAEAAAANAP//AQAEAAEAAAANAP7/AQAEAAEAAAANAP3/AQADAAEAAAANAPz/AQADAAEAAAAPAAAAAQAEAAIAAAAQAAAAAQAEAAIAAAARAAAAAQAEAAIAAAASAAAAAQAEAAIAAAATAAAAAQAEAAIAAAANAPv/AQADAAEAAAAUAAAAAQAFAAIAAAANAPr/AQADAAAAAAAIAAYAAQAEAAIAAAAJAAYAAQAEAAIAAAAKAAYAAQAEAAIAAAALAAYAAQAEAAIAAAAMAAYAAQAEAAIAAAANAAYAAQAEAAIAAAAOAAYAAQAFAAIAAAAOAP//AQAEAAEAAAAPAP//AQAEAAEAAAAQAP//AQAEAAEAAAARAP//AAABAAAAAAASAP//AQAEAAEAAAATAP//AQAEAAEAAAASAP7/AQAEAAEAAAARAP7/AQAEAAIAAAAQAP7/AQADAAIAAAAPAP7/AQAEAAEAAAAOAP7/AQAEAAEAAAAOAP3/AQAEAAEAAAAPAP3/AQAEAAEAAAAQAP3/AQADAAEAAAARAP3/AQAEAAEAAAASAP3/AQAEAAEAAAATAP3/AQAEAAEAAAATAP7/AQAEAAEAAAATAPz/AQAEAAEAAAASAPz/AQAEAAEAAAARAPz/AQAEAAEAAAAQAPz/AQADAAEAAAAPAPz/AQAEAAEAAAAOAPz/AQAEAAEAAAAOAPv/AQAEAAEAAAAPAPv/AQAEAAEAAAAQAPv/AQAEAAEAAAARAPv/AQAEAAEAAAASAPv/AQAEAAEAAAATAPv/AQAEAAEAAAAOAPr/AQAEAAAAAAAPAPr/AQAEAAAAAAAQAPr/AQAEAAAAAAARAPr/AQAEAAAAAAASAPr/AQAEAAAAAAATAPr/AQAEAAAAAAAUAPr/AQAFAAAAAAAUAP//AQAFAAEAAAAUAPv/AQAFAAEAAAAUAPz/AQAEAAEAAAAUAP3/AQAEAAEAAAAUAP7/AQAEAAEAAAAVAPz/AQABAAAAAAAWAPz/AQABAAAAAAAXAPz/AQABAAAAAAAVAP7/AQABAAIAAAAWAP7/AQABAAIAAAAXAP7/AQABAAIAAAAVAP3/AQABAAEAAAAWAP3/AQABAAEAAAAXAP3/AQABAAEAAAAJAP3/AQABAAIAAAAMAP3/AQACAAIAAAAMAPz/AQACAAEAAAAMAPv/AQACAAEAAAAMAPr/AQACAAEAAAAKAP3/AQABAAEAAAALAP3/AQABAAEAAAALAPz/AQABAAEAAAAKAPz/AQABAAEAAAAKAPv/AQABAAEAAAALAPv/AQABAAEAAAALAPr/AQABAAEAAAAKAPr/AQABAAEAAAAIAP3/AQABAAIAAAAHAP3/AQAAAAIAAAAJAPz/AQABAAEAAAAIAPz/AQABAAEAAAAIAPv/AQABAAEAAAAJAPv/AQABAAEAAAAHAPz/AQAAAAEAAAAHAPv/AQAAAAEAAAAHAPr/AQAAAAEAAAAIAPr/AQABAAEAAAAJAPr/AQABAAEAAAAHAPn/AQAAAAAAAAAMAPn/AQACAAAAAAAIAPn/AQABAAAAAAALAPn/AQABAAAAAAAJAPn/AQABAAEAAAAKAPn/AQABAAEAAAAIAPj/AQAAAAIAAAAJAPj/AQABAAEAAAAKAPj/AQABAAEAAAALAPj/AQACAAIAAAAIAPf/AQAAAAEAAAAJAPf/AQABAAEAAAAKAPf/AQABAAEAAAALAPf/AQACAAEAAAALAPb/AQACAAEAAAALAPX/AQABAAEAAAAIAPb/AQAAAAEAAAAIAPX/AQAAAAEAAAAJAPX/AQABAAEAAAAKAPX/AQABAAEAAAAKAPb/AQABAAEAAAAJAPb/AQABAAEAAAAIAPT/AQABAAEAAAAJAPT/AQABAAEAAAAKAPT/AQABAAEAAAALAPT/AQABAAEAAAAMAPX/AQAAAAIAAAAMAPL/AQAAAAAAAAAMAPT/AQABAAEAAAAMAPP/AQABAAEAAAALAPP/AQABAAEAAAALAPL/AQABAAEAAAAKAPL/AQABAAEAAAAKAPP/AQABAAEAAAAJAPP/AQABAAEAAAAIAPP/AQABAAEAAAAIAPL/AQAAAAAAAAAJAPL/AQABAAEAAAANAPL/AQABAAAAAAAOAPL/AQABAAAAAAAPAPP/AQACAAEAAAAPAPT/AQACAAEAAAANAPX/AQABAAIAAAAOAPX/AQABAAIAAAAPAPX/AQACAAIAAAAPAPL/AQACAAAAAAANAPT/AQABAAEAAAANAPP/AQABAAEAAAAOAPP/AQABAAEAAAAOAPT/AQABAAEAAAAHAPT/AQABAAEAAAAGAPT/AQABAAEAAAAFAPT/AQABAAEAAAAEAPT/AQABAAAAAAAEAPP/AQABAAIAAAAFAPP/AQABAAEAAAAGAPP/AQABAAEAAAAHAPP/AQABAAEAAAADAPT/AQAAAAAAAAADAPP/AQAAAAIAAAADAPX/AQAAAAIAAAADAPf/AQAAAAIAAAADAPb/AQAAAAAAAAADAPj/AQAAAAAAAAADAPn/AQAAAAEAAAADAPr/AQAAAAIAAAAEAPr/AQABAAIAAAAFAPr/AQABAAIAAAAGAPr/AQACAAIAAAAGAPn/AQACAAEAAAAHAPf/AQACAAIAAAAHAPb/AQACAAEAAAAHAPX/AQACAAEAAAAEAPj/AQABAAAAAAAEAPn/AQABAAEAAAAFAPn/AQABAAEAAAAFAPj/AQABAAEAAAAEAPf/AQABAAIAAAAEAPb/AQABAAAAAAAEAPX/AQABAAIAAAAGAPj/AQACAAEAAAAFAPf/AQABAAEAAAAFAPb/AQABAAEAAAAFAPX/AQABAAEAAAAGAPX/AQABAAEAAAAGAPb/AQABAAEAAAAGAPf/AQABAAEAAAADAPL/AQAAAAAAAAAEAPL/AQABAAAAAAAFAPL/AQABAAAAAAAGAPL/AQABAAAAAAAHAPL/AQACAAAAAAAJAPH/AQABAAEAAAAKAPH/AQABAAEAAAAIAPH/AQACAAIAAAALAPH/AQAAAAIAAAAIAPD/AQABAAEAAAAJAPD/AQABAAEAAAAKAPD/AQABAAEAAAALAPD/AQABAAEAAAAIAO//AQABAAAAAAAJAO//AQABAAEAAAAKAO//AQABAAEAAAALAO//AQABAAAAAAAIAO7/AQABAAIAAAAJAO7/AQABAAEAAAAKAO7/AQABAAEAAAALAO7/AQABAAIAAAAHAPH/AQABAAIAAAAGAPH/AQABAAIAAAAFAPH/AQAAAAIAAAAFAPD/AQAAAAEAAAAFAO//AQAAAAAAAAAGAO//AQABAAAAAAAHAO//AQABAAAAAAAGAPD/AQABAAEAAAAHAPD/AQABAAEAAAAHAO7/AQABAAIAAAAGAO7/AQABAAIAAAAFAO7/AQAAAAIAAAAMAO7/AQABAAIAAAANAO7/AQABAAIAAAAOAO7/AQACAAIAAAAMAO//AQABAAAAAAANAO//AQABAAAAAAAOAO//AQACAAAAAAAMAPH/AQABAAIAAAANAPH/AQABAAIAAAAOAPH/AQACAAIAAAAOAPD/AQACAAEAAAAMAPD/AQABAAEAAAANAPD/AQABAAEAAAAIAOz/AQAAAAIAAAALAOz/AQACAAIAAAAIAO3/AQABAAAAAAALAO3/AQABAAAAAAAHAOz/AQACAAAAAAAOAOz/AQACAAAAAAAMAOz/AQAAAAAAAAAFAOz/AQAAAAAAAAAFAO3/AQAAAAEAAAAGAO3/AQABAAEAAAAHAO3/AQABAAEAAAAGAOz/AQABAAAAAAAOAO3/AQACAAEAAAANAOz/AQABAAAAAAAMAO3/AQABAAEAAAANAO3/AQABAAEAAAAJAO3/AQABAAEAAAAJAOz/AQABAAEAAAAKAOz/AQABAAEAAAAKAO3/AQABAAEAAAAIAOr/AQAAAAAAAAAIAOv/AQAAAAEAAAAJAOv/AQABAAEAAAAKAOv/AQABAAEAAAAJAOr/AQABAAAAAAAKAOr/AQABAAAAAAALAOv/AQABAAEAAAALAOr/AQABAAAAAAAYAPz/AQAHAAEAAAAYAP3/AQAHAAEAAAAYAP7/AQAHAAEAAAAZAPz/AQAHAAEAAAAZAP3/AQAHAAEAAAAZAP7/AQAHAAEAAAAZAAEAAQAHAAIAAAAZAAAAAQAHAAEAAAAZAP//AQAHAAEAAAAZAPv/AQAHAAEAAAAZAPr/AQAHAAEAAAAZAPn/AQAHAAAAAAAaAPn/AQAHAAEAAAAbAPn/AQAHAAEAAAAcAPn/AQAHAAAAAAAdAPn/AQAHAAAAAAAdAPr/AQAHAAEAAAAdAPv/AQAHAAEAAAAdAPz/AQAHAAEAAAAdAP3/AQAHAAEAAAAdAP7/AQAHAAEAAAAdAP//AQAHAAEAAAAdAAAAAQAHAAEAAAAdAAEAAQAHAAIAAAAcAAEAAQAHAAIAAAAbAAEAAQAHAAIAAAAaAAEAAQAHAAIAAAAYAAAAAQAGAAEAAAAYAP//AQAGAAEAAAAYAPv/AQAGAAEAAAAYAPr/AQAGAAEAAAAYAPn/AQAGAAAAAAAYAAEAAQAGAAIAAAAeAAEAAQAIAAIAAAAeAAAAAQAIAAEAAAAeAP//AQAIAAEAAAAeAP7/AQAIAAEAAAAeAP3/AQAIAAEAAAAeAPz/AQAIAAEAAAAeAPv/AQAIAAEAAAAeAPr/AQAIAAEAAAAeAPn/AQAIAAAAAAAaAPr/AQAHAAEAAAAbAPr/AQAHAAEAAAAcAPr/AQAHAAEAAAAcAPv/AQAHAAEAAAAcAPz/AQAHAAEAAAAbAPz/AQAHAAEAAAAaAPz/AQAHAAEAAAAaAPv/AQAHAAEAAAAaAP3/AQAHAAEAAAAbAP3/AQAHAAEAAAAbAPv/AQAHAAEAAAAbAP7/AQAHAAEAAAAaAP7/AQAHAAEAAAAcAP7/AQAHAAEAAAAcAP3/AQAHAAEAAAAcAP//AQAHAAEAAAAbAP//AQAHAAEAAAAaAP//AQAHAAEAAAAaAAAAAQAHAAEAAAAbAAAAAQAHAAEAAAAcAAAAAQAHAAEAAAAZAPj/AQAGAAIAAAAcAPj/AQAIAAIAAAAcAPf/AQAIAAEAAAAcAPb/AQAIAAEAAAAZAPf/AQAHAAEAAAAZAPb/AQAHAAEAAAAZAPX/AQAGAAAAAAAcAPX/AQAIAAAAAAAaAPj/AQAHAAEAAAAbAPj/AQAHAAEAAAAbAPf/AQAHAAEAAAAaAPf/AQAHAAEAAAAaAPb/AQAHAAEAAAAaAPX/AQAHAAAAAAAbAPX/AQAHAAAAAAAbAPb/AQAHAAEAAAAYAPb/AQAHAAAAAAAXAPb/AQAHAAAAAAAWAPb/AQAHAAAAAAAVAPb/AQAHAAAAAAAYAPf/AQAHAAIAAAAXAPf/AQAHAAIAAAAWAPf/AQAHAAIAAAAVAPf/AQAHAAIAAAASAPf/AQAGAAIAAAATAOr/AQAIAAAAAAAUAPf/AQAHAAIAAAATAPf/AQAHAAIAAAAUAPb/AQAHAAAAAAATAPX/AQAIAAEAAAATAPT/AQAIAAEAAAATAPP/AQAIAAEAAAATAPL/AQAIAAEAAAATAPH/AQAIAAEAAAATAPD/AQAIAAEAAAATAO//AQAIAAEAAAATAO7/AQAIAAEAAAATAO3/AQAIAAEAAAATAOz/AQAIAAEAAAATAOv/AQAIAAEAAAASAOr/AQAHAAAAAAARAOr/AQAHAAAAAAAQAOr/AQAHAAAAAAAPAOr/AQAHAAAAAAAOAOr/AQAHAAAAAAANAOr/AQAHAAAAAAAMAOr/AQAHAAAAAAAMAOv/AQAHAAIAAAANAOv/AQAHAAIAAAAOAOv/AQAHAAIAAAAPAOv/AQAHAAIAAAAQAOv/AQAHAAIAAAARAOv/AQAHAAIAAAASAOz/AQAGAAEAAAASAO3/AQAGAAEAAAASAO7/AQAGAAEAAAASAO//AQAGAAEAAAASAPD/AQAGAAEAAAASAPH/AQAGAAEAAAASAPL/AQAGAAEAAAASAPP/AQAGAAEAAAASAPT/AQAGAAEAAAASAPX/AQAGAAEAAAASAPb/AQAGAAEAAAATAPb/AQAHAAEAAAASAOv/AQAHAAEAAAA=")
-tile_set = SubResource("TileSet_7sc4i")
-script = ExtResource("13_7sc4i")
-
-[node name="Camera2D" type="Camera2D" parent="SubViewport" unique_id=1942977625]
-script = ExtResource("13_lc2xo")
-
-[node name="PointLight2D" type="PointLight2D" parent="SubViewport" unique_id=1119221457]
-blend_mode = 1
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_7sc4i")
-texture_scale = 17.3
-script = ExtResource("13_215e1")
-
-[node name="PointLight2D2" type="PointLight2D" parent="SubViewport" unique_id=138977376]
-blend_mode = 1
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_80cx4")
-texture_scale = 17.3
-script = ExtResource("13_215e1")
-
-[node name="PointLight2D" type="PointLight2D" parent="SubViewport/PointLight2D2" unique_id=130243400]
-position = Vector2(-450, 0)
-rotation = 0.7853982
-texture = SubResource("GradientTexture2D_e8heu")
-texture_scale = 2.0
-
-[node name="VisibilityDebug" type="Sprite2D" parent="." unique_id=286017090]
-position = Vector2(-216, -215.5)
-scale = Vector2(0.15625, 0.15820313)
-texture = SubResource("ViewportTexture_mfdv2")
+tile_set = SubResource("TileSet_0e48y")

@@ -21,6 +21,7 @@
 [sub_resource type="GDScript" id="GDScript_f50pn"]
 script/source = "
 extends CharacterBody2D
+@onready var flashlight: PointLight2D = $body/Flashlight
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var body: Node2D = $body
@@ -36,9 +37,11 @@ var dodge_ready = true
 var dodges = 3
 var mobile = true
 var dodging = false
+var flashlight_on = false
 
 func _ready() -> void:
 	animated_sprite_2d.flip_v = true
+	flashlight.hide()
 	
 func _input(_event):	
 	if Input.is_action_just_pressed(\"dodge\"):
@@ -54,6 +57,13 @@ func _input(_event):
 				get_node(\"dodge cooldown\").start() 
 				get_node(\"dodge regen\").start() 
 				dodging = true
+	if Input.is_action_just_pressed(\"toggle_flashlight\"):
+		if flashlight_on == true:
+			flashlight_on = false
+			flashlight.hide()
+		else :
+			flashlight_on = true
+			flashlight.show()
 
 
 #basic movement input

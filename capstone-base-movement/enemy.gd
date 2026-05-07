@@ -1,5 +1,5 @@
 extends CharacterBody2D
-@onready var player = get_node("/root/game/player/Legs")
+@onready var player = get_node("/root/game/game display/player/Legs")
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var timer = %Timer
 @onready var ray_cast_2d: RayCast2D = $RayCast2D

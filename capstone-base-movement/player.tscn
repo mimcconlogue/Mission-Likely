@@ -90,15 +90,6 @@ func apply_camera(delta):
 	$Camera2D.global_position = lerp($Camera2D.global_position, center, delta * damping)
 "
 
-[sub_resource type="Gradient" id="Gradient_i3pqv"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_hqtel"]
-gradient = SubResource("Gradient_i3pqv")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.8, 0.8)
-
 [sub_resource type="GDScript" id="GDScript_hqtel"]
 script/source = "extends Area2D
 "
@@ -118,17 +109,6 @@ script = SubResource("GDScript_i3pqv")
 [node name="Camera2D" type="Camera2D" parent="camera control" unique_id=1837557329]
 
 [node name="Legs" parent="." unique_id=946623903 instance=ExtResource("1_onrkg")]
-
-[node name="VisionCone" type="PointLight2D" parent="Legs" unique_id=1458263292]
-position = Vector2(8, 16)
-scale = Vector2(7.2397466, 7.2397466)
-energy = 0.5
-range_item_cull_mask = 3
-shadow_enabled = true
-shadow_color = Color(0, 0, 0, 0.9529412)
-shadow_item_cull_mask = 3
-texture = SubResource("GradientTexture2D_hqtel")
-texture_scale = 10.0
 
 [node name="body" parent="Legs" unique_id=310549794 instance=ExtResource("2_i3pqv")]
 position = Vector2(-13.999999, 7)
@@ -150,16 +130,6 @@ energy = 0.75
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
 shadow_filter = 1
-texture = ExtResource("4_hqtel")
-offset = Vector2(0, 4500)
-texture_scale = 15.0
-
-[node name="AntiLight" type="PointLight2D" parent="Legs/body" unique_id=963345577]
-position = Vector2(-220.39568, -119.90733)
-rotation = 1.5707964
-scale = Vector2(1.3010198, 0.40215987)
-blend_mode = 1
-shadow_filter = 2
 texture = ExtResource("4_hqtel")
 offset = Vector2(0, 4500)
 texture_scale = 15.0
