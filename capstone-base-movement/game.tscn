@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bxkfexdm6v2mo"]
 
-[ext_resource type="PackedScene" uid="uid://btj5reeqo2i2u" path="res://MAP.tscn" id="1_7jktm"]
+[ext_resource type="PackedScene" uid="uid://btj5reeqo2i2u" path="res://map.tscn" id="1_7jktm"]
 [ext_resource type="PackedScene" uid="uid://66hsxoauhh40" path="res://player.tscn" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://uqbde0qleu2v" path="res://exit.tscn" id="4_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://blp5hc7as4ehp" path="res://pain_killer.tscn" id="5_7jktm"]
@@ -65,4 +65,5 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="DarknessFilter" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.03839717, 0.03839716, 0.038397186, 1)

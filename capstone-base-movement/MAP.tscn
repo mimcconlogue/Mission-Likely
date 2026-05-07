@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=4 uid="uid://btj5reeqo2i2u"]
 
-[ext_resource type="Texture2D" uid="uid://cllg1jxpeh8x4" path="res://TILEMAP (2).png" id="1_wtcfe"]
+[ext_resource type="Texture2D" uid="uid://divr0mg7lrqot" path="res://TILEMAP.png" id="1_c7s6e"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wtcfe"]
 polygon = PackedVector2Array(23.5, -23.5, 23.5, -21.02963, -21.427917, -21.02963, -20.949974, 23.5, -23.5, 23.5, -23.5, -23.5)
@@ -30,7 +30,7 @@ polygon = PackedVector2Array(21.5156, 23.5, 23.5, 23.5, 23.5, -23.5, 21.41668, -
 polygon = PackedVector2Array(-23.5, 20.773682, -23.5, 23.5, 23.5, 23.5, 23.5, -23.5, 21.41668, -23.5, 21.416677, 20.575838)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wtcfe"]
-texture = ExtResource("1_wtcfe")
+texture = ExtResource("1_c7s6e")
 texture_region_size = Vector2i(47, 47)
 0:0/0 = 0
 0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_wtcfe")
@@ -59,6 +59,13 @@ texture_region_size = Vector2i(47, 47)
 2:2/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_4d7sh")
 2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-23.5, 22.544306, -23.5, 20.410374, 21.618866, 20.482813, 21.515701, -23.5, 23.5, -23.5, 23.5, 22.343315)
 4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+6:3/0 = 0
+9:8/0 = 0
+9:9/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_0e48y"]
 tile_size = Vector2i(47, 47)
