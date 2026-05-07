@@ -9,7 +9,7 @@ extends CharacterBody2D
 @onready var gun_enemy: CharacterBody2D = $"."
 
 const Bullet = preload("res://enemybullet.tscn")
-var move_speed = 150
+var move_speed = 175
 var can_walk = true
 var tween = null
 var health = 100

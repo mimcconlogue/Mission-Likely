@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cllg1jxpeh8x4"
-path="res://.godot/imported/TILEMAP (2).png-b8f5704b8f9e618b3c6547ff2a789783.ctex"
+uid="uid://divr0mg7lrqot"
+path="res://.godot/imported/TILEMAP.png-fca49fa9b5289baaf4386ea3497de549.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TILEMAP (2).png"
-dest_files=["res://.godot/imported/TILEMAP (2).png-b8f5704b8f9e618b3c6547ff2a789783.ctex"]
+source_file="res://TILEMAP.png"
+dest_files=["res://.godot/imported/TILEMAP.png-fca49fa9b5289baaf4386ea3497de549.ctex"]
 
 [params]
 
