@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://66hsxoauhh40"]
+[gd_scene load_steps=9 format=3 uid="uid://66hsxoauhh40"]
 
 [ext_resource type="PackedScene" uid="uid://c1sbcuxwk0424" path="res://legs.tscn" id="1_onrkg"]
 [ext_resource type="PackedScene" uid="uid://cgu87auun5grt" path="res://body.tscn" id="2_i3pqv"]
@@ -57,7 +57,7 @@ func die():
 	body.hide()
 	legs.mobile = false
 	print(\"reset\")
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file(\"res://game_over_screen.tscn\")
 
 func _on_area_2d_3_area_entered(_area: Area2D) -> void:
 	if legs.dodging == false :
@@ -100,29 +100,29 @@ height = 492.95236
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 
-[node name="player" type="Node2D" unique_id=1112577195]
+[node name="player" type="Node2D"]
 script = SubResource("GDScript_onrkg")
 
-[node name="camera control" type="Node2D" parent="." unique_id=552196181]
+[node name="camera control" type="Node2D" parent="."]
 script = SubResource("GDScript_i3pqv")
 
-[node name="Camera2D" type="Camera2D" parent="camera control" unique_id=1837557329]
+[node name="Camera2D" type="Camera2D" parent="camera control"]
 
-[node name="Legs" parent="." unique_id=946623903 instance=ExtResource("1_onrkg")]
+[node name="Legs" parent="." instance=ExtResource("1_onrkg")]
 
-[node name="body" parent="Legs" unique_id=310549794 instance=ExtResource("2_i3pqv")]
+[node name="body" parent="Legs" instance=ExtResource("2_i3pqv")]
 position = Vector2(-13.999999, 7)
 scale = Vector2(0.24955116, 0.30023184)
 
-[node name="Area2D3" type="Area2D" parent="Legs/body" unique_id=203699676]
+[node name="Area2D3" type="Area2D" parent="Legs/body"]
 collision_layer = 4
 collision_mask = 4
 script = SubResource("GDScript_hqtel")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/body/Area2D3" unique_id=753820157]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/body/Area2D3"]
 shape = SubResource("CapsuleShape2D_sweqy")
 
-[node name="Flashlight" type="PointLight2D" parent="Legs/body" unique_id=1569586858]
+[node name="Flashlight" type="PointLight2D" parent="Legs/body"]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(56.100716, 63.284424)
 rotation = 4.712389
@@ -134,24 +134,24 @@ texture = ExtResource("4_hqtel")
 offset = Vector2(0, 4500)
 texture_scale = 15.0
 
-[node name="Collector" type="Node2D" parent="Legs" unique_id=350926482]
+[node name="Collector" type="Node2D" parent="Legs"]
 
-[node name="PainKillerReceptical" type="Area2D" parent="Legs/Collector" unique_id=672795555]
+[node name="PainKillerReceptical" type="Area2D" parent="Legs/Collector"]
 collision_layer = 16
 collision_mask = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/Collector/PainKillerReceptical" unique_id=1281727064]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/Collector/PainKillerReceptical"]
 position = Vector2(4, -1)
 scale = Vector2(6.4427037, 8.352031)
 shape = SubResource("CircleShape2D_onrkg")
 
-[node name="PainRegen" type="Timer" parent="." unique_id=434020603]
+[node name="PainRegen" type="Timer" parent="."]
 one_shot = true
 
-[node name="spawnpoint" type="Node2D" parent="." unique_id=640089134]
+[node name="spawnpoint" type="Node2D" parent="."]
 position = Vector2(0, 1)
 
-[node name="deathstop" type="Timer" parent="." unique_id=185276726]
+[node name="deathstop" type="Timer" parent="."]
 
 [connection signal="area_entered" from="Legs/body/Area2D3" to="." method="_on_area_2d_3_area_entered"]
 [connection signal="area_entered" from="Legs/Collector/PainKillerReceptical" to="." method="_on_pain_killer_receptical_area_entered"]
