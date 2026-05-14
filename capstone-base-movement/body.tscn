@@ -30,7 +30,7 @@ func _input(_event: InputEvent) -> void:
 
 [node name="body" type="Node2D" unique_id=1094397119]
 position = Vector2(1.1920929e-07, 2.3841858e-07)
-scale = Vector2(0.18549748, 0.21377671)
+scale = Vector2(0.2, 0.2)
 script = SubResource("GDScript_tg1dk")
 
 [node name="ActiveWeapon" type="Node2D" parent="." unique_id=1544689794]

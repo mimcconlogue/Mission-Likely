@@ -112,7 +112,7 @@ script = SubResource("GDScript_i3pqv")
 
 [node name="body" parent="Legs" unique_id=310549794 instance=ExtResource("2_i3pqv")]
 position = Vector2(-13.999999, 7)
-scale = Vector2(0.24955116, 0.30023184)
+scale = Vector2(0.25, 0.25)
 
 [node name="Area2D3" type="Area2D" parent="Legs/body" unique_id=203699676]
 collision_layer = 4
