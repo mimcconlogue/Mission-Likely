@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://diarkppgt0mha"]
+[gd_scene load_steps=66 format=3 uid="uid://diarkppgt0mha"]
 
 [ext_resource type="Script" uid="uid://c2cp2cp4caoeb" path="res://weapons/fists/weaponstate/fists_ready.gd" id="1_3c326"]
 [ext_resource type="AnimationLibrary" uid="uid://c3q2tfcjht5sb" path="res://animation/body/fists/ready/animations.res" id="2_0yukw"]
@@ -57,86 +57,6 @@
 [ext_resource type="Texture2D" uid="uid://dlvta112ubrik" path="res://animation/body/fists/sprites/0153.png" id="54_bhkw6"]
 [ext_resource type="Texture2D" uid="uid://b707hnurthmuc" path="res://animation/body/fists/sprites/0154.png" id="55_kkcd1"]
 [ext_resource type="Texture2D" uid="uid://p63d3lt5pdut" path="res://animation/body/fists/sprites/0155.png" id="56_4rbud"]
-
-[sub_resource type="Animation" id="Animation_8v0x0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Idle/AnimatedSprite2DIdle:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Ready/Attack1/AnimatedSprite2DAttack1:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Ready/Attack2/AnimatedSprite2DAttack2:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Ready/Special/AnimatedSprite2DSpecial:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [27]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Ready/Special/AnimatedSprite2DSpecial:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Idle/AnimatedSprite2DIdle:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2uovb"]
-_data = {
-&"RESET": SubResource("Animation_8v0x0")
-}
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0yukw"]
 animations = [{
@@ -353,86 +273,87 @@ size = Vector2(30.985428, 28.337582)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hfg2g"]
 
-[node name="FistsReady" type="Node2D" unique_id=1061609259]
+[node name="FistsReady" type="Node2D"]
 script = ExtResource("1_3c326")
 
-[node name="Ready" type="Node2D" parent="." unique_id=1770605380]
-position = Vector2(-44, 0)
+[node name="Ready" type="Node2D" parent="."]
+rotation = -0.19781053
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Ready" unique_id=1407884320]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ready"]
 root_node = NodePath("../..")
-libraries/ = SubResource("AnimationLibrary_2uovb")
-libraries/animations = ExtResource("2_0yukw")
+libraries = {
+&"animations": ExtResource("2_0yukw")
+}
 
-[node name="Attack1" type="Node2D" parent="Ready" unique_id=855127479]
+[node name="Attack1" type="Node2D" parent="Ready"]
 
-[node name="AnimatedSprite2DAttack1" type="AnimatedSprite2D" parent="Ready/Attack1" unique_id=53711541]
-visible = false
+[node name="AnimatedSprite2DAttack1" type="AnimatedSprite2D" parent="Ready/Attack1"]
 position = Vector2(-2, 1)
 scale = Vector2(1.4920452, 1.4920452)
 sprite_frames = SubResource("SpriteFrames_0yukw")
-frame = 1
 
-[node name="Attack2" type="Node2D" parent="Ready" unique_id=631986476]
+[node name="Attack2" type="Node2D" parent="Ready"]
 
-[node name="AnimatedSprite2DAttack2" type="AnimatedSprite2D" parent="Ready/Attack2" unique_id=160114585]
+[node name="AnimatedSprite2DAttack2" type="AnimatedSprite2D" parent="Ready/Attack2"]
 visible = false
 scale = Vector2(1.4920452, 1.4920452)
 sprite_frames = SubResource("SpriteFrames_hfg2g")
 animation = &"attack"
+frame = 2
 
-[node name="Special" type="Node2D" parent="Ready" unique_id=272723609]
+[node name="Special" type="Node2D" parent="Ready"]
 
-[node name="AnimatedSprite2DSpecial" type="AnimatedSprite2D" parent="Ready/Special" unique_id=351914312]
+[node name="AnimatedSprite2DSpecial" type="AnimatedSprite2D" parent="Ready/Special"]
+visible = false
 scale = Vector2(1.4920452, 1.4920452)
 sprite_frames = SubResource("SpriteFrames_8v0x0")
 animation = &"special"
-frame = 27
+frame = 1
 
-[node name="Hurt" type="Node2D" parent="Ready" unique_id=528486933]
+[node name="Hurt" type="Node2D" parent="Ready"]
 
-[node name="AnimatedSprite2DHurt" type="AnimatedSprite2D" parent="Ready/Hurt" unique_id=753238669]
+[node name="AnimatedSprite2DHurt" type="AnimatedSprite2D" parent="Ready/Hurt"]
 visible = false
 scale = Vector2(1.4920452, 1.4920452)
 sprite_frames = SubResource("SpriteFrames_2uovb")
 animation = &"hurt"
 frame_progress = 0.3845107
 
-[node name="Idle" type="Node2D" parent="." unique_id=678986100]
+[node name="Idle" type="Node2D" parent="."]
 position = Vector2(-1.9999999, 0)
 rotation = -0.0016777217
 scale = Vector2(0.99999994, 0.99999994)
 
-[node name="AnimatedSprite2DIdle" type="AnimatedSprite2D" parent="Idle" unique_id=1029753977]
+[node name="AnimatedSprite2DIdle" type="AnimatedSprite2D" parent="Idle"]
 visible = false
 scale = Vector2(1.492045, 1.492045)
 sprite_frames = SubResource("SpriteFrames_3c326")
 animation = &"idle"
 
-[node name="HitBox" type="Area2D" parent="." unique_id=1849646324]
+[node name="HitBox" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=486013251]
-position = Vector2(385.00003, 60.999985)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(740.99994, 45.999985)
 rotation = -0.11277305
 scale = Vector2(3.9394312, 3.9394312)
 shape = SubResource("RectangleShape2D_3c326")
 disabled = true
 
-[node name="HurtBox" type="Area2D" parent="." unique_id=384905841]
+[node name="HurtBox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1292615219]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0.33333284, -0.33333313)
-rotation = 0.12837364
+rotation = -0.046912804
 scale = Vector2(11.073337, 14.144772)
 shape = SubResource("CapsuleShape2D_0yukw")
 
-[node name="HeadHurtBox" type="Area2D" parent="HurtBox/CollisionShape2D" unique_id=1033034346]
+[node name="HeadHurtBox" type="Area2D" parent="HurtBox/CollisionShape2D"]
 position = Vector2(16.82938, -1.2016867)
 rotation = -0.05158804
 scale = Vector2(0.91194034, 0.69145286)
 skew = -0.03246343
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox/CollisionShape2D/HeadHurtBox" unique_id=521358791]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox/CollisionShape2D/HeadHurtBox"]
 shape = SubResource("CircleShape2D_hfg2g")

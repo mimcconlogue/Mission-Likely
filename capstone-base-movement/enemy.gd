@@ -24,18 +24,24 @@ var max_blood: int = 100
 var pain: int = 100
 var max_pain: int = 100
 var morale = 5
+var knockback_velocity = Vector2.ZERO
+var is_stunned = false
 
 func _ready() -> void:
 	enemy_legs.play("wait")
 	weapon_activate()
 func take_damage(blood_damage, pain_damage):
+	#knockback
+	is_stunned = true
+	var direction = (player.global_position).direction_to(global_position)
+	knockback_velocity = direction * 400.0
+	#dmg
 	blood = blood - blood_damage
 	pain = pain - pain_damage
 	detect_death()
 func detect_death():
 	if blood <= 0:
 		die()
-		
 	if pain <= 0:
 		die()
 #start chase if u stay spotted too long lil bro
@@ -97,15 +103,22 @@ func _physics_process(_delta: float):
 	#if u get spotted
 	if detected: 
 		#YOU NEED THIS SO IT DOESNT LOCK THE ROTATION
-		#SERIOUSLY
+		#SERIOUSLY \/
 		if tween: 
 			tween.kill()
 		#move to player and look at them
-		var current_position: Vector2 = self.global_transform.origin
-		var next_path_position: Vector2 = nav_agent.get_next_path_position()
-		var new_velocity: Vector2 = current_position.direction_to(next_path_position)
-		nav_agent.velocity = new_velocity
-		update_target_position(player.global_transform.origin)
+		if is_stunned:
+			knockback_velocity = lerp(knockback_velocity, Vector2.ZERO, 0.1)
+			velocity = knockback_velocity
+			move_and_slide()
+			if knockback_velocity.length() < 10:
+				is_stunned = false
+		else:
+			var current_position: Vector2 = self.global_transform.origin
+			var next_path_position: Vector2 = nav_agent.get_next_path_position()
+			var new_velocity: Vector2 = current_position.direction_to(next_path_position)
+			nav_agent.velocity = new_velocity
+			update_target_position(player.global_transform.origin)
 		#all of this for rotation
 		var direction = global_position.direction_to(player.global_position)
 		enemy.rotation = direction.angle()
