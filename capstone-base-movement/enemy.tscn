@@ -108,7 +108,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("13_3un5y")
 }],
-"loop": true,
+"loop": false,
 "name": &"fall",
 "speed": 25.0
 }, {
@@ -675,7 +675,6 @@ position = Vector2(-1.0000076, 1)
 scale = Vector2(0.30839166, 0.30839166)
 sprite_frames = SubResource("SpriteFrames_8hbvk")
 animation = &"fall"
-frame_progress = 0.44626138
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1251328473]
 path_desired_distance = 55.0

@@ -39,11 +39,4 @@ script = ExtResource("1_in4ii")
 [node name="weapon" parent="ActiveWeapon" unique_id=365548807 instance=ExtResource("14_fwoh1")]
 scale = Vector2(0.99999994, 0.99999994)
 
-[node name="WeaponSlot1" type="Node2D" parent="." unique_id=2068396962]
-
-[node name="Weaponslot2" type="Node2D" parent="." unique_id=1539956008]
-scale = Vector2(0.9999999, 0.9999999)
-
-[node name="FistSlot" type="Node2D" parent="." unique_id=1691634940]
-
 [connection signal="animation_over" from="ActiveWeapon/weapon" to="ActiveWeapon" method="_on_weapon_animation_over"]
