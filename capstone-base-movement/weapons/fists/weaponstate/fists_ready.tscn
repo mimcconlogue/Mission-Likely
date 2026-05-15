@@ -408,6 +408,7 @@ visible = false
 scale = Vector2(1.492045, 1.492045)
 sprite_frames = SubResource("SpriteFrames_3c326")
 animation = &"idle"
+frame = 1
 
 [node name="HitBox" type="Area2D" parent="." unique_id=1849646324]
 collision_layer = 8

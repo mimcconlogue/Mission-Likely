@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://ddbq6oem2s482"]
+
+[ext_resource type="PackedScene" uid="uid://diarkppgt0mha" path="res://weapons/fists/weaponstate/fists_ready.tscn" id="1_80h2d"]
+[ext_resource type="PackedScene" uid="uid://c7pnrkoc4vh1g" path="res://weapons/fists/weaponstate/fists_not_ready.tscn" id="2_184pt"]
+
+[sub_resource type="GDScript" id="GDScript_div1a"]
+script/source = "extends Node2D
+var prepared = false
+var type = \"fists\"
+@onready var fists_ready: Node2D = $FistsReady
+@onready var fists_not_ready: Node2D = $FistsNotReady
+var current_animation_is_idle = true
+@onready var current_child = fists_not_ready
+signal animation_over
+func _ready() -> void: 
+	check_prepared()
+func check_prepared():
+	if prepared == true :
+		fists_ready.show()
+		fists_not_ready.hide()
+		fists_ready.set_process(true)
+		fists_not_ready.set_process(false)
+		current_child = fists_ready
+	else:
+		fists_ready.hide()
+		fists_not_ready.show()
+		fists_ready.set_process(false)
+		fists_not_ready.set_process(true)
+		current_child = fists_not_ready
+	current_child.get_child(0).get_child(0).play(\"animations\" + \"/\" + \"idle\")
+func check_animation():
+	if current_animation_is_idle == true:
+		current_child.get_child(0).get_child(0).play(\"idle\")
+	else:
+		pass
+func check_idle():
+	if get_child(0).idle == true :
+		current_animation_is_idle = true
+	if get_child(1).idle == true :
+		current_animation_is_idle = true
+
+
+func _on_fists_not_ready_animation_over() -> void:
+	animation_over.emit()
+"
+
+[node name="weapon" type="Node2D"]
+script = SubResource("GDScript_div1a")
+
+[node name="FistsReady" parent="." instance=ExtResource("1_80h2d")]
+
+[node name="FistsNotReady" parent="." instance=ExtResource("2_184pt")]
+position = Vector2(1, -1)
+rotation = 0.22601548
+
+[connection signal="animation_over" from="FistsNotReady" to="." method="_on_fists_not_ready_animation_over"]
