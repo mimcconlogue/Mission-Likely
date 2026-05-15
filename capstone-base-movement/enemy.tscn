@@ -1,8 +1,9 @@
-[gd_scene format=3 uid="uid://he5ym66anqvn"]
+[gd_scene load_steps=75 format=3 uid="uid://he5ym66anqvn"]
 
 [ext_resource type="Script" uid="uid://bfumjpbb3nwq0" path="res://enemy.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://imgbje8wjjnh" path="res://animation/player leg/New Legs/walk/0195.png" id="2_5tv8x"]
 [ext_resource type="Texture2D" uid="uid://dwmqnwnxkrfiq" path="res://animation/enemy/fall/0235.png0195.png" id="2_qftu3"]
+[ext_resource type="PackedScene" uid="uid://2xwgogj254r0" path="res://hit_particles.tscn" id="2_ybt8m"]
 [ext_resource type="Texture2D" uid="uid://cdpb7ubrl24yk" path="res://animation/player leg/New Legs/walk/0008.png" id="3_jnl6c"]
 [ext_resource type="PackedScene" uid="uid://cx2nm32tgfopw" path="res://enemy_weapon.tscn" id="3_qi2p4"]
 [ext_resource type="Texture2D" uid="uid://b6g31sqy7tla3" path="res://animation/enemy/fall/0235.png0196.png" id="3_ybt8m"]
@@ -414,316 +415,67 @@ radius = 64.50194
 [sub_resource type="CircleShape2D" id="CircleShape2D_qi2p4"]
 radius = 1505.3611
 
-[sub_resource type="Animation" id="Animation_iifgy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemyWeapon:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.033333335, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite:animation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Block"]
-}
-
-[sub_resource type="Animation" id="Animation_v02nr"]
-resource_name = "block"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemyWeapon:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"weapon_disable"
-}]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("EnemyWeapon:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.03333334, 0.099999994, 1.5586792, 1.6333333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 3, 1, 0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Sprite:animation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Block"]
-}
-
-[sub_resource type="Animation" id="Animation_epg4t"]
-resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemyWeapon:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.29670596]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"weapon_disable"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_qi2p4"]
-resource_name = "swing"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemyWeapon:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.26666668, 0.43333334),
-"transitions": PackedFloat32Array(1, 1, 1),
-"values": [{
-"args": [],
-"method": &"weapon_disable"
-}, {
-"args": [],
-"method": &"weapon_activate"
-}, {
-"args": [],
-"method": &"weapon_disable"
-}]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("EnemyWeapon:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.23333335, 0.3, 0.40000004, 0.53333336),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(80, 22), Vector2(11, 85), Vector2(61, 109.00001), Vector2(186.66222, 14.753334), Vector2(80, 22)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.26666668, 0.33333334, 0.36666667, 0.40000004, 0.4333334, 0.4666667, 0.50000006, 0.53333336, 0.5666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.36666667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 0.600393262686049, 0.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Sprite:animation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Punch1"]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_epg4t"]
-_data = {
-&"RESET": SubResource("Animation_iifgy"),
-&"block": SubResource("Animation_v02nr"),
-&"idle": SubResource("Animation_epg4t"),
-&"swing": SubResource("Animation_qi2p4")
-}
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qi2p4"]
 size = Vector2(120, 120)
 
-[node name="Enemy" type="CharacterBody2D" unique_id=2044707152]
+[node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_4gyqm")
 
-[node name="EnemyLegs" type="AnimatedSprite2D" parent="." unique_id=33000427]
+[node name="HitParticles" parent="." instance=ExtResource("2_ybt8m")]
+
+[node name="EnemyLegs" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1.0000076, 1)
 scale = Vector2(0.30839166, 0.30839166)
 sprite_frames = SubResource("SpriteFrames_8hbvk")
 animation = &"fall"
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1251328473]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 55.0
 target_desired_distance = 20.0
 avoidance_enabled = true
 debug_enabled = true
 debug_path_custom_line_width = 1.0
 
-[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=542600303]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.3535274, 0.3535274)
 sprite_frames = SubResource("SpriteFrames_8pk15")
 animation = &"Block"
 
-[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=327429694]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -0.5)
 shape = SubResource("CircleShape2D_4gyqm")
 
-[node name="EnemyWeapon" parent="." unique_id=760097953 instance=ExtResource("3_qi2p4")]
+[node name="EnemyWeapon" parent="." instance=ExtResource("3_qi2p4")]
 scale = Vector2(-0.6136739, 0.5364889)
 
-[node name="Timer" type="Timer" parent="." unique_id=304647853]
+[node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 0.539
 one_shot = true
 
-[node name="DetectionArea" type="Area2D" parent="." unique_id=141250633]
+[node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
 
-[node name="TrianglePart" type="CollisionPolygon2D" parent="DetectionArea" unique_id=1323153825]
+[node name="TrianglePart" type="CollisionPolygon2D" parent="DetectionArea"]
 polygon = PackedVector2Array(0, 0, 1024, -1024, 1024, 1024)
 
-[node name="CirclePart" type="CollisionShape2D" parent="DetectionArea" unique_id=2042624150]
+[node name="CirclePart" type="CollisionShape2D" parent="DetectionArea"]
 position = Vector2(2112, 0)
 shape = SubResource("CircleShape2D_qi2p4")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1454854021]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
-libraries/ = SubResource("AnimationLibrary_epg4t")
-autoplay = &"idle"
+autoplay = "idle"
 
-[node name="RayCast2D" type="RayCast2D" parent="." unique_id=708606034]
+[node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(3650, 0)
 
-[node name="Area2D" type="Area2D" parent="." unique_id=888930121]
+[node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1833479759]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_qi2p4")
 

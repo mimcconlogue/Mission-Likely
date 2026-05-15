@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var enemy: CharacterBody2D = $"."
 @onready var enemy_legs: AnimatedSprite2D = $EnemyLegs
 @onready var sprite: AnimatedSprite2D = $Sprite
+@onready var hit_particles: GPUParticles2D = $HitParticles
 const corpse = preload("res://enemy_corpse.tscn")
 var move_speed = 400
 var tween = null
@@ -31,6 +32,8 @@ func _ready() -> void:
 func take_damage(blood_damage, pain_damage):
 	blood = blood - blood_damage
 	pain = pain - pain_damage
+	hit_particles.restart()
+	hit_particles.emitting = true
 	detect_death()
 func detect_death():
 	if blood <= 0:

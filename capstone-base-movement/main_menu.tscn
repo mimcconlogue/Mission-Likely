@@ -1,11 +1,11 @@
-[gd_scene format=3 uid="uid://d4b5tfl0r5fxp"]
+[gd_scene load_steps=8 format=3 uid="uid://d4b5tfl0r5fxp"]
 
-[ext_resource type="Texture2D" uid="uid://uknm43qkrp72" path="res://bain damge.png" id="1_06t4h"]
 [ext_resource type="Script" uid="uid://bohv5xwhmbpt1" path="res://main_menu.gd" id="1_fu7sn"]
 [ext_resource type="FontFile" uid="uid://sicmanaytn68" path="res://pixel.ttf" id="2_7vrkn"]
+[ext_resource type="Texture2D" uid="uid://ipcq73kq2yuu" path="res://lowqualitytetoplush.jpeg" id="2_fu7sn"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rhts7"]
-texture = ExtResource("1_06t4h")
+texture = ExtResource("2_fu7sn")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhts7"]
 bg_color = Color(0.71421194, 0.7142125, 0.714212, 1)
@@ -34,95 +34,8 @@ corner_radius_bottom_left = 16
 shadow_size = 5
 shadow_offset = Vector2(0, 3.41)
 
-[sub_resource type="Animation" id="Animation_jix8l"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(18.892157, 18.892157, 18.892157, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Label3:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_fu7sn"]
-resource_name = "fade_to_black"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Label3:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.06666667),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_glbon"]
-resource_name = "fade_to_clear"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Label3:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.06666667),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_glbon"]
-_data = {
-&"RESET": SubResource("Animation_jix8l"),
-&"fade_to_black": SubResource("Animation_fu7sn"),
-&"fade_to_clear": SubResource("Animation_glbon")
-}
-
-[node name="MainMenu" type="Control" unique_id=473115208]
+[node name="MainMenu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -131,21 +44,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fu7sn")
 
-[node name="Background" type="Panel" parent="." unique_id=764626634]
+[node name="Background" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 286.0
-offset_top = 209.0
-offset_right = 286.0
-offset_bottom = 209.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.068356164, 0.10951315)
 theme_override_styles/panel = SubResource("StyleBoxTexture_rhts7")
 
-[node name="Darken" type="Panel" parent="." unique_id=205009153]
+[node name="Darken" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -153,7 +61,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=395396281]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -168,7 +76,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="StartButton" type="Button" parent="VBoxContainer" unique_id=910286944]
+[node name="StartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.019554207, 0.019554116, 0.019554133, 1)
@@ -181,7 +89,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_06t4h")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7vrkn")
 text = "Start Game"
 
-[node name="ExitButton" type="Button" parent="VBoxContainer" unique_id=1640814142]
+[node name="ExitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.019554207, 0.019554116, 0.019554133, 1)
@@ -194,7 +102,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_06t4h")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7vrkn")
 text = "Exit"
 
-[node name="Label" type="Label" parent="." unique_id=384373659]
+[node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -215,7 +123,7 @@ text = "Head Hunted"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="." unique_id=1596594334]
+[node name="Label2" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -236,7 +144,7 @@ text = "By: Mission Likely"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PLACEHOLDER DEELTE" type="Label" parent="." unique_id=462249454]
+[node name="PLACEHOLDER DEELTE" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -263,7 +171,7 @@ RMB: heavy punch
 "
 horizontal_alignment = 1
 
-[node name="PLACEHOLDER DEELTE2" type="Label" parent="." unique_id=1580567773]
+[node name="PLACEHOLDER DEELTE2" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -286,10 +194,10 @@ THIS IS A Work in progress!"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Fader" type="ColorRect" parent="." unique_id=1548229407]
-visible = false
-modulate = Color(18.892157, 18.892157, 18.892157, 1)
-layout_mode = 1
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Fader" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -298,16 +206,22 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Label3" type="Label" parent="." unique_id=1469572529]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="Label3" type="Label" parent="CanvasLayer/Fader"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -214.99997
+offset_top = -59.0
+offset_right = 83.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(1.4550543, 1.4550543)
+theme_override_font_sizes/font_size = 64
 text = "Loading..."
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=742044936]
-root_node = NodePath("../Fader")
-libraries/ = SubResource("AnimationLibrary_glbon")
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

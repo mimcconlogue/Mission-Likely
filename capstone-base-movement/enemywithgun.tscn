@@ -1,7 +1,8 @@
-[gd_scene format=3 uid="uid://nb776tfn5k73"]
+[gd_scene load_steps=56 format=3 uid="uid://nb776tfn5k73"]
 
 [ext_resource type="Script" uid="uid://cckirrgjpchvr" path="res://gunenemy.gd" id="1_hob4l"]
 [ext_resource type="Texture2D" uid="uid://imgbje8wjjnh" path="res://animation/player leg/New Legs/walk/0195.png" id="2_evswk"]
+[ext_resource type="PackedScene" uid="uid://2xwgogj254r0" path="res://hit_particles.tscn" id="2_kc5bw"]
 [ext_resource type="Texture2D" uid="uid://c3fy62ymmp7ep" path="res://icon.svg" id="2_pdyhk"]
 [ext_resource type="Texture2D" uid="uid://cdpb7ubrl24yk" path="res://animation/player leg/New Legs/walk/0008.png" id="3_kc5bw"]
 [ext_resource type="Texture2D" uid="uid://npplufdbctto" path="res://animation/player leg/New Legs/walk/0009.png" id="4_j1swu"]
@@ -330,76 +331,78 @@ radius = 1505.3611
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qi2p4"]
 size = Vector2(120, 120)
 
-[node name="GunEnemy" type="CharacterBody2D" unique_id=132284048]
+[node name="GunEnemy" type="CharacterBody2D"]
 script = ExtResource("1_hob4l")
 
-[node name="EnemyLegs" type="AnimatedSprite2D" parent="." unique_id=2132151949]
+[node name="HitParticles" parent="." instance=ExtResource("2_kc5bw")]
+
+[node name="EnemyLegs" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1.0000076, 1)
 scale = Vector2(0.37367395, 0.37367395)
 sprite_frames = SubResource("SpriteFrames_fj8ww")
 animation = &"walk_back"
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1657862719]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 55.0
 target_desired_distance = 20.0
 avoidance_enabled = true
 debug_enabled = true
 
-[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1377626160]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.35860842, 0.35860842)
 sprite_frames = SubResource("SpriteFrames_p4ukr")
 animation = &"shoot"
 frame = 14
 frame_progress = 1.0
 
-[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=2063663262]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -0.5)
 shape = SubResource("CircleShape2D_4gyqm")
 
-[node name="Timer" type="Timer" parent="." unique_id=122000365]
+[node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 0.864
 one_shot = true
 
-[node name="ShootTimer" type="Timer" parent="." unique_id=633319345]
+[node name="ShootTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 one_shot = true
 
-[node name="IdleTimer" type="Timer" parent="." unique_id=859352083]
+[node name="IdleTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 1.5
 one_shot = true
 
-[node name="DetectionArea" type="Area2D" parent="." unique_id=1178930284]
+[node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
 
-[node name="TrianglePart" type="CollisionPolygon2D" parent="DetectionArea" unique_id=971495604]
+[node name="TrianglePart" type="CollisionPolygon2D" parent="DetectionArea"]
 polygon = PackedVector2Array(0, 0, 1024, -1024, 1024, 1024)
 
-[node name="CirclePart" type="CollisionShape2D" parent="DetectionArea" unique_id=98448976]
+[node name="CirclePart" type="CollisionShape2D" parent="DetectionArea"]
 position = Vector2(2112, 0)
 shape = SubResource("CircleShape2D_qi2p4")
 
-[node name="RayCast2D" type="RayCast2D" parent="." unique_id=417466014]
+[node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(3650, 0)
 
-[node name="Area2D" type="Area2D" parent="." unique_id=317103824]
+[node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=746250034]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_qi2p4")
 
-[node name="Gun" type="Sprite2D" parent="." unique_id=665014764]
+[node name="Gun" type="Sprite2D" parent="."]
 visible = false
 self_modulate = Color(1, 0.52156866, 0.27058825, 1)
 position = Vector2(96, 0)
 scale = Vector2(0.7669994, 0.26000077)
 texture = ExtResource("2_pdyhk")
 
-[node name="Marker2D" type="Marker2D" parent="." unique_id=1434710821]
+[node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(143.72998, 0)
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
