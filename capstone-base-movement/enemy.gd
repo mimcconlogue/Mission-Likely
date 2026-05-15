@@ -6,7 +6,9 @@ extends CharacterBody2D
 @onready var weapon_shape = get_node("EnemyWeapon/WeaponHurtbox/CollisionPolygon2D")
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var enemy: CharacterBody2D = $"."
-
+@onready var enemy_legs: AnimatedSprite2D = $EnemyLegs
+@onready var sprite: AnimatedSprite2D = $Sprite
+const corpse = preload("res://enemy_corpse.tscn")
 var move_speed = 400
 var tween = null
 var health = 100
@@ -24,6 +26,7 @@ var max_pain: int = 100
 var morale = 5
 
 func _ready() -> void:
+	enemy_legs.play("wait")
 	weapon_activate()
 func take_damage(blood_damage, pain_damage):
 	blood = blood - blood_damage
@@ -41,12 +44,9 @@ func _on_timer_timeout() -> void:
 		detected = true
 		timer_not_active = false
 		detectable = false
-		print("give chase")
 	else:
 		detected = false
 		timer_not_active = true
-		print("out of sight")
-
 func _on_detection_area_body_entered(_body: Node2D) -> void:
 	detectable = true
 	timer_not_active = true
@@ -59,9 +59,13 @@ func _on_detection_area_body_exited(_body: Node2D) -> void:
 	detectable = false
 	timer.stop()
 	timer_not_active = true
-	print("player got away :(")
 
 func _physics_process(_delta: float):
+	enemy_legs.global_rotation = velocity.angle()
+	if velocity.length() > 0:
+		enemy_legs.play("walk")
+	else :
+		enemy_legs.play("wait")
 	#first check if player entered fov
 	#if they do then check if enemy has los w player
 	#look at player if in detection radius with a tween
@@ -84,7 +88,6 @@ func _physics_process(_delta: float):
 		var collider = ray_cast_2d.get_collider()
 		if collider == player:
 			player_visible = true
-			print("visibleee")
 		else:
 			player_visible = false
 			timer_not_active = true
@@ -108,11 +111,9 @@ func _physics_process(_delta: float):
 		enemy.rotation = direction.angle()
 		#if u close enough attack & stop move...
 		if distance_to_player < attack_distance:
-			print("THROWIN HANDS")
 			animation_player.play("swing")
 			recently_attacked = true
 			await animation_player.animation_finished
-			print("attack finished!")
 		#...else play idle anim (stop swing) and keep moving
 		elif recently_attacked:
 			await animation_player.animation_finished
@@ -132,6 +133,9 @@ func weapon_activate():
 	weapon_shape.set_disabled(false)
 
 func die():
+	var cadaver = corpse.instantiate()
+	cadaver.global_position = enemy.global_position
+	cadaver.global_rotation = enemy.global_rotation
 	queue_free()
 func _on_area_2d_area_entered(_area: Area2D) -> void:
 	if detected == true:

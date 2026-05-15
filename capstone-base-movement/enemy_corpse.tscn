@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://dtcgaadbl11s7"]
+
+[ext_resource type="Script" uid="uid://dyoj8u5akemfi" path="res://enemy_corpse.gd" id="1_x0dw0"]
+[ext_resource type="Texture2D" uid="uid://dwmqnwnxkrfiq" path="res://animation/enemy/fall/0235.png0195.png" id="2_i3pd7"]
+[ext_resource type="Texture2D" uid="uid://b6g31sqy7tla3" path="res://animation/enemy/fall/0235.png0196.png" id="3_v0kvx"]
+[ext_resource type="Texture2D" uid="uid://bc80jo53pf6bf" path="res://animation/enemy/fall/0235.png0197.png" id="4_efn7u"]
+[ext_resource type="Texture2D" uid="uid://dfrbf0dngrhux" path="res://animation/enemy/fall/0235.png0198.png" id="5_yt67f"]
+[ext_resource type="Texture2D" uid="uid://cesmigr66nk3e" path="res://animation/enemy/fall/0235.png0199.png" id="6_65u5c"]
+[ext_resource type="Texture2D" uid="uid://cq7shwm5b463r" path="res://animation/enemy/fall/0235.png0200.png" id="7_oiva6"]
+[ext_resource type="Texture2D" uid="uid://mhprhuoxx5vk" path="res://animation/enemy/fall/0235.png0201.png" id="8_xgc47"]
+[ext_resource type="Texture2D" uid="uid://s02g2dg5wy67" path="res://animation/enemy/fall/0235.png0202.png" id="9_mhdoh"]
+[ext_resource type="Texture2D" uid="uid://b3gx8tfab03i4" path="res://animation/enemy/fall/0235.png0203.png" id="10_7yqw0"]
+[ext_resource type="Texture2D" uid="uid://cee7k6bq50sn7" path="res://animation/enemy/fall/0235.png0204.png" id="11_cykwx"]
+[ext_resource type="Texture2D" uid="uid://b4u15l58x0nah" path="res://animation/enemy/fall/0235.png0205.png" id="12_xfjcb"]
+[ext_resource type="Texture2D" uid="uid://c5gequr788c1t" path="res://animation/enemy/fall/0235.png0206.png" id="13_8fpam"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tqog4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_i3pd7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_v0kvx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_efn7u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yt67f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_65u5c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_oiva6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_xgc47")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_mhdoh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_7yqw0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_cykwx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_xfjcb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_8fpam")
+}],
+"loop": false,
+"name": &"fall",
+"speed": 25.0
+}]
+
+[node name="EnemyCorpse" type="Node2D" unique_id=780888169]
+script = ExtResource("1_x0dw0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=477076597]
+sprite_frames = SubResource("SpriteFrames_tqog4")
+animation = &"fall"
+frame = 11
+frame_progress = 1.0

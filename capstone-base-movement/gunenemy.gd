@@ -7,8 +7,11 @@ extends CharacterBody2D
 @onready var idle_timer: Timer = %IdleTimer
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var gun_enemy: CharacterBody2D = $"."
+@onready var sprite: AnimatedSprite2D = $Sprite
+@onready var enemy_legs: AnimatedSprite2D = $EnemyLegs
 
 const Bullet = preload("res://enemybullet.tscn")
+const corpse = preload("res://enemy_corpse.tscn")
 var move_speed = 175
 var can_walk = true
 var tween = null
@@ -43,9 +46,9 @@ func _on_timer_timeout() -> void:
 		detected = true
 		timer_not_active = false
 		detectable = false
-		print("give chase")
+		
 	else:
-		print("I see noone")
+		pass
 
 func _on_detection_area_body_entered(_body: Node2D) -> void:
 	detectable = true
@@ -62,6 +65,11 @@ func _on_detection_area_body_exited(_body: Node2D) -> void:
 	print("player got away :(")
 
 func _physics_process(_delta: float):
+	enemy_legs.global_rotation = velocity.angle()
+	if velocity.length() > 0:
+		enemy_legs.play("walk")
+	else :
+		enemy_legs.play("wait")
 	#first check if player entered fov
 	#if they do then check if enemy has los w player
 	#look at player if in detection radius with a tween
@@ -126,6 +134,9 @@ func update_target_position(target_pos: Vector2):
 
 
 func die():
+	var cadaver = corpse.instantiate()
+	cadaver.global_position = gun_enemy.global_position
+	cadaver.global_rotation = gun_enemy.global_rotation
 	queue_free()
 func _on_area_2d_area_entered(_area: Area2D) -> void:
 	print("Take That!")
@@ -140,6 +151,8 @@ func shoot():
 	bullet.global_rotation = gun.global_rotation
 	shoot_timer.start()
 	idle_timer.stop()
+	sprite.play("shoot")
+	
 
 func _on_shoot_timer_timeout() -> void:
 	can_shoot = true

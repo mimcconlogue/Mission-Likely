@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d4b5tfl0r5fxp"]
+[gd_scene format=3 uid="uid://d4b5tfl0r5fxp"]
 
 [ext_resource type="Texture2D" uid="uid://uknm43qkrp72" path="res://bain damge.png" id="1_06t4h"]
 [ext_resource type="Script" uid="uid://bohv5xwhmbpt1" path="res://main_menu.gd" id="1_fu7sn"]
@@ -86,7 +86,7 @@ _data = {
 &"fade_to_clear": SubResource("Animation_glbon")
 }
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=473115208]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -95,16 +95,21 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fu7sn")
 
-[node name="Background" type="Panel" parent="."]
+[node name="Background" type="Panel" parent="." unique_id=764626634]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 286.0
+offset_top = 209.0
+offset_right = 286.0
+offset_bottom = 209.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.068356164, 0.10951315)
 theme_override_styles/panel = SubResource("StyleBoxTexture_rhts7")
 
-[node name="Darken" type="Panel" parent="."]
+[node name="Darken" type="Panel" parent="." unique_id=205009153]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,7 +117,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=395396281]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -127,7 +132,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="StartButton" type="Button" parent="VBoxContainer"]
+[node name="StartButton" type="Button" parent="VBoxContainer" unique_id=910286944]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.019554207, 0.019554116, 0.019554133, 1)
@@ -140,7 +145,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_06t4h")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7vrkn")
 text = "Start Game"
 
-[node name="ExitButton" type="Button" parent="VBoxContainer"]
+[node name="ExitButton" type="Button" parent="VBoxContainer" unique_id=1640814142]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.019554207, 0.019554116, 0.019554133, 1)
@@ -153,7 +158,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_06t4h")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7vrkn")
 text = "Exit"
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=384373659]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -174,7 +179,7 @@ text = "Head Hunted"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="."]
+[node name="Label2" type="Label" parent="." unique_id=1596594334]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -195,7 +200,7 @@ text = "By: Mission Likely"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PLACEHOLDER DEELTE" type="Label" parent="."]
+[node name="PLACEHOLDER DEELTE" type="Label" parent="." unique_id=462249454]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -222,7 +227,7 @@ RMB: heavy punch
 "
 horizontal_alignment = 1
 
-[node name="PLACEHOLDER DEELTE2" type="Label" parent="."]
+[node name="PLACEHOLDER DEELTE2" type="Label" parent="." unique_id=1580567773]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -245,7 +250,7 @@ THIS IS A Work in progress!"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Fader" type="ColorRect" parent="."]
+[node name="Fader" type="ColorRect" parent="." unique_id=1548229407]
 visible = false
 modulate = Color(18.892157, 18.892157, 18.892157, 1)
 layout_mode = 1
@@ -257,11 +262,9 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=742044936]
 root_node = NodePath("../Fader")
-libraries = {
-&"": SubResource("AnimationLibrary_glbon")
-}
+libraries/ = SubResource("AnimationLibrary_glbon")
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
