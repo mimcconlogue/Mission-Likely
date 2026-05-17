@@ -330,7 +330,7 @@ radius = 1505.3611
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qi2p4"]
 size = Vector2(120, 120)
 
-[node name="GunEnemy" type="CharacterBody2D" unique_id=132284048]
+[node name="GunEnemy" type="CharacterBody2D" unique_id=132284048 groups=["enemy"]]
 script = ExtResource("1_hob4l")
 
 [node name="EnemyLegs" type="AnimatedSprite2D" parent="." unique_id=2132151949]
@@ -384,7 +384,7 @@ shape = SubResource("CircleShape2D_qi2p4")
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=417466014]
 target_position = Vector2(3650, 0)
 
-[node name="Area2D" type="Area2D" parent="." unique_id=317103824]
+[node name="Area2D" type="Area2D" parent="." unique_id=317103824 groups=["enemy"]]
 collision_layer = 8
 collision_mask = 8
 
@@ -402,6 +402,14 @@ texture = ExtResource("2_pdyhk")
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1434710821]
 position = Vector2(143.72998, 0)
 
+[node name="Area2D2" type="Area2D" parent="." unique_id=350296717 groups=["enemy"]]
+collision_layer = 512
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=212520927]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_qi2p4")
+
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
@@ -409,3 +417,4 @@ position = Vector2(143.72998, 0)
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_2_area_entered"]

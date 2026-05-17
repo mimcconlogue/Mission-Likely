@@ -361,7 +361,7 @@ size = Vector2(30.985428, 28.337582)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dcwf3"]
 
-[node name="FistsNotReady" type="Node2D" unique_id=139199968]
+[node name="PistolNotReady" type="Node2D" unique_id=139199968]
 script = ExtResource("1_3miuw")
 
 [node name="Ready" type="Node2D" parent="." unique_id=68509089]
@@ -438,6 +438,8 @@ skew = -0.03246343
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox/CollisionShape2D/HeadHurtBox" unique_id=1491290084]
 position = Vector2(-14.522585, -0.7692583)
 shape = SubResource("CircleShape2D_dcwf3")
+
+[node name="buh" type="Node2D" parent="." unique_id=948834360]
 
 [connection signal="animation_finished" from="Ready/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="Ready/AnimationPlayer" to="." method="_on_animation_player_animation_started"]

@@ -257,75 +257,75 @@ position = Vector2(4372, -1443)
 
 [node name="Enemies" type="Node2D" parent="game display" unique_id=204839176]
 
-[node name="GunEnemy" parent="game display/Enemies" unique_id=1212810556 instance=ExtResource("6_eow3j")]
+[node name="GunEnemy" parent="game display/Enemies" unique_id=1212810556 groups=["enemy"] instance=ExtResource("6_eow3j")]
 position = Vector2(1148, -400)
 rotation = -0.8795021
 
-[node name="Enemy" parent="game display/Enemies" unique_id=545997954 instance=ExtResource("7_j5wjh")]
+[node name="Enemy" parent="game display/Enemies" unique_id=545997954 groups=["enemy"] instance=ExtResource("7_j5wjh")]
 position = Vector2(1228, 440)
 rotation = 1.113509
 
-[node name="Enemy2" parent="game display/Enemies" unique_id=62290540 instance=ExtResource("7_j5wjh")]
+[node name="Enemy2" parent="game display/Enemies" unique_id=62290540 groups=["enemy"] instance=ExtResource("7_j5wjh")]
 position = Vector2(587, 191)
 
-[node name="Enemy3" parent="game display/Enemies" unique_id=1085856384 instance=ExtResource("7_j5wjh")]
+[node name="Enemy3" parent="game display/Enemies" unique_id=1085856384 groups=["enemy"] instance=ExtResource("7_j5wjh")]
 position = Vector2(2094.9998, 419)
 rotation = -1.4417465
 
-[node name="Enemy4" parent="game display/Enemies" unique_id=1490844661 instance=ExtResource("7_j5wjh")]
+[node name="Enemy4" parent="game display/Enemies" unique_id=1490844661 groups=["enemy"] instance=ExtResource("7_j5wjh")]
 position = Vector2(2214, -712)
 rotation = 0.8815565
 
-[node name="Enemy5" parent="game display/Enemies" unique_id=2082180709 instance=ExtResource("7_j5wjh")]
+[node name="Enemy5" parent="game display/Enemies" unique_id=2082180709 groups=["enemy"] instance=ExtResource("7_j5wjh")]
 position = Vector2(4058, -898)
 rotation = 0.8673078
 
-[node name="Enemy6" parent="game display/Enemies" unique_id=1343517622 instance=ExtResource("7_j5wjh")]
+[node name="Enemy6" parent="game display/Enemies" unique_id=1343517622 groups=["enemy"] instance=ExtResource("7_j5wjh")]
 position = Vector2(2886, -294)
 
-[node name="Enemy7" parent="game display/Enemies" unique_id=1049893266 instance=ExtResource("7_j5wjh")]
+[node name="Enemy7" parent="game display/Enemies" unique_id=1049893266 groups=["enemy"] instance=ExtResource("7_j5wjh")]
 position = Vector2(4852, -865)
 rotation = 1.6614705
 
-[node name="GunEnemy2" parent="game display/Enemies" unique_id=519043226 instance=ExtResource("6_eow3j")]
+[node name="GunEnemy2" parent="game display/Enemies" unique_id=519043226 groups=["enemy"] instance=ExtResource("6_eow3j")]
 position = Vector2(4094, 212)
 rotation = -0.91661215
 
-[node name="GunEnemy3" parent="game display/Enemies" unique_id=508124984 instance=ExtResource("6_eow3j")]
+[node name="GunEnemy3" parent="game display/Enemies" unique_id=508124984 groups=["enemy"] instance=ExtResource("6_eow3j")]
 position = Vector2(4841, 233)
 rotation = -1.7075931
 
-[node name="Enemy8" parent="game display/Enemies" unique_id=16019010 instance=ExtResource("7_j5wjh")]
+[node name="Enemy8" parent="game display/Enemies" unique_id=16019010 groups=["enemy"] instance=ExtResource("7_j5wjh")]
 position = Vector2(1807, -434)
 rotation = -2.1770692
 
-[node name="Enemy9" parent="game display/Enemies" unique_id=1330116103 instance=ExtResource("7_j5wjh")]
+[node name="Enemy9" parent="game display/Enemies" unique_id=1330116103 groups=["enemy"] instance=ExtResource("7_j5wjh")]
 position = Vector2(787, -955)
 rotation = -1.5987835
 
-[node name="Enemy10" parent="game display/Enemies" unique_id=2051043727 instance=ExtResource("7_j5wjh")]
+[node name="Enemy10" parent="game display/Enemies" unique_id=2051043727 groups=["enemy"] instance=ExtResource("7_j5wjh")]
 position = Vector2(2330, -2097)
 rotation = 1.7453643
 
-[node name="Enemy11" parent="game display/Enemies" unique_id=796371673 instance=ExtResource("7_j5wjh")]
+[node name="Enemy11" parent="game display/Enemies" unique_id=796371673 groups=["enemy"] instance=ExtResource("7_j5wjh")]
 position = Vector2(964, -1949)
 rotation = 1.8721327
 
-[node name="Enemy12" parent="game display/Enemies" unique_id=1657058135 instance=ExtResource("7_j5wjh")]
+[node name="Enemy12" parent="game display/Enemies" unique_id=1657058135 groups=["enemy"] instance=ExtResource("7_j5wjh")]
 position = Vector2(1485, -2608)
 
-[node name="Enemy13" parent="game display/Enemies" unique_id=615302463 instance=ExtResource("7_j5wjh")]
+[node name="Enemy13" parent="game display/Enemies" unique_id=615302463 groups=["enemy"] instance=ExtResource("7_j5wjh")]
 position = Vector2(1503, -3432)
 
-[node name="Enemy14" parent="game display/Enemies" unique_id=1357551510 instance=ExtResource("7_j5wjh")]
+[node name="Enemy14" parent="game display/Enemies" unique_id=1357551510 groups=["enemy"] instance=ExtResource("7_j5wjh")]
 position = Vector2(2100, -2984)
 rotation = 3.1300852
 
-[node name="Enemy15" parent="game display/Enemies" unique_id=1281508286 instance=ExtResource("7_j5wjh")]
+[node name="Enemy15" parent="game display/Enemies" unique_id=1281508286 groups=["enemy"] instance=ExtResource("7_j5wjh")]
 position = Vector2(3967, -1422)
 rotation = 3.1354659
 
-[node name="GunEnemy4" parent="game display/Enemies" unique_id=535420460 instance=ExtResource("6_eow3j")]
+[node name="GunEnemy4" parent="game display/Enemies" unique_id=535420460 groups=["enemy"] instance=ExtResource("6_eow3j")]
 position = Vector2(3008, -3456)
 rotation = 1.5798223
 

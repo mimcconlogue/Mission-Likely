@@ -7,26 +7,27 @@
 script/source = "extends Node2D
 var prepared = false
 var type = \"fists\"
-@onready var fists_ready: Node2D = $FistsReady
-@onready var fists_not_ready: Node2D = $FistsNotReady
+@onready var pistol_not_ready: Node2D = $PistolNotReady
+@onready var pistol_ready: Node2D = $PistolReady
+var open = false
 var current_animation_is_idle = true
-@onready var current_child = fists_not_ready
+@onready var current_child = pistol_not_ready
 signal animation_over
 func _ready() -> void: 
 	check_prepared()
 func check_prepared():
 	if prepared == true :
-		fists_ready.show()
-		fists_not_ready.hide()
-		fists_ready.set_process(true)
-		fists_not_ready.set_process(false)
-		current_child = fists_ready
+		pistol_ready.show()
+		pistol_not_ready.hide()
+		pistol_ready.set_process(true)
+		pistol_not_ready.set_process(false)
+		current_child = pistol_ready
 	else:
-		fists_ready.hide()
-		fists_not_ready.show()
-		fists_ready.set_process(false)
-		fists_not_ready.set_process(true)
-		current_child = fists_not_ready
+		pistol_ready.hide()
+		pistol_not_ready.show()
+		pistol_ready.set_process(false)
+		pistol_not_ready.set_process(true)
+		current_child = pistol_not_ready
 	current_child.get_child(0).get_child(0).play(\"animations\" + \"/\" + \"idle\")
 func check_animation():
 	if current_animation_is_idle == true:

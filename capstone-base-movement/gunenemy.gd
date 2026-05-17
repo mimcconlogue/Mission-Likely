@@ -139,8 +139,11 @@ func die():
 	cadaver.global_rotation = gun_enemy.global_rotation
 	queue_free()
 func _on_area_2d_area_entered(_area: Area2D) -> void:
-	print("Take That!")
-	take_damage(5,15)
+	if player_visible == true:
+		take_damage(15,25)
+	else:
+		take_damage(25,50)
+	
 
 func shoot():
 	velocity = Vector2.ZERO
@@ -165,3 +168,10 @@ func _on_idle_timer_timeout() -> void:
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = velocity.move_toward(safe_velocity * move_speed, 12.0)
 	move_and_slide()
+
+
+func _on_area_2d_2_area_entered(area: Area2D) -> void:
+	if player_visible == true:
+		take_damage(50,35)
+	else:
+		take_damage(75,35)

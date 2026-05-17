@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cgu87auun5grt"]
 
 [ext_resource type="Script" uid="uid://dbcrlfy6ft854" path="res://active_weapon.gd" id="1_in4ii"]
+[ext_resource type="PackedScene" uid="uid://cgopeeu0mh7w8" path="res://weapons/pistol/weapon.tscn" id="3_bfrdl"]
 [ext_resource type="PackedScene" uid="uid://bsn2eunsqwbqh" path="res://weapons/fists/weapon.tscn" id="14_fwoh1"]
 
 [sub_resource type="GDScript" id="GDScript_tg1dk"]
@@ -38,5 +39,11 @@ script = ExtResource("1_in4ii")
 
 [node name="weapon" parent="ActiveWeapon" unique_id=365548807 instance=ExtResource("14_fwoh1")]
 scale = Vector2(0.99999994, 0.99999994)
+
+[node name="weapon2" parent="ActiveWeapon" unique_id=1906809424 instance=ExtResource("3_bfrdl")]
+visible = false
+
+[node name="weapon3" parent="ActiveWeapon" unique_id=1919649325 instance=ExtResource("3_bfrdl")]
+visible = false
 
 [connection signal="animation_over" from="ActiveWeapon/weapon" to="ActiveWeapon" method="_on_weapon_animation_over"]

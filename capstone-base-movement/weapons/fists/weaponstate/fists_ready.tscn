@@ -132,6 +132,30 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Ready/Attack2:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2uovb"]
 _data = {
@@ -357,7 +381,6 @@ size = Vector2(30.985428, 28.337582)
 script = ExtResource("1_3c326")
 
 [node name="Ready" type="Node2D" parent="." unique_id=1770605380]
-position = Vector2(-44, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Ready" unique_id=1407884320]
 root_node = NodePath("../..")
@@ -367,7 +390,6 @@ libraries/animations = ExtResource("2_0yukw")
 [node name="Attack1" type="Node2D" parent="Ready" unique_id=855127479]
 
 [node name="AnimatedSprite2DAttack1" type="AnimatedSprite2D" parent="Ready/Attack1" unique_id=53711541]
-visible = false
 position = Vector2(-2, 1)
 scale = Vector2(1.4920452, 1.4920452)
 sprite_frames = SubResource("SpriteFrames_0yukw")
@@ -415,7 +437,7 @@ collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=486013251]
-position = Vector2(385.00003, 60.999985)
+position = Vector2(369.99997, -154.99997)
 rotation = -0.11277305
 scale = Vector2(3.9394312, 3.9394312)
 shape = SubResource("RectangleShape2D_3c326")
@@ -424,8 +446,8 @@ disabled = true
 [node name="HurtBox" type="Area2D" parent="." unique_id=384905841]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1292615219]
-position = Vector2(0.33333284, -0.33333313)
-rotation = 0.12837364
+position = Vector2(7.6293945e-06, -3)
+rotation = 0.06288326
 scale = Vector2(11.073337, 14.144772)
 shape = SubResource("CapsuleShape2D_0yukw")
 

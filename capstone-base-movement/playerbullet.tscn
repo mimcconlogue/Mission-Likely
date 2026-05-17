@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bumk3ec44v75p"]
+
+[ext_resource type="Script" uid="uid://lwkk8ve5b07s" path="res://playerbullet.gd" id="1_vh4ht"]
+[ext_resource type="Texture2D" uid="uid://c3fy62ymmp7ep" path="res://icon.svg" id="2_nuitn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7oki"]
+size = Vector2(20.12146, 20)
+
+[node name="EnemyBullet" type="Area2D" unique_id=1796063381]
+scale = Vector2(1.0399989, 1)
+collision_layer = 512
+collision_mask = 512
+script = ExtResource("1_vh4ht")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1428775598]
+self_modulate = Color(1, 1, 0, 1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_nuitn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=621445921]
+visible = false
+position = Vector2(-0.09230886, 0)
+scale = Vector2(1.5200002, 1.5200002)
+shape = SubResource("RectangleShape2D_v7oki")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=438730790]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

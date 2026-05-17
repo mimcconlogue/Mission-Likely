@@ -17,8 +17,8 @@ func _on_area_entered(_area: Area2D) -> void:
 size = Vector2(200, 200)
 
 [node name="exit" type="Area2D" unique_id=667176898]
-collision_layer = 4
-collision_mask = 4
+collision_layer = 2048
+collision_mask = 2048
 script = SubResource("GDScript_24kvk")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=829525719]

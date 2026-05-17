@@ -115,8 +115,8 @@ position = Vector2(-13.999999, 7)
 scale = Vector2(0.25, 0.25)
 
 [node name="Area2D3" type="Area2D" parent="Legs/body" unique_id=203699676]
-collision_layer = 4
-collision_mask = 4
+collision_layer = 2052
+collision_mask = 2052
 script = SubResource("GDScript_hqtel")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/body/Area2D3" unique_id=753820157]
