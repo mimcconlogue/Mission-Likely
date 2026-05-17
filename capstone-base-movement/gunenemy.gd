@@ -138,8 +138,12 @@ func update_target_position(target_pos: Vector2):
 
 func die():
 	var cadaver = corpse.instantiate()
-	cadaver.global_position = gun_enemy.global_position
-	cadaver.global_rotation = gun_enemy.global_rotation
+	var spawn_pos = global_position
+	var spawn_rot = global_rotation
+	var viewport_node = get_parent()
+	viewport_node.add_child(cadaver)
+	cadaver.global_position = spawn_pos
+	cadaver.global_rotation = spawn_rot
 	queue_free()
 func _on_area_2d_area_entered(_area: Area2D) -> void:
 	if player_visible == true:

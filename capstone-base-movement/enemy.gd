@@ -176,3 +176,8 @@ func _on_area_2d_area_entered(_area: Area2D) -> void:
 
 func boost_end():
 	pass
+func _on_area_2d_2_area_entered(area: Area2D) -> void:
+	if player_visible == true:
+		take_damage(50,35)
+	else:
+		take_damage(75,35)

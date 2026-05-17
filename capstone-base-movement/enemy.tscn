@@ -424,6 +424,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qi2p4"]
 size = Vector2(120, 120)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4sfiy"]
+size = Vector2(120, 120)
+
 [node name="Enemy" type="CharacterBody2D" unique_id=1974527333]
 script = ExtResource("1_4gyqm")
 
@@ -487,8 +490,17 @@ collision_mask = 8
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_qi2p4")
 
+[node name="Area2D2" type="Area2D" parent="." unique_id=90029780 groups=["enemy"]]
+collision_layer = 512
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=1371340452]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_4sfiy")
+
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_2_area_entered"]
