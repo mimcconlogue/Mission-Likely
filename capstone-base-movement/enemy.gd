@@ -35,7 +35,7 @@ func take_damage(blood_damage, pain_damage):
 	#knockback
 	is_stunned = true
 	var direction = (player.global_position).direction_to(global_position)
-	knockback_velocity = direction * 400.0
+	knockback_velocity = direction * 100.0
 	#dmg
 	blood = blood - blood_damage
 	pain = pain - pain_damage
@@ -129,6 +129,7 @@ func _physics_process(_delta: float):
 		if distance_to_player < attack_distance:
 			animation_player.play("goon/swing")
 			recently_attacked = true
+			move_speed = 1000
 			await animation_player.animation_finished
 		#...else play idle anim (stop swing) and keep moving
 		elif recently_attacked:
@@ -168,3 +169,6 @@ func _on_area_2d_area_entered(_area: Area2D) -> void:
 			tween = create_tween()
 			tween.set_loops()
 			tween.tween_property(self,"rotation",target_angle, 0.75).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
+func boost_end():
+	pass
