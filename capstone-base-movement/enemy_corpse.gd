@@ -5,7 +5,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	animated_sprite_2d.play("fall")
-	print("bleh i'm dead")
+	rotation = randi() % 360
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

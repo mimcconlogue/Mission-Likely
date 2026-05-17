@@ -58,10 +58,14 @@ animations = [{
 "speed": 25.0
 }]
 
-[node name="EnemyCorpse" type="Node2D" unique_id=780888169]
+[node name="EnemyCorpse" type="Node2D" unique_id=941377923]
+scale = Vector2(0.3, 0.3)
 script = ExtResource("1_x0dw0")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=477076597]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2074658548]
+z_index = -1
+position = Vector2(-3.3333206, 16.666666)
+scale = Vector2(1.1311728, 1.1311728)
 sprite_frames = SubResource("SpriteFrames_tqog4")
 animation = &"fall"
 frame = 11
