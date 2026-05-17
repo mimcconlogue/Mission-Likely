@@ -114,7 +114,7 @@ func _physics_process(_delta: float):
 		enemy.rotation = direction.angle()
 		#if u close enough attack & stop move...
 		if distance_to_player < attack_distance:
-			animation_player.play("swing")
+			animation_player.play("goon/swing")
 			recently_attacked = true
 			await animation_player.animation_finished
 		#...else play idle anim (stop swing) and keep moving

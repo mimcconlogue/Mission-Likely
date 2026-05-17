@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://he5ym66anqvn"]
+[gd_scene format=3 uid="uid://he5ym66anqvn"]
 
 [ext_resource type="Script" uid="uid://bfumjpbb3nwq0" path="res://enemy.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://imgbje8wjjnh" path="res://animation/player leg/New Legs/walk/0195.png" id="2_5tv8x"]
@@ -69,6 +69,7 @@
 [ext_resource type="Texture2D" uid="uid://cwuxbw3s4seql" path="res://animation/enemy/0058.png" id="47_m6srv"]
 [ext_resource type="Texture2D" uid="uid://erkcpqjucm51" path="res://animation/enemy/0059.png" id="48_bx15q"]
 [ext_resource type="Texture2D" uid="uid://bbyi0s2gwc45l" path="res://animation/enemy/0060.png" id="49_v02nr"]
+[ext_resource type="Animation" uid="uid://c4hqe6bgd0mjs" path="res://animation/enemy/punchin/swing.res" id="70_4sfiy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8hbvk"]
 animations = [{
@@ -415,67 +416,74 @@ radius = 64.50194
 [sub_resource type="CircleShape2D" id="CircleShape2D_qi2p4"]
 radius = 1505.3611
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hb2o4"]
+_data = {
+&"swing": ExtResource("70_4sfiy")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qi2p4"]
 size = Vector2(120, 120)
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" unique_id=1974527333]
 script = ExtResource("1_4gyqm")
 
-[node name="HitParticles" parent="." instance=ExtResource("2_ybt8m")]
+[node name="HitParticles" parent="." unique_id=1506000718 instance=ExtResource("2_ybt8m")]
 
-[node name="EnemyLegs" type="AnimatedSprite2D" parent="."]
+[node name="EnemyLegs" type="AnimatedSprite2D" parent="." unique_id=154052259]
 position = Vector2(-1.0000076, 1)
 scale = Vector2(0.30839166, 0.30839166)
 sprite_frames = SubResource("SpriteFrames_8hbvk")
 animation = &"fall"
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1510657756]
 path_desired_distance = 55.0
 target_desired_distance = 20.0
 avoidance_enabled = true
 debug_enabled = true
 debug_path_custom_line_width = 1.0
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=432649483]
 scale = Vector2(0.3535274, 0.3535274)
 sprite_frames = SubResource("SpriteFrames_8pk15")
-animation = &"Block"
+animation = &"Punch1"
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1056610172]
 position = Vector2(-0.5, -0.5)
 shape = SubResource("CircleShape2D_4gyqm")
 
-[node name="EnemyWeapon" parent="." instance=ExtResource("3_qi2p4")]
+[node name="EnemyWeapon" parent="." unique_id=1280049924 instance=ExtResource("3_qi2p4")]
+position = Vector2(80, 22)
 scale = Vector2(-0.6136739, 0.5364889)
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1564184359]
 unique_name_in_owner = true
 wait_time = 0.539
 one_shot = true
 
-[node name="DetectionArea" type="Area2D" parent="."]
+[node name="DetectionArea" type="Area2D" parent="." unique_id=966107233]
 collision_layer = 2
 collision_mask = 2
 
-[node name="TrianglePart" type="CollisionPolygon2D" parent="DetectionArea"]
+[node name="TrianglePart" type="CollisionPolygon2D" parent="DetectionArea" unique_id=1425949652]
 polygon = PackedVector2Array(0, 0, 1024, -1024, 1024, 1024)
 
-[node name="CirclePart" type="CollisionShape2D" parent="DetectionArea"]
+[node name="CirclePart" type="CollisionShape2D" parent="DetectionArea" unique_id=810216864]
 position = Vector2(2112, 0)
 shape = SubResource("CircleShape2D_qi2p4")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=46781542]
 unique_name_in_owner = true
-autoplay = "idle"
+libraries/goon = SubResource("AnimationLibrary_hb2o4")
+autoplay = &"idle"
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=864463742]
 target_position = Vector2(3650, 0)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=865639731]
 collision_layer = 8
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1403606665]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_qi2p4")
 
