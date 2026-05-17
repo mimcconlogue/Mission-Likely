@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var enemy: CharacterBody2D = $"."
 @onready var enemy_legs: AnimatedSprite2D = $EnemyLegs
 @onready var sprite: AnimatedSprite2D = $Sprite
+@onready var hit_particles: GPUParticles2D = $HitParticles
 const corpse = preload("res://enemy_corpse.tscn")
 var move_speed = 400
 var tween = null
@@ -24,18 +25,26 @@ var max_blood: int = 100
 var pain: int = 100
 var max_pain: int = 100
 var morale = 5
+var knockback_velocity = Vector2.ZERO
+var is_stunned = false
 
 func _ready() -> void:
 	enemy_legs.play("wait")
 	weapon_activate()
 func take_damage(blood_damage, pain_damage):
+	#knockback
+	is_stunned = true
+	var direction = (player.global_position).direction_to(global_position)
+	knockback_velocity = direction * 100.0
+	#dmg
 	blood = blood - blood_damage
 	pain = pain - pain_damage
+	hit_particles.restart()
+	hit_particles.emitting = true
 	detect_death()
 func detect_death():
 	if blood <= 0:
 		die()
-		
 	if pain <= 0:
 		die()
 #start chase if u stay spotted too long lil bro
@@ -97,22 +106,30 @@ func _physics_process(_delta: float):
 	#if u get spotted
 	if detected: 
 		#YOU NEED THIS SO IT DOESNT LOCK THE ROTATION
-		#SERIOUSLY
+		#SERIOUSLY \/
 		if tween: 
 			tween.kill()
 		#move to player and look at them
-		var current_position: Vector2 = self.global_transform.origin
-		var next_path_position: Vector2 = nav_agent.get_next_path_position()
-		var new_velocity: Vector2 = current_position.direction_to(next_path_position)
-		nav_agent.velocity = new_velocity
-		update_target_position(player.global_transform.origin)
+		if is_stunned:
+			knockback_velocity = lerp(knockback_velocity, Vector2.ZERO, 0.1)
+			velocity = knockback_velocity
+			move_and_slide()
+			if knockback_velocity.length() < 10:
+				is_stunned = false
+		else:
+			var current_position: Vector2 = self.global_transform.origin
+			var next_path_position: Vector2 = nav_agent.get_next_path_position()
+			var new_velocity: Vector2 = current_position.direction_to(next_path_position)
+			nav_agent.velocity = new_velocity
+			update_target_position(player.global_transform.origin)
 		#all of this for rotation
 		var direction = global_position.direction_to(player.global_position)
 		enemy.rotation = direction.angle()
 		#if u close enough attack & stop move...
 		if distance_to_player < attack_distance:
-			animation_player.play("swing")
+			animation_player.play("goon/swing")
 			recently_attacked = true
+			move_speed = 1000
 			await animation_player.animation_finished
 		#...else play idle anim (stop swing) and keep moving
 		elif recently_attacked:
@@ -134,8 +151,12 @@ func weapon_activate():
 
 func die():
 	var cadaver = corpse.instantiate()
-	cadaver.global_position = enemy.global_position
-	cadaver.global_rotation = enemy.global_rotation
+	var spawn_pos = global_position
+	var spawn_rot = global_rotation
+	var viewport_node = get_parent()
+	viewport_node.add_child(cadaver)
+	cadaver.global_position = spawn_pos
+	cadaver.global_rotation = spawn_rot
 	queue_free()
 func _on_area_2d_area_entered(_area: Area2D) -> void:
 	if detected == true:
@@ -152,3 +173,6 @@ func _on_area_2d_area_entered(_area: Area2D) -> void:
 			tween = create_tween()
 			tween.set_loops()
 			tween.tween_property(self,"rotation",target_angle, 0.75).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
+func boost_end():
+	pass

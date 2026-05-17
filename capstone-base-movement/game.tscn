@@ -1,6 +1,6 @@
-[gd_scene format=4 uid="uid://bxkfexdm6v2mo"]
+[gd_scene load_steps=52 format=4 uid="uid://bxkfexdm6v2mo"]
 
-[ext_resource type="PackedScene" uid="uid://btj5reeqo2i2u" path="res://map.tscn" id="1_7jktm"]
+[ext_resource type="PackedScene" uid="uid://btj5reeqo2i2u" path="res://MAP.tscn" id="1_7jktm"]
 [ext_resource type="PackedScene" uid="uid://66hsxoauhh40" path="res://player.tscn" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://wcdwxxpqqiyn" path="res://game_display.gd" id="1_j5wjh"]
 [ext_resource type="Script" uid="uid://c1clsv4pms1ee" path="res://gameorigin.gd" id="1_vef74"]
@@ -237,139 +237,139 @@ fill = 1
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0.972, 0.04)
 
-[node name="game" type="Node2D" unique_id=761644435]
+[node name="game" type="Node2D"]
 script = ExtResource("1_vef74")
 metadata/_edit_vertical_guides_ = [-1338.0]
 
-[node name="game display" type="SubViewport" parent="." unique_id=125305767]
+[node name="game display" type="SubViewport" parent="."]
 physics_object_picking = true
 script = ExtResource("1_j5wjh")
 
-[node name="map" parent="game display" unique_id=1096823309 instance=ExtResource("1_7jktm")]
+[node name="map" parent="game display" instance=ExtResource("1_7jktm")]
 position = Vector2(-209, 108)
 scale = Vector2(3.615673, 3.615673)
 
-[node name="player" parent="game display" unique_id=1171167217 instance=ExtResource("1_e2o6t")]
+[node name="player" parent="game display" instance=ExtResource("1_e2o6t")]
 position = Vector2(-299, 130)
 
-[node name="exit" parent="game display" unique_id=2145464730 instance=ExtResource("4_fc0e3")]
+[node name="exit" parent="game display" instance=ExtResource("4_fc0e3")]
 position = Vector2(4372, -1443)
 
-[node name="Enemies" type="Node2D" parent="game display" unique_id=204839176]
+[node name="Enemies" type="Node2D" parent="game display"]
 
-[node name="GunEnemy" parent="game display/Enemies" unique_id=1212810556 groups=["enemy"] instance=ExtResource("6_eow3j")]
+[node name="GunEnemy" parent="game display/Enemies" instance=ExtResource("6_eow3j")]
 position = Vector2(1148, -400)
 rotation = -0.8795021
 
-[node name="Enemy" parent="game display/Enemies" unique_id=545997954 groups=["enemy"] instance=ExtResource("7_j5wjh")]
+[node name="Enemy" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
 position = Vector2(1228, 440)
 rotation = 1.113509
 
-[node name="Enemy2" parent="game display/Enemies" unique_id=62290540 groups=["enemy"] instance=ExtResource("7_j5wjh")]
+[node name="Enemy2" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
 position = Vector2(587, 191)
 
-[node name="Enemy3" parent="game display/Enemies" unique_id=1085856384 groups=["enemy"] instance=ExtResource("7_j5wjh")]
+[node name="Enemy3" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
 position = Vector2(2094.9998, 419)
 rotation = -1.4417465
 
-[node name="Enemy4" parent="game display/Enemies" unique_id=1490844661 groups=["enemy"] instance=ExtResource("7_j5wjh")]
+[node name="Enemy4" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
 position = Vector2(2214, -712)
 rotation = 0.8815565
 
-[node name="Enemy5" parent="game display/Enemies" unique_id=2082180709 groups=["enemy"] instance=ExtResource("7_j5wjh")]
+[node name="Enemy5" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
 position = Vector2(4058, -898)
 rotation = 0.8673078
 
-[node name="Enemy6" parent="game display/Enemies" unique_id=1343517622 groups=["enemy"] instance=ExtResource("7_j5wjh")]
+[node name="Enemy6" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
 position = Vector2(2886, -294)
 
-[node name="Enemy7" parent="game display/Enemies" unique_id=1049893266 groups=["enemy"] instance=ExtResource("7_j5wjh")]
+[node name="Enemy7" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
 position = Vector2(4852, -865)
 rotation = 1.6614705
 
-[node name="GunEnemy2" parent="game display/Enemies" unique_id=519043226 groups=["enemy"] instance=ExtResource("6_eow3j")]
+[node name="GunEnemy2" parent="game display/Enemies" instance=ExtResource("6_eow3j")]
 position = Vector2(4094, 212)
 rotation = -0.91661215
 
-[node name="GunEnemy3" parent="game display/Enemies" unique_id=508124984 groups=["enemy"] instance=ExtResource("6_eow3j")]
+[node name="GunEnemy3" parent="game display/Enemies" instance=ExtResource("6_eow3j")]
 position = Vector2(4841, 233)
 rotation = -1.7075931
 
-[node name="Enemy8" parent="game display/Enemies" unique_id=16019010 groups=["enemy"] instance=ExtResource("7_j5wjh")]
+[node name="Enemy8" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
 position = Vector2(1807, -434)
 rotation = -2.1770692
 
-[node name="Enemy9" parent="game display/Enemies" unique_id=1330116103 groups=["enemy"] instance=ExtResource("7_j5wjh")]
+[node name="Enemy9" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
 position = Vector2(787, -955)
 rotation = -1.5987835
 
-[node name="Enemy10" parent="game display/Enemies" unique_id=2051043727 groups=["enemy"] instance=ExtResource("7_j5wjh")]
+[node name="Enemy10" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
 position = Vector2(2330, -2097)
 rotation = 1.7453643
 
-[node name="Enemy11" parent="game display/Enemies" unique_id=796371673 groups=["enemy"] instance=ExtResource("7_j5wjh")]
+[node name="Enemy11" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
 position = Vector2(964, -1949)
 rotation = 1.8721327
 
-[node name="Enemy12" parent="game display/Enemies" unique_id=1657058135 groups=["enemy"] instance=ExtResource("7_j5wjh")]
+[node name="Enemy12" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
 position = Vector2(1485, -2608)
 
-[node name="Enemy13" parent="game display/Enemies" unique_id=615302463 groups=["enemy"] instance=ExtResource("7_j5wjh")]
+[node name="Enemy13" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
 position = Vector2(1503, -3432)
 
-[node name="Enemy14" parent="game display/Enemies" unique_id=1357551510 groups=["enemy"] instance=ExtResource("7_j5wjh")]
+[node name="Enemy14" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
 position = Vector2(2100, -2984)
 rotation = 3.1300852
 
-[node name="Enemy15" parent="game display/Enemies" unique_id=1281508286 groups=["enemy"] instance=ExtResource("7_j5wjh")]
+[node name="Enemy15" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
 position = Vector2(3967, -1422)
 rotation = 3.1354659
 
-[node name="GunEnemy4" parent="game display/Enemies" unique_id=535420460 groups=["enemy"] instance=ExtResource("6_eow3j")]
+[node name="GunEnemy4" parent="game display/Enemies" instance=ExtResource("6_eow3j")]
 position = Vector2(3008, -3456)
 rotation = 1.5798223
 
-[node name="items" type="Node2D" parent="game display" unique_id=278862421]
+[node name="items" type="Node2D" parent="game display"]
 
-[node name="painkillers" type="Node2D" parent="game display/items" unique_id=200277464]
+[node name="painkillers" type="Node2D" parent="game display/items"]
 
-[node name="PainKiller" parent="game display/items/painkillers" unique_id=955791415 instance=ExtResource("5_7jktm")]
+[node name="PainKiller" parent="game display/items/painkillers" instance=ExtResource("5_7jktm")]
 position = Vector2(1146, 1112)
 
-[node name="PainKiller2" parent="game display/items/painkillers" unique_id=684410214 instance=ExtResource("5_7jktm")]
+[node name="PainKiller2" parent="game display/items/painkillers" instance=ExtResource("5_7jktm")]
 position = Vector2(488.00012, -953.00024)
 
-[node name="PainKiller3" parent="game display/items/painkillers" unique_id=807339434 instance=ExtResource("5_7jktm")]
+[node name="PainKiller3" parent="game display/items/painkillers" instance=ExtResource("5_7jktm")]
 position = Vector2(1274.0001, -3454.0002)
 
-[node name="PainKiller4" parent="game display/items/painkillers" unique_id=1479797814 instance=ExtResource("5_7jktm")]
+[node name="PainKiller4" parent="game display/items/painkillers" instance=ExtResource("5_7jktm")]
 position = Vector2(2741, -162.00002)
 
-[node name="PainKiller5" parent="game display/items/painkillers" unique_id=166723001 instance=ExtResource("5_7jktm")]
+[node name="PainKiller5" parent="game display/items/painkillers" instance=ExtResource("5_7jktm")]
 position = Vector2(2037, -1707)
 
-[node name="DarknessFilter" type="CanvasModulate" parent="game display" unique_id=619836106]
+[node name="DarknessFilter" type="CanvasModulate" parent="game display"]
 color = Color(0.03839717, 0.03839716, 0.038397186, 1)
 
-[node name="GameDisplay" type="Sprite2D" parent="." unique_id=374404467]
+[node name="GameDisplay" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_215e1")
 texture = SubResource("ViewportTexture_eow3j")
 
-[node name="VisibilityDebug" type="Sprite2D" parent="." unique_id=286017090]
+[node name="VisibilityDebug" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(-216, -215.5)
 scale = Vector2(0.15625, 0.15820313)
 texture = SubResource("ViewportTexture_mfdv2")
 
-[node name="UI" parent="." unique_id=1855738003 instance=ExtResource("6_ryrav")]
+[node name="UI" parent="." instance=ExtResource("6_ryrav")]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=54177858]
+[node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="SubViewport" type="SubViewport" parent="." unique_id=564664839]
+[node name="SubViewport" type="SubViewport" parent="."]
 handle_input_locally = false
 script = ExtResource("1_j5wjh")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="SubViewport" unique_id=1415173710]
+[node name="TileMapLayer" type="TileMapLayer" parent="SubViewport"]
 unique_name_in_owner = true
 light_mask = 3
 material = SubResource("ShaderMaterial_lc2xo")
@@ -379,24 +379,24 @@ tile_map_data = PackedByteArray("AAD+//7/AQADAAAAAAD///7/AQAEAAAAAAD+/wEAAQADAAI
 tile_set = SubResource("TileSet_7sc4i")
 script = ExtResource("13_7sc4i")
 
-[node name="Camera2D" type="Camera2D" parent="SubViewport" unique_id=1942977625]
+[node name="Camera2D" type="Camera2D" parent="SubViewport"]
 script = ExtResource("13_lc2xo")
 
-[node name="PointLight2D" type="PointLight2D" parent="SubViewport" unique_id=1119221457]
+[node name="PointLight2D" type="PointLight2D" parent="SubViewport"]
 blend_mode = 1
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_7sc4i")
 texture_scale = 17.3
 script = ExtResource("13_215e1")
 
-[node name="PointLight2D2" type="PointLight2D" parent="SubViewport" unique_id=138977376]
+[node name="PointLight2D2" type="PointLight2D" parent="SubViewport"]
 blend_mode = 1
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_80cx4")
 texture_scale = 17.3
 script = ExtResource("13_215e1")
 
-[node name="PointLight2D" type="PointLight2D" parent="SubViewport/PointLight2D2" unique_id=130243400]
+[node name="PointLight2D" type="PointLight2D" parent="SubViewport/PointLight2D2"]
 position = Vector2(-450, 0)
 rotation = 0.7853982
 texture = SubResource("GradientTexture2D_e8heu")
