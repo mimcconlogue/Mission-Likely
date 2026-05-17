@@ -193,6 +193,7 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.237)
 
 [node name="Map" type="Node2D" unique_id=1888005942]
+z_index = -2
 
 [node name="Background" type="ColorRect" parent="." unique_id=2008305891]
 offset_left = -650.0
