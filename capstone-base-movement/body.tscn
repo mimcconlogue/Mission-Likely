@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cgu87auun5grt"]
+[gd_scene load_steps=5 format=3 uid="uid://cgu87auun5grt"]
 
 [ext_resource type="Script" uid="uid://dbcrlfy6ft854" path="res://active_weapon.gd" id="1_in4ii"]
 [ext_resource type="PackedScene" uid="uid://cgopeeu0mh7w8" path="res://weapons/pistol/weapon.tscn" id="3_bfrdl"]
@@ -29,21 +29,21 @@ func _input(_event: InputEvent) -> void:
 			active_weapon.get_child(active_weapon.current_weapon).check_prepared()
 "
 
-[node name="body" type="Node2D" unique_id=1094397119]
+[node name="body" type="Node2D"]
 position = Vector2(1.1920929e-07, 2.3841858e-07)
 scale = Vector2(0.2, 0.2)
 script = SubResource("GDScript_tg1dk")
 
-[node name="ActiveWeapon" type="Node2D" parent="." unique_id=1544689794]
+[node name="ActiveWeapon" type="Node2D" parent="."]
 script = ExtResource("1_in4ii")
 
-[node name="weapon" parent="ActiveWeapon" unique_id=365548807 instance=ExtResource("14_fwoh1")]
+[node name="weapon" parent="ActiveWeapon" instance=ExtResource("14_fwoh1")]
 scale = Vector2(0.99999994, 0.99999994)
 
-[node name="weapon2" parent="ActiveWeapon" unique_id=1906809424 instance=ExtResource("3_bfrdl")]
+[node name="weapon2" parent="ActiveWeapon" instance=ExtResource("3_bfrdl")]
 visible = false
 
-[node name="weapon3" parent="ActiveWeapon" unique_id=1919649325 instance=ExtResource("3_bfrdl")]
+[node name="weapon3" parent="ActiveWeapon" instance=ExtResource("3_bfrdl")]
 visible = false
 
 [connection signal="animation_over" from="ActiveWeapon/weapon" to="ActiveWeapon" method="_on_weapon_animation_over"]
