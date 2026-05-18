@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c00tx3c1m654h"]
+
+[ext_resource type="Script" uid="uid://eskipkxefumq" path="res://node_2d.gd" id="1_el03a"]
+[ext_resource type="Texture2D" uid="uid://cb5dytvu82j6c" path="res://textures/gun.png0205.png" id="2_el03a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q4tng"]
+
+[node name="gun" type="Area2D" unique_id=1257171996]
+scale = Vector2(4.0716205, 4.0716205)
+collision_layer = 65536
+collision_mask = 65536
+script = ExtResource("1_el03a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=877165630]
+shape = SubResource("CircleShape2D_q4tng")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1447694639]
+position = Vector2(1.9999999, -4)
+rotation = -0.39264488
+scale = Vector2(0.025620291, 0.025620291)
+texture = ExtResource("2_el03a")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

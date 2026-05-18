@@ -3,7 +3,7 @@ extends ProgressBar
 var player 
 var stamina
 func _ready() -> void:
-	player = get_node("/root/game/game display/player")
+	player = get_node("/root/game/game_display/player")
 	update()
 func update():
 	stamina = player.legs.dodges * 100

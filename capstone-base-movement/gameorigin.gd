@@ -1,5 +1,5 @@
 extends Node2D
-@onready var game_display: SubViewport = $"game display"
+@onready var game_display: SubViewport = $"game_display"
 @onready var sub_viewport: SubViewport = $SubViewport
 
 

@@ -1,5 +1,5 @@
 extends CharacterBody2D
-@onready var player = get_node("/root/game/game display/player/Legs")
+@onready var player = get_node("/root/game/game_display/player/Legs")
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var timer = %Timer
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
@@ -181,3 +181,13 @@ func _on_area_2d_2_area_entered(area: Area2D) -> void:
 		take_damage(50,35)
 	else:
 		take_damage(75,35)
+		var direction = (player.global_position - global_position).normalized()
+		var target_angle = direction.angle()
+		if timer_not_active:
+			timer.start()
+			timer_not_active = false
+		if tween: 
+			tween.kill()
+			tween = create_tween()
+			tween.set_loops()
+			tween.tween_property(self,"rotation",target_angle, 0.75).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)

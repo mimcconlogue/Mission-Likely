@@ -1,5 +1,5 @@
 extends CharacterBody2D
-@onready var player = get_node("/root/game/game display/player/Legs")
+@onready var player = get_node("/root/game/game_display/player/Legs")
 @onready var timer = %Timer
 @onready var shoot_timer: Timer = %ShootTimer
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
@@ -10,7 +10,7 @@ extends CharacterBody2D
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var enemy_legs: AnimatedSprite2D = $EnemyLegs
 @onready var hit_particles: GPUParticles2D = $HitParticles
-
+@onready var game_display = get_node("/root/game/game_display")
 const Bullet = preload("res://enemybullet.tscn")
 const corpse = preload("res://enemy_corpse.tscn")
 var move_speed = 175
@@ -156,7 +156,7 @@ func shoot():
 	velocity = Vector2.ZERO
 	can_shoot = false
 	var bullet = Bullet.instantiate()
-	get_tree().root.get_child(0).get_child(0).add_child(bullet)
+	game_display.add_child(bullet)
 	bullet.global_position = gun.global_position
 	bullet.global_rotation = gun.global_rotation
 	shoot_timer.start()

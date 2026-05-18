@@ -1,0 +1,133 @@
+[gd_scene format=3 uid="uid://dnkxfqglgyhy2"]
+
+[ext_resource type="Script" uid="uid://wcdwxxpqqiyn" path="res://game_display.gd" id="1_0ul4y"]
+[ext_resource type="PackedScene" uid="uid://btj5reeqo2i2u" path="res://map.tscn" id="2_2honb"]
+[ext_resource type="PackedScene" uid="uid://66hsxoauhh40" path="res://player.tscn" id="3_d6vih"]
+[ext_resource type="PackedScene" uid="uid://uqbde0qleu2v" path="res://exit.tscn" id="4_10oat"]
+[ext_resource type="PackedScene" uid="uid://nb776tfn5k73" path="res://enemywithgun.tscn" id="5_12fli"]
+[ext_resource type="PackedScene" uid="uid://he5ym66anqvn" path="res://enemy.tscn" id="6_82y7n"]
+[ext_resource type="PackedScene" uid="uid://blp5hc7as4ehp" path="res://pain_killer.tscn" id="7_03yo4"]
+
+[node name="game display" type="SubViewport" unique_id=900404231]
+script = ExtResource("1_0ul4y")
+
+[node name="map" parent="." unique_id=1888005942 instance=ExtResource("2_2honb")]
+position = Vector2(-209, 108)
+scale = Vector2(3.615673, 3.615673)
+
+[node name="player" parent="." unique_id=1112577195 instance=ExtResource("3_d6vih")]
+position = Vector2(-299, 130)
+
+[node name="exit" parent="." unique_id=667176898 instance=ExtResource("4_10oat")]
+position = Vector2(4372, -1443)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=1569583268]
+
+[node name="GunEnemy" parent="Enemies" unique_id=132284048 instance=ExtResource("5_12fli")]
+position = Vector2(1123, -928)
+rotation = -0.8795021
+
+[node name="Enemy" parent="Enemies" unique_id=1974527333 instance=ExtResource("6_82y7n")]
+position = Vector2(1228, 440)
+rotation = 1.113509
+
+[node name="Enemy18" parent="Enemies" unique_id=1773683138 instance=ExtResource("6_82y7n")]
+position = Vector2(1216.9999, 1105)
+rotation = -0.020128012
+
+[node name="Enemy2" parent="Enemies" unique_id=1556377673 instance=ExtResource("6_82y7n")]
+position = Vector2(587, 191)
+
+[node name="Enemy3" parent="Enemies" unique_id=569375911 instance=ExtResource("6_82y7n")]
+position = Vector2(2094.9998, 419)
+rotation = -1.9089527
+
+[node name="Enemy4" parent="Enemies" unique_id=1404801712 instance=ExtResource("6_82y7n")]
+position = Vector2(2214, -712)
+rotation = 0.902419
+
+[node name="Enemy5" parent="Enemies" unique_id=1595675251 instance=ExtResource("6_82y7n")]
+position = Vector2(4058, -898)
+rotation = 0.8673078
+
+[node name="Enemy6" parent="Enemies" unique_id=1730093212 instance=ExtResource("6_82y7n")]
+position = Vector2(2886, -294)
+rotation = 0.90859973
+
+[node name="Enemy7" parent="Enemies" unique_id=2076244293 instance=ExtResource("6_82y7n")]
+position = Vector2(4852, -865)
+rotation = 1.6614705
+
+[node name="GunEnemy2" parent="Enemies" unique_id=405361032 instance=ExtResource("5_12fli")]
+position = Vector2(4094, 212)
+rotation = -0.91661215
+
+[node name="GunEnemy3" parent="Enemies" unique_id=1587918782 instance=ExtResource("5_12fli")]
+position = Vector2(4841, 233)
+rotation = -1.7075931
+
+[node name="Enemy8" parent="Enemies" unique_id=1242747925 instance=ExtResource("6_82y7n")]
+position = Vector2(1867, -956)
+rotation = -4.784607
+
+[node name="Enemy16" parent="Enemies" unique_id=1568927162 instance=ExtResource("6_82y7n")]
+position = Vector2(1329, -487)
+rotation = -5.9781485
+
+[node name="Enemy9" parent="Enemies" unique_id=345049889 instance=ExtResource("6_82y7n")]
+position = Vector2(787, -955)
+rotation = -1.5987835
+
+[node name="Enemy17" parent="Enemies" unique_id=1316080451 instance=ExtResource("6_82y7n")]
+position = Vector2(548, -1371)
+rotation = -0.060050488
+
+[node name="Enemy10" parent="Enemies" unique_id=1736657496 instance=ExtResource("6_82y7n")]
+position = Vector2(2330, -2097)
+rotation = 2.8077044
+
+[node name="Enemy11" parent="Enemies" unique_id=944688377 instance=ExtResource("6_82y7n")]
+position = Vector2(964, -1949)
+rotation = 0.11006141
+
+[node name="Enemy12" parent="Enemies" unique_id=1014865947 instance=ExtResource("6_82y7n")]
+position = Vector2(1485, -2608)
+rotation = 0.6533313
+
+[node name="Enemy13" parent="Enemies" unique_id=999432247 instance=ExtResource("6_82y7n")]
+position = Vector2(1503, -3432)
+rotation = 2.6143272
+
+[node name="Enemy14" parent="Enemies" unique_id=2024157249 instance=ExtResource("6_82y7n")]
+position = Vector2(2100, -2984)
+rotation = 3.1300852
+
+[node name="Enemy15" parent="Enemies" unique_id=75895338 instance=ExtResource("6_82y7n")]
+position = Vector2(3967, -1422)
+rotation = 3.1354659
+
+[node name="GunEnemy4" parent="Enemies" unique_id=1852493952 instance=ExtResource("5_12fli")]
+position = Vector2(3008, -3456)
+rotation = 1.5798223
+
+[node name="items" type="Node2D" parent="." unique_id=1079112304]
+
+[node name="painkillers" type="Node2D" parent="items" unique_id=224499701]
+
+[node name="PainKiller" parent="items/painkillers" unique_id=1257171996 instance=ExtResource("7_03yo4")]
+position = Vector2(2100, 1128.0001)
+
+[node name="PainKiller2" parent="items/painkillers" unique_id=1144113592 instance=ExtResource("7_03yo4")]
+position = Vector2(488.00012, -953.00024)
+
+[node name="PainKiller3" parent="items/painkillers" unique_id=859573007 instance=ExtResource("7_03yo4")]
+position = Vector2(1274.0001, -3454.0002)
+
+[node name="PainKiller4" parent="items/painkillers" unique_id=444452204 instance=ExtResource("7_03yo4")]
+position = Vector2(2741, -162.00002)
+
+[node name="PainKiller5" parent="items/painkillers" unique_id=248898688 instance=ExtResource("7_03yo4")]
+position = Vector2(2037, -1707)
+
+[node name="DarknessFilter" type="CanvasModulate" parent="." unique_id=974844161]
+color = Color(0.03839717, 0.03839716, 0.038397186, 1)

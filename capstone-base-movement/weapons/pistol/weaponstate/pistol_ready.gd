@@ -2,6 +2,7 @@ extends Node2D
 const Bullet = preload("res://playerbullet.tscn")
 @onready var animation_player: AnimationPlayer = $Ready/AnimationPlayer
 @onready var barrel: Node2D = $barrel
+@onready var game_display = get_node("/root/game/game_display")
 var idle = true
 var gun_ready = true
 var bullets = 6
@@ -20,7 +21,7 @@ func shoot():
 		if cocked == true:
 			if get_parent().open == false:
 				var bullet = Bullet.instantiate()
-				get_tree().root.get_child(0).get_child(0).add_child(bullet)
+				game_display.add_child(bullet)
 				bullet.global_position = barrel.global_position
 				bullet.global_rotation = barrel.global_rotation
 				bullets = bullets - 1

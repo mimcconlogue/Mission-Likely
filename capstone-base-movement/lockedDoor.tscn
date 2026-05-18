@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://dfpns5bqwfou5"]
+
+[ext_resource type="Script" uid="uid://be3hytb3h5awm" path="res://LockedDoor.gd" id="1_6scyy"]
+
+[sub_resource type="Animation" id="Animation_v6xrn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0phs7"]
+resource_name = "close"
+length = 0.36666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-2, 551), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_50cdl"]
+resource_name = "open"
+length = 2.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.5333333, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-2, 551), Vector2(-2, 551), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y5njw"]
+_data = {
+&"RESET": SubResource("Animation_v6xrn"),
+&"close": SubResource("Animation_0phs7"),
+&"open": SubResource("Animation_50cdl")
+}
+
+[sub_resource type="Gradient" id="Gradient_ba8gm"]
+colors = PackedColorArray(0.24113065, 0.24113062, 0.24113062, 1, 0.58484477, 0.58484477, 0.58484477, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v6xrn"]
+gradient = SubResource("Gradient_ba8gm")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4xadh"]
+polygon = PackedVector2Array(-15, -552, 16, -552, 15, 5, -17, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hun61"]
+size = Vector2(92, 551)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6hwww"]
+size = Vector2(306, 550)
+
+[node name="door" type="Node2D" unique_id=692290361]
+scale = Vector2(0.4779688, 0.4779688)
+script = ExtResource("1_6scyy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=634651675]
+libraries/ = SubResource("AnimationLibrary_y5njw")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=162373635]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=134123557]
+position = Vector2(1.1920929e-06, -276.5)
+scale = Vector2(0.95777166, 8.609375)
+texture = SubResource("GradientTexture2D_v6xrn")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Node2D" unique_id=164537444]
+occluder = SubResource("OccluderPolygon2D_4xadh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D" unique_id=253649545]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D" unique_id=1109478039]
+position = Vector2(0, -274.5)
+shape = SubResource("RectangleShape2D_hun61")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=334215941]
+position = Vector2(-2, 2)
+scale = Vector2(1.7048888, 1)
+collision_layer = 65536
+collision_mask = 65536
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1084769982]
+position = Vector2(2, -276)
+shape = SubResource("RectangleShape2D_6hwww")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

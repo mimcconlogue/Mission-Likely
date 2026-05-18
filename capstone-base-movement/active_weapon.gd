@@ -26,29 +26,32 @@ func _input(_event: InputEvent) -> void:
 			else:
 				get_child(current_weapon).current_child.get_child(0).get_child(0).play(Weapon_animation_set[current_weapon] + "/" + "special")
 	if Input.is_action_just_pressed("weapon_1"):
-		current_weapon = 1
-		get_child(0).hide()
-		get_child(2).hide()
-		get_child(current_weapon).show()
-		get_child(0).process_mode = Node.PROCESS_MODE_DISABLED
-		get_child(2).process_mode = Node.PROCESS_MODE_DISABLED
-		get_child(current_weapon).process_mode = Node.PROCESS_MODE_INHERIT
+		if has_key.has_gun == true:
+			current_weapon = 1
+			get_child(0).hide()
+			get_child(2).hide()
+			get_child(current_weapon).show()
+			get_child(0).process_mode = Node.PROCESS_MODE_DISABLED
+			get_child(2).process_mode = Node.PROCESS_MODE_DISABLED
+			get_child(current_weapon).process_mode = Node.PROCESS_MODE_INHERIT
 	if Input.is_action_just_pressed("weapon_2"):
-		current_weapon = 2
-		get_child(0).hide()
-		get_child(1).hide()
-		get_child(current_weapon).show()
-		get_child(0).process_mode = Node.PROCESS_MODE_DISABLED
-		get_child(1).process_mode = Node.PROCESS_MODE_DISABLED
+		if has_key.has_knife == true:
+			current_weapon = 2
+			get_child(0).hide()
+			get_child(1).hide()
+			get_child(current_weapon).show()
+			get_child(0).process_mode = Node.PROCESS_MODE_DISABLED
+			get_child(1).process_mode = Node.PROCESS_MODE_DISABLED
 		get_child(current_weapon).process_mode = Node.PROCESS_MODE_INHERIT
 	if Input.is_action_just_pressed("weapon_3"):
-		current_weapon = 0
-		get_child(2).hide()
-		get_child(1).hide()
-		get_child(current_weapon).show()
-		get_child(1).process_mode = Node.PROCESS_MODE_DISABLED
-		get_child(2).process_mode = Node.PROCESS_MODE_DISABLED
-		get_child(current_weapon).process_mode = Node.PROCESS_MODE_INHERIT
+		
+			current_weapon = 0
+			get_child(2).hide()
+			get_child(1).hide()
+			get_child(current_weapon).show()
+			get_child(1).process_mode = Node.PROCESS_MODE_DISABLED
+			get_child(2).process_mode = Node.PROCESS_MODE_DISABLED
+			get_child(current_weapon).process_mode = Node.PROCESS_MODE_INHERIT
 	if Input.is_action_just_pressed("utility1"):
 		if current_weapon == 1:
 			if get_child(current_weapon).open == true :
@@ -70,5 +73,5 @@ func _input(_event: InputEvent) -> void:
 
 func _on_weapon_animation_over() -> void:
 	if grabbing == true:
-		get_child(current_weapon).current_child.get_child(0).get_child(0).play(Weapon_animation_set + "/" + "special_fail")
+		#get_child(current_weapon).current_child.get_child(0).get_child(0).play(Weapon_animation_set + "/" + "special_fail")
 		grabbing = false

@@ -1,10 +1,13 @@
-extends TileMapLayer
-
-@onready var map: Node2D = $"../../game_display/map"
+extends Node
+var has_key = false
+var has_gun = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	scale = map.scale
+	pass # Replace with function body.
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if has_key:
+		print("has key")

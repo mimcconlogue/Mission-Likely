@@ -100,6 +100,8 @@ height = 492.95236
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_i3pqv"]
+
 [node name="player" type="Node2D" unique_id=1112577195]
 script = SubResource("GDScript_onrkg")
 
@@ -144,6 +146,13 @@ collision_mask = 16
 position = Vector2(4, -1)
 scale = Vector2(6.4427037, 8.352031)
 shape = SubResource("CircleShape2D_onrkg")
+
+[node name="Area2D" type="Area2D" parent="Legs" unique_id=801338687]
+collision_layer = 65536
+collision_mask = 65536
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/Area2D" unique_id=2115046359]
+shape = SubResource("CircleShape2D_i3pqv")
 
 [node name="PainRegen" type="Timer" parent="." unique_id=434020603]
 one_shot = true

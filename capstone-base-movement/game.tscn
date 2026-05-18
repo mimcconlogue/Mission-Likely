@@ -1,18 +1,15 @@
-[gd_scene load_steps=52 format=4 uid="uid://bxkfexdm6v2mo"]
+[gd_scene format=4 uid="uid://bxkfexdm6v2mo"]
 
-[ext_resource type="PackedScene" uid="uid://btj5reeqo2i2u" path="res://MAP.tscn" id="1_7jktm"]
-[ext_resource type="PackedScene" uid="uid://66hsxoauhh40" path="res://player.tscn" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://wcdwxxpqqiyn" path="res://game_display.gd" id="1_j5wjh"]
 [ext_resource type="Script" uid="uid://c1clsv4pms1ee" path="res://gameorigin.gd" id="1_vef74"]
-[ext_resource type="PackedScene" uid="uid://uqbde0qleu2v" path="res://exit.tscn" id="4_fc0e3"]
-[ext_resource type="PackedScene" uid="uid://blp5hc7as4ehp" path="res://pain_killer.tscn" id="5_7jktm"]
-[ext_resource type="PackedScene" uid="uid://nb776tfn5k73" path="res://enemywithgun.tscn" id="6_eow3j"]
+[ext_resource type="PackedScene" uid="uid://dnkxfqglgyhy2" path="res://game_display.tscn" id="2_hve3p"]
 [ext_resource type="PackedScene" uid="uid://d4cfjlev2dys1" path="res://ui.tscn" id="6_ryrav"]
-[ext_resource type="PackedScene" uid="uid://he5ym66anqvn" path="res://enemy.tscn" id="7_j5wjh"]
+[ext_resource type="PackedScene" uid="uid://bbx0nwlr8q4fy" path="res://door.tscn" id="9_iotsf"]
 [ext_resource type="Shader" uid="uid://bvjdeguvsjm3u" path="res://shaders/masked_texture.gdshader" id="10_iotsf"]
 [ext_resource type="Shader" uid="uid://l6ymhfe0dr7p" path="res://game.gdshader" id="10_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://cnl61bidau6rw" path="res://textures/TILEMAP (2).png" id="11_iotsf"]
 [ext_resource type="Script" uid="uid://duwuqn846ateq" path="res://VisibilityMap.gd" id="13_7sc4i"]
+[ext_resource type="Script" uid="uid://bnb1vcucsdgvc" path="res://playerghost.gd" id="13_80cx4"]
 [ext_resource type="Script" uid="uid://doe7jr3f68kgb" path="res://point_light_2d.gd" id="13_215e1"]
 [ext_resource type="Script" uid="uid://bdticr0gdc3m3" path="res://visibility_camera_2d.gd" id="13_lc2xo"]
 
@@ -26,7 +23,7 @@ shader_parameter/mask_texture = SubResource("ViewportTexture_iotsf")
 shader_parameter/mask_with_alpha = true
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_eow3j"]
-viewport_path = NodePath("game display")
+viewport_path = NodePath("game_display")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_mfdv2"]
 viewport_path = NodePath("SubViewport")
@@ -237,139 +234,33 @@ fill = 1
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0.972, 0.04)
 
-[node name="game" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_lc2xo"]
+
+[node name="game" type="Node2D" unique_id=1672134412]
 script = ExtResource("1_vef74")
 metadata/_edit_vertical_guides_ = [-1338.0]
 
-[node name="game display" type="SubViewport" parent="."]
-physics_object_picking = true
-script = ExtResource("1_j5wjh")
+[node name="game_display" parent="." unique_id=1181717822 instance=ExtResource("2_hve3p")]
+unique_name_in_owner = true
 
-[node name="map" parent="game display" instance=ExtResource("1_7jktm")]
-position = Vector2(-209, 108)
-scale = Vector2(3.615673, 3.615673)
-
-[node name="player" parent="game display" instance=ExtResource("1_e2o6t")]
-position = Vector2(-299, 130)
-
-[node name="exit" parent="game display" instance=ExtResource("4_fc0e3")]
-position = Vector2(4372, -1443)
-
-[node name="Enemies" type="Node2D" parent="game display"]
-
-[node name="GunEnemy" parent="game display/Enemies" instance=ExtResource("6_eow3j")]
-position = Vector2(1148, -400)
-rotation = -0.8795021
-
-[node name="Enemy" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
-position = Vector2(1228, 440)
-rotation = 1.113509
-
-[node name="Enemy2" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
-position = Vector2(587, 191)
-
-[node name="Enemy3" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
-position = Vector2(2094.9998, 419)
-rotation = -1.4417465
-
-[node name="Enemy4" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
-position = Vector2(2214, -712)
-rotation = 0.8815565
-
-[node name="Enemy5" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
-position = Vector2(4058, -898)
-rotation = 0.8673078
-
-[node name="Enemy6" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
-position = Vector2(2886, -294)
-
-[node name="Enemy7" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
-position = Vector2(4852, -865)
-rotation = 1.6614705
-
-[node name="GunEnemy2" parent="game display/Enemies" instance=ExtResource("6_eow3j")]
-position = Vector2(4094, 212)
-rotation = -0.91661215
-
-[node name="GunEnemy3" parent="game display/Enemies" instance=ExtResource("6_eow3j")]
-position = Vector2(4841, 233)
-rotation = -1.7075931
-
-[node name="Enemy8" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
-position = Vector2(1807, -434)
-rotation = -2.1770692
-
-[node name="Enemy9" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
-position = Vector2(787, -955)
-rotation = -1.5987835
-
-[node name="Enemy10" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
-position = Vector2(2330, -2097)
-rotation = 1.7453643
-
-[node name="Enemy11" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
-position = Vector2(964, -1949)
-rotation = 1.8721327
-
-[node name="Enemy12" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
-position = Vector2(1485, -2608)
-
-[node name="Enemy13" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
-position = Vector2(1503, -3432)
-
-[node name="Enemy14" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
-position = Vector2(2100, -2984)
-rotation = 3.1300852
-
-[node name="Enemy15" parent="game display/Enemies" instance=ExtResource("7_j5wjh")]
-position = Vector2(3967, -1422)
-rotation = 3.1354659
-
-[node name="GunEnemy4" parent="game display/Enemies" instance=ExtResource("6_eow3j")]
-position = Vector2(3008, -3456)
-rotation = 1.5798223
-
-[node name="items" type="Node2D" parent="game display"]
-
-[node name="painkillers" type="Node2D" parent="game display/items"]
-
-[node name="PainKiller" parent="game display/items/painkillers" instance=ExtResource("5_7jktm")]
-position = Vector2(1146, 1112)
-
-[node name="PainKiller2" parent="game display/items/painkillers" instance=ExtResource("5_7jktm")]
-position = Vector2(488.00012, -953.00024)
-
-[node name="PainKiller3" parent="game display/items/painkillers" instance=ExtResource("5_7jktm")]
-position = Vector2(1274.0001, -3454.0002)
-
-[node name="PainKiller4" parent="game display/items/painkillers" instance=ExtResource("5_7jktm")]
-position = Vector2(2741, -162.00002)
-
-[node name="PainKiller5" parent="game display/items/painkillers" instance=ExtResource("5_7jktm")]
-position = Vector2(2037, -1707)
-
-[node name="DarknessFilter" type="CanvasModulate" parent="game display"]
-color = Color(0.03839717, 0.03839716, 0.038397186, 1)
-
-[node name="GameDisplay" type="Sprite2D" parent="."]
+[node name="GameDisplay" type="Sprite2D" parent="." unique_id=586392732]
 material = SubResource("ShaderMaterial_215e1")
 texture = SubResource("ViewportTexture_eow3j")
 
-[node name="VisibilityDebug" type="Sprite2D" parent="."]
+[node name="VisibilityDebug" type="Sprite2D" parent="." unique_id=148178377]
 visible = false
 position = Vector2(-216, -215.5)
 scale = Vector2(0.15625, 0.15820313)
 texture = SubResource("ViewportTexture_mfdv2")
 
-[node name="UI" parent="." instance=ExtResource("6_ryrav")]
+[node name="UI" parent="." unique_id=132010560 instance=ExtResource("6_ryrav")]
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1291994315]
 
-[node name="SubViewport" type="SubViewport" parent="."]
-handle_input_locally = false
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1466202749]
 script = ExtResource("1_j5wjh")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="SubViewport"]
+[node name="TileMapLayer" type="TileMapLayer" parent="SubViewport" unique_id=504856445]
 unique_name_in_owner = true
 light_mask = 3
 material = SubResource("ShaderMaterial_lc2xo")
@@ -379,25 +270,46 @@ tile_map_data = PackedByteArray("AAD+//7/AQADAAAAAAD///7/AQAEAAAAAAD+/wEAAQADAAI
 tile_set = SubResource("TileSet_7sc4i")
 script = ExtResource("13_7sc4i")
 
-[node name="Camera2D" type="Camera2D" parent="SubViewport"]
+[node name="door" parent="SubViewport/TileMapLayer" unique_id=692290361 instance=ExtResource("9_iotsf")]
+unique_name_in_owner = true
+position = Vector2(1142.146, -357.85403)
+scale = Vector2(0.21800685, 0.21800685)
+
+[node name="door2" parent="SubViewport/TileMapLayer" unique_id=229281359 instance=ExtResource("9_iotsf")]
+unique_name_in_owner = true
+position = Vector2(1368.3628, -340.43143)
+rotation = -1.5687546
+scale = Vector2(0.2834367, 0.35257024)
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport" unique_id=596028510]
 script = ExtResource("13_lc2xo")
 
-[node name="PointLight2D" type="PointLight2D" parent="SubViewport"]
+[node name="PointLight2D" type="PointLight2D" parent="SubViewport" unique_id=175249289]
 blend_mode = 1
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_7sc4i")
 texture_scale = 17.3
 script = ExtResource("13_215e1")
 
-[node name="PointLight2D2" type="PointLight2D" parent="SubViewport"]
+[node name="PointLight2D2" type="PointLight2D" parent="SubViewport" unique_id=537850533]
 blend_mode = 1
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_80cx4")
 texture_scale = 17.3
 script = ExtResource("13_215e1")
 
-[node name="PointLight2D" type="PointLight2D" parent="SubViewport/PointLight2D2"]
+[node name="PointLight2D" type="PointLight2D" parent="SubViewport/PointLight2D2" unique_id=1190607875]
 position = Vector2(-450, 0)
 rotation = 0.7853982
 texture = SubResource("GradientTexture2D_e8heu")
 texture_scale = 2.0
+
+[node name="playerghost" type="Node2D" parent="SubViewport" unique_id=187814943]
+script = ExtResource("13_80cx4")
+
+[node name="Area2D" type="Area2D" parent="SubViewport/playerghost" unique_id=1222509417]
+collision_layer = 65536
+collision_mask = 65536
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SubViewport/playerghost/Area2D" unique_id=1604258942]
+shape = SubResource("CircleShape2D_lc2xo")
