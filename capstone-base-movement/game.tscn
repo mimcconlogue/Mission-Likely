@@ -242,6 +242,7 @@ metadata/_edit_vertical_guides_ = [-1338.0]
 
 [node name="game_display" parent="." unique_id=1181717822 instance=ExtResource("2_hve3p")]
 unique_name_in_owner = true
+audio_listener_enable_2d = true
 
 [node name="GameDisplay" type="Sprite2D" parent="." unique_id=586392732]
 material = SubResource("ShaderMaterial_215e1")

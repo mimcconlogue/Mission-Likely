@@ -11,6 +11,7 @@ extends CharacterBody2D
 @onready var enemy_legs: AnimatedSprite2D = $EnemyLegs
 @onready var hit_particles: GPUParticles2D = $HitParticles
 @onready var game_display = get_node("/root/game/game_display")
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 const Bullet = preload("res://enemybullet.tscn")
 const corpse = preload("res://enemy_corpse.tscn")
 var move_speed = 175
@@ -162,6 +163,7 @@ func shoot():
 	shoot_timer.start()
 	idle_timer.stop()
 	sprite.play("shoot")
+	audio_stream_player_2d.play()
 	
 
 func _on_shoot_timer_timeout() -> void:

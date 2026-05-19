@@ -50,6 +50,7 @@
 [ext_resource type="Texture2D" uid="uid://7lgiam2svbjb" path="res://animation/enemy/0245.png" id="47_do1ro"]
 [ext_resource type="Texture2D" uid="uid://cfwhex80bgsad" path="res://animation/enemy/0246.png" id="48_uags7"]
 [ext_resource type="PackedScene" uid="uid://2xwgogj254r0" path="res://hit_particles.tscn" id="50_kc5bw"]
+[ext_resource type="AudioStream" uid="uid://ct252kg7msgog" path="res://enemy gun.wav" id="51_j1swu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fj8ww"]
 animations = [{
@@ -412,6 +413,10 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_qi2p4")
 
 [node name="HitParticles" parent="." unique_id=1148012845 instance=ExtResource("50_kc5bw")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=73606287]
+stream = ExtResource("51_j1swu")
+volume_db = 1.79
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

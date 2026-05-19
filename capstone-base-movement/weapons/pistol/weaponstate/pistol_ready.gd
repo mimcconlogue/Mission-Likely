@@ -3,10 +3,12 @@ const Bullet = preload("res://playerbullet.tscn")
 @onready var animation_player: AnimationPlayer = $Ready/AnimationPlayer
 @onready var barrel: Node2D = $barrel
 @onready var game_display = get_node("/root/game/game_display")
+@onready var audio_stream_player_2d_2: AudioStreamPlayer2D = $AudioStreamPlayer2D2
 var idle = true
 var gun_ready = true
 var bullets = 6
 var cocked = true
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 # Called when the node enters the scene tree for the first time.
 @onready var animated_sprite_2d_idle: AnimatedSprite2D = $Idle/AnimatedSprite2DIdle
 
@@ -28,6 +30,8 @@ func shoot():
 				cocked = false
 				animation_player.play("animations 2/attack1_2")
 				animated_sprite_2d_idle.animation = "uncocked"
+				audio_stream_player_2d.play()
+				
 	else:
 		pass
 func cock():
@@ -38,6 +42,7 @@ func cock():
 			animation_player.play("animations 2/special_1")
 			cocked = true
 			animated_sprite_2d_idle.animation = "cocked"
+			audio_stream_player_2d_2.play()
 		else:
 			animated_sprite_2d_idle.animation = "cocked"
 			pass

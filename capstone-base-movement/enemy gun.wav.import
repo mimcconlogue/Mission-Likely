@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ct252kg7msgog"
+path="res://.godot/imported/enemy gun.wav-c46a6aa651297f19181eb9513f7f27f0.sample"
+
+[deps]
+
+source_file="res://enemy gun.wav"
+dest_files=["res://.godot/imported/enemy gun.wav-c46a6aa651297f19181eb9513f7f27f0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

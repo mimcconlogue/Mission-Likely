@@ -6,7 +6,7 @@
 [sub_resource type="GDScript" id="GDScript_div1a"]
 script/source = "extends Node2D
 var prepared = false
-var type = \"fists\"
+var type = \"gun\"
 @onready var pistol_not_ready: Node2D = $PistolNotReady
 @onready var pistol_ready: Node2D = $PistolReady
 var open = false

@@ -1,13 +1,11 @@
-extends Node
-var has_key = false
-var has_gun = false
-var has_knife = false
+extends Node2D
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	rotation = randi()%360
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if has_key:
-		print("has key")
+	pass
