@@ -257,84 +257,84 @@ texture_scale = 1.34
 
 [node name="PointLight2D7" type="PointLight2D" parent="NavigationRegion2D/TileMapLayer" unique_id=312459733]
 position = Vector2(473, -211)
-energy = 0.86
+energy = 1.84
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_wijl4")
 texture_scale = 1.34
 
 [node name="PointLight2D8" type="PointLight2D" parent="NavigationRegion2D/TileMapLayer" unique_id=324147294]
 position = Vector2(469, -433)
-energy = 0.86
+energy = 1.84
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_wijl4")
 texture_scale = 1.34
 
 [node name="PointLight2D9" type="PointLight2D" parent="NavigationRegion2D/TileMapLayer" unique_id=30424230]
 position = Vector2(469, -680)
-energy = 0.86
+energy = 1.84
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_wijl4")
 texture_scale = 1.34
 
 [node name="PointLight2D10" type="PointLight2D" parent="NavigationRegion2D/TileMapLayer" unique_id=580230345]
 position = Vector2(262, -565)
-energy = 0.86
+energy = 1.84
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_wijl4")
 texture_scale = 1.34
 
 [node name="PointLight2D11" type="PointLight2D" parent="NavigationRegion2D/TileMapLayer" unique_id=361027617]
 position = Vector2(263, -469)
-energy = 0.86
+energy = 1.84
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_wijl4")
 texture_scale = 1.34
 
 [node name="PointLight2D12" type="PointLight2D" parent="NavigationRegion2D/TileMapLayer" unique_id=959073663]
 position = Vector2(262, -377)
-energy = 0.86
+energy = 1.84
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_wijl4")
 texture_scale = 1.34
 
 [node name="PointLight2D13" type="PointLight2D" parent="NavigationRegion2D/TileMapLayer" unique_id=1288037778]
 position = Vector2(662, -564)
-energy = 0.86
+energy = 1.84
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_wijl4")
 texture_scale = 1.34
 
 [node name="PointLight2D14" type="PointLight2D" parent="NavigationRegion2D/TileMapLayer" unique_id=329338147]
 position = Vector2(616, -733)
-energy = 0.86
+energy = 1.84
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_wijl4")
 texture_scale = 1.34
 
 [node name="PointLight2D15" type="PointLight2D" parent="NavigationRegion2D/TileMapLayer" unique_id=1662529641]
 position = Vector2(332, -736)
-energy = 0.86
+energy = 1.84
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_wijl4")
 texture_scale = 1.34
 
 [node name="PointLight2D16" type="PointLight2D" parent="NavigationRegion2D/TileMapLayer" unique_id=1161727857]
 position = Vector2(313, -874)
-energy = 0.86
+energy = 1.84
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_wijl4")
 texture_scale = 1.34
 
 [node name="PointLight2D17" type="PointLight2D" parent="NavigationRegion2D/TileMapLayer" unique_id=1738429218]
 position = Vector2(635, -871)
-energy = 0.86
+energy = 1.84
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_wijl4")
 texture_scale = 1.34
 
 [node name="PointLight2D18" type="PointLight2D" parent="NavigationRegion2D/TileMapLayer" unique_id=2016891942]
 position = Vector2(471, -977)
-energy = 0.86
+energy = 1.84
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_wijl4")
 texture_scale = 1.34
